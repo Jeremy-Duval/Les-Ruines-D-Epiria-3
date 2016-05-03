@@ -6,9 +6,9 @@
 package perso;
 
 /**
- *<p>Définie le type de personnage Pretre.</p>
+ *<p><strong>Définie le type de personnage Pretre.</strong></p>
  * <p>Hérite de {@link Personnage}</p>
- * @author p1501022
+ * @author Jérémy Duval
  * @since 1.0
  */
 public class Pretre extends Personnage{

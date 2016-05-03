@@ -6,9 +6,9 @@
 package perso;
 
 /**
- *Définie le type de personnage Mage.
- * Hérite de {@link Personnage}
- * @author p1501022
+ *<p><strong>Définie le type de personnage Mage.</strong></p>
+ * <p>Hérite de {@link Personnage}</p>
+ * @author Jérémy Duval
  * @since 1.0
  */
 public class Mage extends Personnage {

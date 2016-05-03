@@ -12,12 +12,13 @@ import perso.Guerrier;
 import perso.Mage;
 import perso.Paysan;
 import perso.Personnage;
+import perso.Personnage.*;
 import perso.Pretre;
 import utilitaire.Comparateur;
 
 /**
- *Cette classe est la classe principale du jeu.
- * @author p1501022
+ *<p><strong>Cette classe est la classe principale du jeu.</strong></p>
+ * @author Jérémy Duval
  * @version 1.0
  */
 public class LesRuinesDEpiria3 {
@@ -46,6 +47,19 @@ public class LesRuinesDEpiria3 {
             System.out.println("Pour la clé "+i+" on a :");
             System.out.println(perso.get(i));
         }
+        /*
+        Set <String> clés2 = null;
+        clés2 = inventaire.keySet();
+        for(String i : clés2){
+            System.out.println("Pour la clé "+i+" on a :");
+            System.out.println(inventaire.get(i));
+        }*/
+        
+        System.out.println("\nAutres test :\n\n");
+        
+        int epee = perso.get("Paysan").getEpee();
+        System.out.println("Epee : "+epee);
+        
     }
     
 }
