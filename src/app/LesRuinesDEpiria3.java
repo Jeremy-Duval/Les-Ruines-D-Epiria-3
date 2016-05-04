@@ -65,6 +65,9 @@ public class LesRuinesDEpiria3 {
         perso.get("Paysan").setXp(5);
         xp = perso.get("Paysan").getXp();
         System.out.println("Xp : "+xp);
+        perso.get("Paysan").setEpee(20);
+        epee = perso.get("Paysan").getEpee();
+        System.out.println("Epee : "+epee);
     }
     
 }

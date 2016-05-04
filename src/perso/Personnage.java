@@ -398,8 +398,76 @@ public abstract class Personnage {
     public void setArgent(int n_argent){
         argent = n_argent;
     }
-    
-    //setter inventaire à ajouter + javadoc à modif
+    /**
+    *<p>Cette méthode modifie la valeur de l'épée du perso.</p>
+    *@param n_epee : int : nouvelle épée
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setEpee(int n_epee){
+        inventaire.remove("Epee", inventaire.get("Epee"));
+        inventaire.put("Epee", n_epee);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur du sceptre du perso.</p>
+    *@param n_sceptre : int : nouveau sceptre
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setSceptre(int n_sceptre){
+        inventaire.remove("Sceptre", inventaire.get("Sceptre"));
+        inventaire.put("Sceptre", n_sceptre);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur du talisman du perso.</p>
+    *@param n_talisman : int : nouveau talisman
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setTalisman(int n_talisman){
+        inventaire.remove("Talisman", inventaire.get("Talisman"));
+        inventaire.put("Talisman", n_talisman);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur de la potion de vie du perso.</p>
+    *@param n_potion_vie : int : nouvelle potion de vie
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setPotionVie(int n_potion_vie){
+        inventaire.remove("PotionVie", inventaire.get("PotionVie"));
+        inventaire.put("PotionVie", n_potion_vie);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur de la potion de pm du perso.</p>
+    *@param n_potion_pm : int : nouvelle potion de pm
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setPotionPM(int n_potion_pm){
+        inventaire.remove("PotionPM", inventaire.get("PotionPM"));
+        inventaire.put("PotionPM", n_potion_pm);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur de l'armure du perso.</p>
+    *@param n_armure : int : nouvelle armure
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setArmure(int n_armure){
+        inventaire.remove("Armure", inventaire.get("Armure"));
+        inventaire.put("Armure", n_armure);
+    }
+    /**
+    *<p>Cette méthode modifie la valeur de l'armure magique du perso.</p>
+    *@param n_armure_magique : int : nouvelle armure magique
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setArmureMagique(int n_armure_magique){
+        inventaire.remove("ArmureMagique", inventaire.get("ArmureMagique"));
+        inventaire.put("ArmureMagique", n_armure_magique);
+    }
     
     //**************************************************************************
     //fonctions
