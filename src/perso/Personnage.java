@@ -332,71 +332,71 @@ public abstract class Personnage {
     *@author Jérémy Duval
     *@since 1.0
     */
-    public void setAttaque(int n_atq_mag){
+    public void setAttaqueMagique(int n_atq_mag){
         this.atq_mag = n_atq_mag;
     }
     /**
-    *<p>Cette méthode renvoie la defense du perso.</p>
-    *@return Int : def
+    *<p>Cette méthode modifie la defense du perso.</p>
+    *@param n_def : int : nouveaux points défense
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getDefense(){
-        return this.def;
+    public void setDefense(int n_def){
+        this.def = n_def;
     }
     /**
-    *<p>Cette méthode renvoie la defense magique du perso.</p>
-    *@return Int : def_mag
+    *<p>Cette méthode modifie la defense magique du perso.</p>
+    *@param n_def_magique : int : nouveaux points défense magique
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getDefenseMagique(){
-        return this.def_mag;
+    public void setDefenseMagique(int n_def_magique){
+        this.def_mag = n_def_magique;
     }
     /**
-    *<p>Cette méthode renvoie l'agilité du perso.</p>
-    *@return Int : agilite
+    *<p>Cette méthode modifie l'agilité du perso.</p>
+    *@param n_agilite : int : nouveaux points d'agilité
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getAgilite(){
-        return this.agilite;
+    public void setAgilite(int n_agilite){
+        this.agilite = n_agilite;
     }
     /**
-    *<p>Cette méthode renvoie l'intelligence du perso.</p>
-    *@return Int : intelligence
+    *<p>Cette méthode modifie l'intelligence du perso.</p>
+    *@param n_intelligence : int : nouveaux points d'intelligence
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getIntelligence(){
-        return this.intelligence;
+    public void setIntelligence(int n_intelligence){
+        this.intelligence = n_intelligence;
     }
     /**
-    *<p>Cette méthode renvoie la sagesse du perso.</p>
-    *@return Int : sagesse
+    *<p>Cette méthode modifie la sagesse du perso.</p>
+    *@param n_sagesse : int : nouveaux points de sagesse
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getSagesse(){
-        return this.sagesse;
+    public void setSagesse(int n_sagesse){
+        this.sagesse = n_sagesse;
     }
     /**
-    *<p>Cette méthode renvoie les points d'xp du perso.</p>
-    *@return Int : xp
+    *<p>Cette méthode modifie les points d'xp du perso.</p>
+    *@param n_xp : int : nouveaux points d'xp
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getXp(){
-        return this.xp;
+    public void setXp(int n_xp){
+        this.xp = n_xp;
     }
     /**
-    *<p>Cette méthode renvoie l'argent du perso.</p>
-    *@return Int : argent
+    *<p>Cette méthode modifie l'argent du perso.</p>
+    *@param n_argent : int : nouvel argent
     *@author Jérémy Duval
     *@since 1.0
     */
-    public int getArgent(){
-        return argent;
+    public void setArgent(int n_argent){
+        argent = n_argent;
     }
     
     //setter inventaire à ajouter + javadoc à modif

@@ -55,11 +55,16 @@ public class LesRuinesDEpiria3 {
             System.out.println(inventaire.get(i));
         }*/
         
-        System.out.println("\nAutres test :\n\n");
-        
+        System.out.println("\n\nTest getter :\n\n");
+        int xp = perso.get("Paysan").getXp();
+        System.out.println("Xp : "+xp);
         int epee = perso.get("Paysan").getEpee();
         System.out.println("Epee : "+epee);
         
+        System.out.println("\n\nTest setter :\n\n");
+        perso.get("Paysan").setXp(5);
+        xp = perso.get("Paysan").getXp();
+        System.out.println("Xp : "+xp);
     }
     
 }
