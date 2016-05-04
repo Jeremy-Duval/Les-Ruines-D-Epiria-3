@@ -61,6 +61,8 @@ public abstract class Personnage {
         inventaire.put("Talisman", 0);
         inventaire.put("PotionVie", 0);
         inventaire.put("PotionPM", 0);
+        inventaire.put("Armure", 0);
+        inventaire.put("ArmureMagique", 0);
     }
     
     //**************************************************************************
@@ -69,7 +71,7 @@ public abstract class Personnage {
     
     /**
     *<p>Cette méthode renvoie le level du perso.</p>
-    *@return Int : level
+    *@return int : level
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -78,7 +80,7 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie la vie du perso.</p>
-    *@return Int : vie
+    *@return int : vie
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -87,7 +89,7 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie la vie actuelle du perso.</p>
-    *@return Int : vie_actu
+    *@return int : vie_actu
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -96,7 +98,7 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie les pm du perso.</p>
-    *@return Int : pm
+    *@return int : pm
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -105,7 +107,7 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie les pm du perso.</p>
-    *@return Int : pm_actu
+    *@return int : pm_actu
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -114,7 +116,7 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie l'attaque du perso.</p>
-    *@return Int : atq
+    *@return int : atq
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -123,12 +125,215 @@ public abstract class Personnage {
     }
     /**
     *<p>Cette méthode renvoie l'attaque magique du perso.</p>
-    *@return Int : atq_mag
+    *@return int : atq_mag
     *@author Jérémy Duval
     *@since 1.0
     */
     public int getAttaqueMagique(){
         return this.atq_mag;
+    }
+    /**
+    *<p>Cette méthode renvoie la defense du perso.</p>
+    *@return int : def
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getDefense(){
+        return this.def;
+    }
+    /**
+    *<p>Cette méthode renvoie la defense magique du perso.</p>
+    *@return int : def_mag
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getDefenseMagique(){
+        return this.def_mag;
+    }
+    /**
+    *<p>Cette méthode renvoie l'agilité du perso.</p>
+    *@return int : agilite
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getAgilite(){
+        return this.agilite;
+    }
+    /**
+    *<p>Cette méthode renvoie l'intelligence du perso.</p>
+    *@return int : intelligence
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getIntelligence(){
+        return this.intelligence;
+    }
+    /**
+    *<p>Cette méthode renvoie la sagesse du perso.</p>
+    *@return int : sagesse
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getSagesse(){
+        return this.sagesse;
+    }
+    /**
+    *<p>Cette méthode renvoie les points d'xp du perso.</p>
+    *@return int : xp
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getXp(){
+        return this.xp;
+    }
+    /**
+    *<p>Cette méthode renvoie les point d'xp nécessaire pour passer au niveau suivant.</p>
+    *@return int : xp_nec
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getXpNecessaire(){
+        return this.xp_nec;
+    }
+    /**
+    *<p>Cette méthode renvoie l'argent du perso.</p>
+    *@return int : argent
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getArgent(){
+        return argent;
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de l'épée du perso.</p>
+    *@return int : inventaire.get("Epee")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getEpee(){
+        return inventaire.get("Epee");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur du sceptre du perso.</p>
+    *@return int : inventaire.get("Sceptre")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getSceptre(){
+        return inventaire.get("Sceptre");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur du talisman du perso.</p>
+    *@return int : inventaire.get("Talisman")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getTalisman(){
+        return inventaire.get("Talisman");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de la potion de vie du perso.</p>
+    *@return int : inventaire.get("PotionVie")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getPotionVie(){
+        return inventaire.get("PotionVie");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de la potion de vie du perso.</p>
+    *@return int : inventaire.get("PotionPM")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getPotionPm(){
+        return inventaire.get("PotionPM");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de l'armure du perso.</p>
+    *@return int : inventaire.get("Armure")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getArmure(){
+        return inventaire.get("Armure");
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de l'armure magique du perso.</p>
+    *@return int : inventaire.get("ArmureMagique")
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getArmureMagique(){
+        return inventaire.get("ArmureMagique");
+    }
+    
+    //**************************************************************************
+    //setters
+    //**************************************************************************
+    /**
+    *<p>Cette méthode change le level du perso ainsi que les xp nécessaires au prochain level.</p>
+    *@param n_lev : int : nouveau level
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setLevel(int n_lev){
+        this.level = n_lev;
+        xpLevelSuivant();
+    }
+    /**
+    *<p>Cette méthode change la vie du perso.</p>
+    *@param n_vie : int : nouvelle vie
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setVie(int n_vie){
+        this.vie = n_vie;
+    }
+    /**
+    *<p>Cette méthode change la vie actuelle du perso.</p>
+    *@param n_vie_actu : int : nouvelle vie actuelle
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setVieAcutelle(int n_vie_actu){
+        this.vie_actu = n_vie_actu;
+    }
+    /**
+    *<p>Cette méthode change les pm du perso.</p>
+    *@param n_pm : int : nouveaux pm
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setPm(int n_pm){
+        this.pm = n_pm;
+    }
+    /**
+    *<p>Cette méthode change les pm du perso.</p>
+    *@param n_pm_actu : int : nouveaux pm actuels
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setPmActuel(int n_pm_actu){
+        this.pm_actu = n_pm_actu;
+    }
+    /**
+    *<p>Cette méthode change l'attaque du perso.</p>
+    *@param n_atq : int : nouveaux points d'attaque
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setAttaque(int n_atq){
+        this.atq = n_atq;
+    }
+    /**
+    *<p>Cette méthode change l'attaque du perso.</p>
+    *@param n_atq_mag : int : nouveaux points d'attaque
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setAttaque(int n_atq_mag){
+        this.atq_mag = n_atq_mag;
     }
     /**
     *<p>Cette méthode renvoie la defense du perso.</p>
@@ -185,15 +390,6 @@ public abstract class Personnage {
         return this.xp;
     }
     /**
-    *<p>Cette méthode renvoie les point d'xp nécessaire pour passer au niveau suivant.</p>
-    *@return Int : xp_nec
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getXpNecessaire(){
-        return this.xp_nec;
-    }
-    /**
     *<p>Cette méthode renvoie l'argent du perso.</p>
     *@return Int : argent
     *@author Jérémy Duval
@@ -202,55 +398,8 @@ public abstract class Personnage {
     public int getArgent(){
         return argent;
     }
-    /**
-    *<p>Cette méthode renvoie la valeur de l'épée du perso.</p>
-    *@return Int : inventaire.get("Epee")
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getEpee(){
-        return inventaire.get("Epee");
-    }
-    /**
-    *<p>Cette méthode renvoie la valeur du sceptre du perso.</p>
-    *@return Int : inventaire.get("Sceptre")
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getSceptre(){
-        return inventaire.get("Sceptre");
-    }
-    /**
-    *<p>Cette méthode renvoie la valeur du talisman du perso.</p>
-    *@return Int : inventaire.get("Talisman")
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getTalisman(){
-        return inventaire.get("Talisman");
-    }
-    /**
-    *<p>Cette méthode renvoie la valeur de la potion de vie du perso.</p>
-    *@return Int : inventaire.get("PotionVie")
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getPotionVie(){
-        return inventaire.get("PotionVie");
-    }
-    /**
-    *<p>Cette méthode renvoie la valeur de la potion de vie du perso.</p>
-    *@return Int : inventaire.get("PotionPM")
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public int getPotionPm(){
-        return inventaire.get("PotionPM");
-    }
     
-    //**************************************************************************
-    //setters
-    //**************************************************************************
+    //setter inventaire à ajouter + javadoc à modif
     
     //**************************************************************************
     //fonctions
