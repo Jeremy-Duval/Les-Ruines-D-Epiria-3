@@ -5,6 +5,8 @@
  */
 package perso;
 
+import armes.All;
+
 /**
  *<p><strong>Définie le type de personnage Paysan.</strong></p>
  *<p>Hérite de {@link Personnage}</p>
@@ -15,6 +17,7 @@ public class Paysan extends Personnage {
     public Paysan(){
         super();
         this.classe_pers = "Paysan";
+        this.arme_possible = new All();
     }
     
     //getters

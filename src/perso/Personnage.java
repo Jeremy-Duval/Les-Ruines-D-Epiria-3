@@ -5,6 +5,9 @@
  */
 package perso;
 
+import armes.Arme;
+import armes.ArmeUtilise;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 import utilitaire.Comparateur;
@@ -14,7 +17,7 @@ import utilitaire.Comparateur;
  * @author Jérémy Duval
  * @since 1.0
  */
-public abstract class Personnage {
+public abstract class Personnage implements Serializable{
     
     //Caracteristique du personnage :
     protected String classe_pers;
@@ -36,9 +39,18 @@ public abstract class Personnage {
     private static int argent;
     private static Map <String, Integer> inventaire;
     //arme
-    //cf interface
+    protected Arme arme_possible;
+    protected ArmeUtilise arme_use;
     
+    //**************************************************************************
     //constructeurs
+    //**************************************************************************
+    /**
+    *<p><Strong>Ce constructeur permet d'initialiser tout les stats du personnage 
+    * ainsi que son inventaire.</Strong></p>
+    *@author Jérémy Duval
+    *@since 1.0
+    */
     public Personnage(){
         this.level = 1;
         this.vie = 20;
@@ -267,6 +279,16 @@ public abstract class Personnage {
     public int getArmureMagique(){
         return inventaire.get("ArmureMagique");
     }
+    /**
+    *<p>Cette méthode renvoie le type d'arme utilisé par le perso.
+    * Ce type est implémenté par l'interface {@link Arme}</p>
+    *@return String : arme
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public String getArmePossible(){
+        return this.arme_possible.getArmeUtil();
+    }
     
     //**************************************************************************
     //setters
@@ -479,7 +501,7 @@ public abstract class Personnage {
     *@author Jérémy Duval
     *@since 1.0
     */
-    protected int xpLevelSuivant(){
+    protected final int xpLevelSuivant(){
         return (int)(this.level*10*0.75);
     }
     

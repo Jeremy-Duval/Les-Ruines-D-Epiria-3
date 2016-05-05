@@ -5,6 +5,8 @@
  */
 package perso;
 
+import armes.Talisman;
+
 /**
  *<p><strong>Définie le type de personnage Pretre.</strong></p>
  * <p>Hérite de {@link Personnage}</p>
@@ -15,5 +17,6 @@ public class Pretre extends Personnage{
     public Pretre(){
         super();
         this.classe_pers = "Pretre";
+        this.arme_possible = new Talisman();
     }
 }

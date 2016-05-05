@@ -5,6 +5,8 @@
  */
 package perso;
 
+import armes.Epee;
+
 /**
  *<p><strong>Définie le type de personnage Guerrier.</strong></p>
  * <p>Hérite de {@link Personnage}</p>
@@ -15,6 +17,7 @@ public class Guerrier extends Personnage {
     public Guerrier(){
         super();
         this.classe_pers = "Guerrier";
+        this.arme_possible = new Epee();
     }
     
     //getters

@@ -5,6 +5,9 @@
  */
 package app;
 
+import armes.ArmeUtilise;
+import armes.Epee;
+import armes.Sceptre;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -12,7 +15,6 @@ import perso.Guerrier;
 import perso.Mage;
 import perso.Paysan;
 import perso.Personnage;
-import perso.Personnage.*;
 import perso.Pretre;
 import utilitaire.Comparateur;
 
@@ -21,7 +23,7 @@ import utilitaire.Comparateur;
  * @author Jérémy Duval
  * @version 1.0
  */
-public class LesRuinesDEpiria3 {
+public class LesRuinesDEpiria3{
 
     /**
      * @param args the command line arguments
@@ -68,6 +70,25 @@ public class LesRuinesDEpiria3 {
         perso.get("Paysan").setEpee(20);
         epee = perso.get("Paysan").getEpee();
         System.out.println("Epee : "+epee);
+        
+        System.out.println("\n\nTest interface arme :\n\n");
+        System.out.println(perso.get("Paysan").getArmePossible());
+        
+        System.out.println("\n\nTest objet arme :\n\n");
+        ArmeUtilise arme_use1 = new ArmeUtilise();
+        ArmeUtilise arme_use2 = new ArmeUtilise(new Epee(), 50);
+        System.out.println("Arme 1 : ");
+        System.out.println("Type : "+arme_use1.getTypeArme());
+        System.out.println("Nom : "+arme_use1.getNomArme());
+        System.out.println("Arme 2 : ");
+        System.out.println("Type : "+arme_use2.getTypeArme());
+        System.out.println("Nom : "+arme_use2.getNomArme());
+        System.out.println("Arme 1 modif : ");
+        arme_use1.setArme(new Sceptre(), 75);
+        System.out.println("Type : "+arme_use1.getTypeArme());
+        System.out.println("Nom : "+arme_use1.getNomArme());
+
+        
     }
     
 }

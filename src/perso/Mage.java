@@ -5,6 +5,8 @@
  */
 package perso;
 
+import armes.Sceptre;
+
 /**
  *<p><strong>Définie le type de personnage Mage.</strong></p>
  * <p>Hérite de {@link Personnage}</p>
@@ -15,5 +17,6 @@ public class Mage extends Personnage {
     public Mage(){
         super();
         this.classe_pers = "Mage";
+        this.arme_possible = new Sceptre();
     }
 }
