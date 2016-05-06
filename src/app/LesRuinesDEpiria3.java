@@ -5,6 +5,7 @@
  */
 package app;
 
+import armes.Arme;
 import armes.ArmeUtilise;
 import armes.Epee;
 import armes.Sceptre;
@@ -29,8 +30,10 @@ public class LesRuinesDEpiria3{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Arme arme_use_epee_guerrier = new Epee();
+        ArmeUtilise arme_use_gerrier = new ArmeUtilise(arme_use_epee_guerrier, 80);
         Personnage paysan = new Paysan();
-        Personnage guerrier = new Guerrier();
+        Personnage guerrier = new Guerrier(arme_use_gerrier);
         Personnage mage = new Mage();
         Personnage pretre = new Pretre();
         
@@ -80,13 +83,16 @@ public class LesRuinesDEpiria3{
         System.out.println("Arme 1 : ");
         System.out.println("Type : "+arme_use1.getTypeArme());
         System.out.println("Nom : "+arme_use1.getNomArme());
+        System.out.println("Valeur : "+arme_use1.getValeurArme());
         System.out.println("Arme 2 : ");
         System.out.println("Type : "+arme_use2.getTypeArme());
         System.out.println("Nom : "+arme_use2.getNomArme());
+        System.out.println("Valeur : "+arme_use2.getValeurArme());
         System.out.println("Arme 1 modif : ");
         arme_use1.setArme(new Sceptre(), 75);
         System.out.println("Type : "+arme_use1.getTypeArme());
         System.out.println("Nom : "+arme_use1.getNomArme());
+        System.out.println("Valeur : "+arme_use1.getValeurArme());
 
         
     }

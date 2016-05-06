@@ -6,6 +6,7 @@
 package perso;
 
 import armes.All;
+import armes.ArmeUtilise;
 
 /**
  *<p><strong>Définie le type de personnage Paysan.</strong></p>
@@ -14,19 +15,19 @@ import armes.All;
  * @since 1.0
  */
 public class Paysan extends Personnage {
+    /**
+    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
+    *de type "Paysan" ainsi que son inventaire.</Strong></p>
+    *<p>Ce concstructeur complète celui de {@link Personnage}</p>
+    *@author Jérémy Duval
+    *@since 1.0
+    */
     public Paysan(){
         super();
         this.classe_pers = "Paysan";
         this.arme_possible = new All();
+        this.arme_use = new ArmeUtilise();
     }
     
-    //getters
-    
-    //setters
-    
-    //fonctions
-    
-    //redéfinition
-    
-    //redèf toString()
+
 }

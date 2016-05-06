@@ -535,6 +535,8 @@ public abstract class Personnage implements Serializable{
                 + "Classe : " + this.classe_pers + "\nNiveau : " + this.level + "\nVie : " + this.vie_actu + "/" + this.vie
                 + "\nPm : " + this.pm_actu + "/" + this.pm + "\nAttaque : " + this.atq + "\nAttaque magique : " + this.atq_mag
                 + "\nDefense : " + this.def + "\nDefense magique : " + this.def_mag + "\nIntelligence : " + this.intelligence 
-                + "\nSagesse : " + this.sagesse + "\nPoints d'XP : " + this.xp + "/" + this.xp_nec + "\n" +this.toInventaire();
+                + "\nSagesse : " + this.sagesse + "\nPoints d'XP : " + this.xp + "/" + this.xp_nec + "\nArme utilisable : "
+                + this.arme_possible.getArmeUtil() + "\nArme utilisée : " + this.arme_use.getNomArme() + ", de puissance : "
+                + this.arme_use.getValeurArme() + "\n" + this.toInventaire();
     }
 }

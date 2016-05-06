@@ -68,7 +68,15 @@ public class ArmeUtilise implements Serializable{
     public String getNomArme(){
         return type;
     }
-    
+    /**
+    *<p>Cette méthode renvoie la valeur de l'arme.</p>
+    *@return int : valeur
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getValeurArme(){
+        return valeur;
+    }
     //**************************************************************************
     //setters
     //**************************************************************************
