@@ -19,23 +19,28 @@ public class MenuForet extends MenuGeneral{
     /**
     *<p><Strong>Ce constructeur permet d'initialiser le menu en tant que celui 
     * de la forêt.</Strong></p>
-    * <p>L'apparition du marchand ambulant est aléatoire (une chance sur trois).</p>
+    * <p>L'apparition du marchand ambulant est aléatoire (une chance sur trois),
+    * ainsi que celle du campement (une chance sur deux).</p>
     *@author Jérémy Duval
     *@since 1.0
     */
     public MenuForet(){
         super();
         nomMenu = "Forêt :";
-        auberge = new AubergeOui();
+        auberge = new AubergeNon();
         if(Math.abs(aleat.nextInt(2))>=1){
             vente_arme = new VenteArmeNon();
         }else {
             vente_arme = new VenteArmeMarchand();
         }
-        lieu1 = new LieuPlaine();
-        lieu2 = new LieuLac();
-        lieu3 = new LieuNon();
-        lieu4 = new LieuNon();
-        lieu5 = new LieuNon();
+        lieu[0] = new LieuPlaine();
+        lieu[1] = new LieuLac();
+        if(Math.abs(aleat.nextInt(1))>=1){
+            lieu[2] = new LieuCampement();
+        }else {
+            lieu[2] = new LieuNon();
+        }
+        lieu[3] = new LieuNon();
+        lieu[4] = new LieuNon();
     }
 }

@@ -5,6 +5,7 @@
  */
 package app;
 
+import Menus.MenuCampement;
 import Menus.MenuCite;
 import Menus.MenuForet;
 import Menus.MenuGeneral;
@@ -14,6 +15,7 @@ import armes.Arme;
 import armes.ArmeUtilise;
 import armes.Epee;
 import armes.Sceptre;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -34,7 +36,7 @@ public class LesRuinesDEpiria3{
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Arme arme_use_epee_guerrier = new Epee();
         ArmeUtilise arme_use_gerrier = new ArmeUtilise(arme_use_epee_guerrier, 80);
         Personnage paysan = new Paysan();
@@ -109,7 +111,10 @@ public class LesRuinesDEpiria3{
         System.out.println(menu_general);
         menu_general = new MenuLac();
         System.out.println(menu_general);
-        
+        menu_general = new MenuCampement();
+        System.out.println(menu_general);
+        menu_general.redirectionChoix();
+        //System.out.println(menu_general.choix);
         
     }
     
