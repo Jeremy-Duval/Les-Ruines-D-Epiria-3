@@ -5,6 +5,11 @@
  */
 package app;
 
+import Menus.MenuCite;
+import Menus.MenuForet;
+import Menus.MenuGeneral;
+import Menus.MenuLac;
+import Menus.MenuPlaine;
 import armes.Arme;
 import armes.ArmeUtilise;
 import armes.Epee;
@@ -93,7 +98,18 @@ public class LesRuinesDEpiria3{
         System.out.println("Type : "+arme_use1.getTypeArme());
         System.out.println("Nom : "+arme_use1.getNomArme());
         System.out.println("Valeur : "+arme_use1.getValeurArme());
-
+        
+        
+        System.out.println("\n\nTest objet menus :\n\n");
+        MenuGeneral menu_general = new MenuCite();
+        System.out.println(menu_general);
+        menu_general = new MenuPlaine();
+        System.out.println(menu_general);
+        menu_general = new MenuForet();
+        System.out.println(menu_general);
+        menu_general = new MenuLac();
+        System.out.println(menu_general);
+        
         
     }
     
