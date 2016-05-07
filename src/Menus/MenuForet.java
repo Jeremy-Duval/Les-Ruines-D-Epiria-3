@@ -33,6 +33,7 @@ public class MenuForet extends MenuGeneral{
         }else {
             vente_arme = new VenteArmeMarchand();
         }
+        maitre_competences = new MaitreDesCompetencesNon();
         lieu[0] = new LieuPlaine();
         lieu[1] = new LieuLac();
         if(Math.abs(aleat.nextInt(1))>=1){
@@ -42,5 +43,6 @@ public class MenuForet extends MenuGeneral{
         }
         lieu[3] = new LieuNon();
         lieu[4] = new LieuNon();
+        type_menu = new LieuForet();
     }
 }

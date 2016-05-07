@@ -24,10 +24,12 @@ public class MenuCite extends MenuGeneral{
         nomMenu = "Cité :";
         auberge = new AubergeOui();
         vente_arme = new VenteArmeCite();
+        maitre_competences = new MaitreDesCompetencesOui();
         lieu[0] = new LieuPlaine();
         lieu[1] = new LieuNon();
         lieu[2] = new LieuNon();
         lieu[3] = new LieuNon();
         lieu[4] = new LieuNon();
+        type_menu = new LieuCite();
     }
 }

@@ -24,10 +24,12 @@ public class MenuCampement extends MenuGeneral{
         nomMenu = "Campement :";
         auberge = new AubergeOui();
         vente_arme = new VenteArmeNon();
+        maitre_competences = new MaitreDesCompetencesNon();
         lieu[0] = new LieuForet();
         lieu[1] = new LieuNon();
         lieu[2] = new LieuNon();
         lieu[3] = new LieuNon();
         lieu[4] = new LieuNon();
+        type_menu = new LieuCampement();
     } 
 }

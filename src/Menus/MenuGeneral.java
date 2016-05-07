@@ -18,8 +18,10 @@ public abstract class MenuGeneral implements Serializable{
     protected Auberge auberge;
     protected VenteArme vente_arme;
     protected Lieu[] lieu = new Lieu[5];
+    protected MaitreDesCompetences maitre_competences;
     protected String choix;
     protected String nomMenu;
+    protected Lieu type_menu;
     
     //**************************************************************************
     //constructeurs
@@ -44,7 +46,13 @@ public abstract class MenuGeneral implements Serializable{
     //**************************************************************************
     //fonctions
     //**************************************************************************
-    public void redirectionChoix() throws IOException{
+    /**
+    *<p>Cette méthode renvoie un lieu correspondant au lieu du menu à afficher.</p>
+    *@return Lieu
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public Lieu redirectionChoix() throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
@@ -52,6 +60,8 @@ public abstract class MenuGeneral implements Serializable{
         Auberge test_auberge;
         VenteArme test_vente_arme;
         Lieu test_lieu;
+        Lieu lieu_return = new LieuCite();
+        MaitreDesCompetences test_maitre_competences;
     
         while(!continuer){
             choix = buff.readLine();
@@ -62,6 +72,7 @@ public abstract class MenuGeneral implements Serializable{
                     continuer = true;
                     //renvoie au sous-programme d'auberge
                 }
+                lieu_return = type_menu;
             }
             //marchand
             test_vente_arme = new VenteArmeCite();
@@ -75,47 +86,126 @@ public abstract class MenuGeneral implements Serializable{
                     continuer = true;
                     //renvoie au sous-programme marchand ambulant
                 }
+                lieu_return = type_menu;
             }
             //Lieu
+            //accès cité
             if(this.choix.equals("c")){
+                i = 0;
+                while(i<lieu.length)
+                {
+                    test_lieu = new LieuPlaine();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu la plaine
+                        continuer = true;
+                        lieu_return = new LieuCite();
+                        
+                    }
+                }
+                
+            }
+            //accès plaine
+            if(this.choix.equals("p")){
                 i = 0;
                 while(i<lieu.length)
                 {
                     test_lieu = new LieuCite();
                     if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si le lieu est la cité
                         continuer = true;
-                        //renvoie au sous-programme cité
-                    }
-                    test_lieu = new LieuPlaine();
-                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu la plaine
-                        continuer = true;
-                        //renvoie au sous-programme plaine
+                        lieu_return = new LieuPlaine();
+                        
                     }
                     test_lieu = new LieuForet();
                     if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu de la foret
                         continuer = true;
-                        //renvoie au sous-programme foret
+                        lieu_return = new LieuPlaine();
+                        
                     }
                     test_lieu = new LieuLac();
                     if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu du lac
                         continuer = true;
-                        //renvoie au sous-programme lac
-                    }
-                    test_lieu = new LieuCampement();
-                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu du campement
-                        continuer = true;
-                        //renvoie au sous-programme campement
+                        lieu_return = new LieuPlaine();
+                        
                     }
                 }
                 
             }
-            //Lieu
+            //accès forêt
+            if(this.choix.equals("f")){
+                i = 0;
+                while(i<lieu.length)
+                {
+                    test_lieu = new LieuPlaine();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu la plaine
+                        continuer = true;
+                        lieu_return = new LieuForet();
+                        
+                    }
+                    test_lieu = new LieuLac();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu du lac
+                        continuer = true;
+                        lieu_return = new LieuForet();
+                        
+                    }
+                    test_lieu = new LieuCampement();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu du campement
+                        continuer = true;
+                        lieu_return = new LieuForet();
+                        
+                    }
+                }
+                
+            }
+            //accès lac
+            if(this.choix.equals("l")){
+                i = 0;
+                while(i<lieu.length)
+                {
+                    test_lieu = new LieuPlaine();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu la plaine
+                        continuer = true;
+                        lieu_return = new LieuLac();
+                        
+                    }
+                    test_lieu = new LieuForet();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu de la foret
+                        continuer = true;
+                        lieu_return = new LieuLac();
+                        
+                    }
+                }
+                
+            }
+            //accès campement
+            if(this.choix.equals("k")){
+                i = 0;
+                while(i<lieu.length)
+                {
+                    test_lieu = new LieuForet();
+                    if(!this.lieu[i].getLieu().equals(test_lieu.getLieu())){//si lieu de la foret
+                        continuer = true;
+                        lieu_return = new LieuCampement();
+                        
+                    }
+                }
+                
+            }
+            //Maitre des compétences
+            if(this.choix.equals("e")){
+                test_maitre_competences = new MaitreDesCompetencesOui();
+                if(!this.maitre_competences.getMaitreDesCompetences().equals(test_maitre_competences.getMaitreDesCompetences())){//si lieu du campement
+                    continuer = true;
+                    //renvoie au sous-programme competence
+                }
+                lieu_return = type_menu;
+            }
+            //Quitter
             if(this.choix.equals("q")){
                 continuer = true;
                 //sous programme de sauvegarde
-                //maj de la variable pour quitter le programme
+               lieu_return = type_menu; 
             }
         }
+        return lieu_return;//+ maj de la variable pour quitter le programme si besoin
     }
     //**************************************************************************
     //redéfinition
@@ -131,7 +221,9 @@ public abstract class MenuGeneral implements Serializable{
     @Override
     public String toString(){
         return this.nomMenu + "\n" + this.auberge.getAuberge() +
-                this.vente_arme.getVenteArme() + this.lieu[0].getLieu()
+                this.vente_arme.getVenteArme() 
+                + this.maitre_competences.getMaitreDesCompetences()
+                + this.lieu[0].getLieu()
                 + this.lieu[1].getLieu() + this.lieu[2].getLieu() 
                 + this.lieu[3].getLieu() + this.lieu[4].getLieu() 
                 + "q : Sauvegarder et quitter\n";

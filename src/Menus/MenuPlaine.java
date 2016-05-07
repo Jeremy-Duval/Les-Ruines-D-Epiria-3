@@ -32,10 +32,12 @@ public class MenuPlaine extends MenuGeneral{
         }else {
             vente_arme = new VenteArmeMarchand();
         }
+        maitre_competences = new MaitreDesCompetencesNon();
         lieu[0] = new LieuCite();
         lieu[1] = new LieuForet();
         lieu[2] = new LieuLac();
         lieu[3] = new LieuNon();
         lieu[4] = new LieuNon();
+        type_menu = new LieuPlaine();
     }
 }
