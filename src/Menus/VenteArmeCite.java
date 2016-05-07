@@ -6,8 +6,10 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link VenteArme} et renvoie la ligne du 
+ * menu correspondant au magasin d'arme.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class VenteArmeCite implements VenteArme{
     /**

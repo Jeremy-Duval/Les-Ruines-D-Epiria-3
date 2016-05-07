@@ -6,8 +6,10 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
+ * correspondant au lac.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class LieuLac implements Lieu{
     /**

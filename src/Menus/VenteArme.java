@@ -6,8 +6,13 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette interface définie la méthode retournant si la boutique d'arme
+ * est accessible ou non.</strong></p>
+ * Elle est implémentée par : <ul><li>{@link VenteArmeCite}</li>
+ *                                <li>{@link VenteArmeMarchand}</li>
+ *                                <li>{@link VenteArmeNon}</li></ul>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public interface VenteArme {
     /**

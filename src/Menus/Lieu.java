@@ -6,8 +6,14 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette interface définie la méthode retournant un type de lieu.</strong></p>
+ *Elle est implémentée par : <ul><li>{@link LieuCite}</li>
+ *                              <li>{@link LieuPlaine}</li>
+ *                              <li>{@link LieuLac}</li>
+ *                              <li>{@link LieuForet}</li>
+ *                              <li>{@link LieuCampement}</li></ul>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public interface Lieu {
     /**

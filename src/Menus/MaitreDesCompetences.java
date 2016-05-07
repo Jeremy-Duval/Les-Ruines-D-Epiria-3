@@ -6,8 +6,12 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette interface définie la méthode retournant si le maitre des 
+ * compétence est accessible ou non.</strong></p>
+ *Elle est implémentée par : <ul><li>{@link MaitreDesCompetencesOui}</li>
+ *                              <li>{@link MaitreDesCompetencesNon}</li></ul>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public interface MaitreDesCompetences {
     /**

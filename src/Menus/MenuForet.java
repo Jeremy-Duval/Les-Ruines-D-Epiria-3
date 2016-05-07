@@ -8,8 +8,10 @@ package Menus;
 import java.util.Random;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du 
+ * menu correspondant à la forêt.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class MenuForet extends MenuGeneral{
     private Random aleat = new Random();

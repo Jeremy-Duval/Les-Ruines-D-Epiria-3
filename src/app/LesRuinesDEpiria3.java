@@ -5,6 +5,7 @@
  */
 package app;
 
+import Menus.Lieu;
 import Menus.MenuCampement;
 import Menus.MenuCite;
 import Menus.MenuForet;
@@ -32,7 +33,7 @@ import utilitaire.Comparateur;
  * @version 1.0
  */
 public class LesRuinesDEpiria3{
-
+    private static MenuGeneral menu_general;
     /**
      * @param args the command line arguments
      */
@@ -103,7 +104,8 @@ public class LesRuinesDEpiria3{
         
         
         System.out.println("\n\nTest objet menus :\n\n");
-        MenuGeneral menu_general = new MenuCite();
+        Personnage prsng = new Paysan();
+        
         System.out.println(menu_general);
         menu_general = new MenuPlaine();
         System.out.println(menu_general);
@@ -113,9 +115,44 @@ public class LesRuinesDEpiria3{
         System.out.println(menu_general);
         menu_general = new MenuCampement();
         System.out.println(menu_general);
-        menu_general.redirectionChoix();
+        menu_general = new MenuCite();
+        System.out.println(menu_general);
+        //prsng.setVie(2);
+        setLieuToMenu(menu_general.redirectionChoix(prsng));
         //System.out.println(menu_general.choix);
+        System.out.println(menu_general);
         
+    }
+    
+    
+    /**
+     * <p>Cette méthode sert à changer la variable de menu en celui du lieu
+     * passé en paramètre</p>
+     * @param lieu : Lieu : un lieu à passer en menu correspondant
+     * @author Jérémy Duval
+     * @version 1.0
+     */
+    public static void setLieuToMenu(Lieu lieu){
+        switch(lieu.getLieu()){
+            case "c : Cité\n" :
+                menu_general = new MenuCite();
+                break;
+            case "p : Plaines\n" :
+                menu_general = new MenuPlaine();
+                break;
+            case "f : Forêt\n" :
+                menu_general = new MenuForet();
+                break;
+            case "l : Lac\n" :
+                menu_general = new MenuLac();
+                break;
+            case "k : Campement\n" :
+                menu_general = new MenuCampement();
+                break;
+            default :
+                menu_general = new MenuCite();
+                break;
+        }
     }
     
 }

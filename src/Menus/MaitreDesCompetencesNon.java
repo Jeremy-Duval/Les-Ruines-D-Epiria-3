@@ -6,8 +6,10 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link MaitreDesCompetences} et renvoie 
+ * la ligne vide.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class MaitreDesCompetencesNon implements MaitreDesCompetences{
     /**

@@ -5,14 +5,22 @@
  */
 package Menus;
 
+import Boutiques.BoutiqueAuberge;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import perso.Personnage;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette interface définie la méthode retournant un type de menu.</strong></p>
+ *Elle est implémentée par : <ul><li>{@link MenuCite}</li>
+ *                              <li>{@link MenuPlaine}</li>
+ *                              <li>{@link MenuLac}</li>
+ *                              <li>{@link MenuForet}</li>
+ *                              <li>{@link MenuCampement}</li></ul>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public abstract class MenuGeneral implements Serializable{
     protected Auberge auberge;
@@ -48,11 +56,13 @@ public abstract class MenuGeneral implements Serializable{
     //**************************************************************************
     /**
     *<p>Cette méthode renvoie un lieu correspondant au lieu du menu à afficher.</p>
+    *@param perso : Personnage
+    * @throws java.io.IOException
     *@return Lieu
     *@author Jérémy Duval
     *@since 1.0
     */
-    public Lieu redirectionChoix() throws IOException{
+    public Lieu redirectionChoix(Personnage perso) throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
@@ -62,6 +72,7 @@ public abstract class MenuGeneral implements Serializable{
         Lieu test_lieu;
         Lieu lieu_return = new LieuCite();
         MaitreDesCompetences test_maitre_competences;
+        BoutiqueAuberge boutique_auberge = new BoutiqueAuberge();
     
         while(!continuer){
             choix = buff.readLine();
@@ -70,7 +81,7 @@ public abstract class MenuGeneral implements Serializable{
             if(this.choix.equals("a")){
                 if(this.auberge.getAuberge().equals(test_auberge.getAuberge())){//on vérifie la possibilité d'accès
                     continuer = true;
-                    //renvoie au sous-programme d'auberge
+                    boutique_auberge.boutiqueAuberge(perso);
                 }
                 lieu_return = type_menu;
             }
@@ -100,6 +111,7 @@ public abstract class MenuGeneral implements Serializable{
                         lieu_return = new LieuCite();
                         
                     }
+                    i++;
                 }
                 
             }
@@ -126,6 +138,7 @@ public abstract class MenuGeneral implements Serializable{
                         lieu_return = new LieuPlaine();
                         
                     }
+                    i++;
                 }
                 
             }
@@ -152,6 +165,7 @@ public abstract class MenuGeneral implements Serializable{
                         lieu_return = new LieuForet();
                         
                     }
+                    i++;
                 }
                 
             }
@@ -172,6 +186,7 @@ public abstract class MenuGeneral implements Serializable{
                         lieu_return = new LieuLac();
                         
                     }
+                    i++;
                 }
                 
             }
@@ -186,6 +201,7 @@ public abstract class MenuGeneral implements Serializable{
                         lieu_return = new LieuCampement();
                         
                     }
+                    i++;
                 }
                 
             }
@@ -205,7 +221,7 @@ public abstract class MenuGeneral implements Serializable{
                lieu_return = type_menu; 
             }
         }
-        return lieu_return;//+ maj de la variable pour quitter le programme si besoin
+        return lieu_return;//+ maj de la variable pour quitter le programme si besoin !!!!!!!!!!!!!!!!!!!!!!!!!
     }
     //**************************************************************************
     //redéfinition

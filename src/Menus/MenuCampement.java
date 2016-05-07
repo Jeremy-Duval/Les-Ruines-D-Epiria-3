@@ -6,8 +6,10 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du 
+ * menu correspondant au campement.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class MenuCampement extends MenuGeneral{
     //**************************************************************************

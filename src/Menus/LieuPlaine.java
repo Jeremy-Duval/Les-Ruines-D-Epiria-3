@@ -6,8 +6,10 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
+ * correspondant à la cité.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class LieuPlaine implements Lieu{
     /**

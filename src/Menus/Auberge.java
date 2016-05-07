@@ -6,8 +6,12 @@
 package Menus;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette interface définie la méthode retournant si l'auberge est
+ * accessible ou non.</strong></p>
+ *Elle est implémentée par : <ul><li>{@link AubergeOui}</li>
+ *                              <li>{@link AubergeNon}</li></ul>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public interface Auberge {
     /**
