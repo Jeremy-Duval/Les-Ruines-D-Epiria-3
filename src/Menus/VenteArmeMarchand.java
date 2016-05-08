@@ -21,7 +21,7 @@ public class VenteArmeMarchand implements VenteArme{
     */
     @Override
     public String getVenteArme() {
-        return "m : marchand ambulant\n";
+        return "n : marchand ambulant\n";
     }
     
 }

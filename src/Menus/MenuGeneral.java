@@ -6,6 +6,8 @@
 package Menus;
 
 import Boutiques.BoutiqueAuberge;
+import Boutiques.BoutiqueCite;
+import Boutiques.BoutiqueMarchand;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -73,6 +75,8 @@ public abstract class MenuGeneral implements Serializable{
         Lieu lieu_return = new LieuCite();
         MaitreDesCompetences test_maitre_competences;
         BoutiqueAuberge boutique_auberge = new BoutiqueAuberge();
+        BoutiqueCite boutique_cite = new BoutiqueCite();
+        BoutiqueMarchand boutique_marchand = new BoutiqueMarchand();
     
         while(!continuer){
             choix = buff.readLine();
@@ -86,16 +90,19 @@ public abstract class MenuGeneral implements Serializable{
                 lieu_return = type_menu;
             }
             //marchand
-            test_vente_arme = new VenteArmeCite();
             if(this.choix.equals("m")){
-                if(!this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si magasin de la cité
+                test_vente_arme = new VenteArmeCite();
+                if(this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si magasin de la cité
                     continuer = true;
-                    //renvoie au sous-programme boutique cité
+                    boutique_cite.boutiqueCite(perso);
                 }
+                lieu_return = type_menu;
+            }
+            if(this.choix.equals("n")){
                 test_vente_arme = new VenteArmeMarchand();
                 if(!this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si marchand ambulant
                     continuer = true;
-                    //renvoie au sous-programme marchand ambulant
+                    boutique_marchand.boutiqueMarchand(perso);
                 }
                 lieu_return = type_menu;
             }
