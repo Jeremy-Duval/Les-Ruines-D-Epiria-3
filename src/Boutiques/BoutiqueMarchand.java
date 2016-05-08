@@ -20,7 +20,14 @@ public class BoutiqueMarchand {
     private final int nb_item = 2;
     protected int[] prix = new int[nb_item];
     protected int[] puissance = new int[nb_item];
-    
+    //**************************************************************************
+    //constructeurs
+    //**************************************************************************
+    /**
+    *<p><Strong>Ce constructeur ne fait rien.</Strong></p>
+    *@author Jérémy Duval
+    *@since 1.0
+    */
     public BoutiqueMarchand(){};
     
     /**

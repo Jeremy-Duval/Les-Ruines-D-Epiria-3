@@ -22,7 +22,14 @@ public class BoutiqueAuberge {
     private boolean continuer = false;
     BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
-    
+    //**************************************************************************
+    //constructeurs
+    //**************************************************************************
+    /**
+    *<p><Strong>Ce constructeur ne fait rien.</Strong></p>
+    *@author Jérémy Duval
+    *@since 1.0
+    */
     public BoutiqueAuberge(){};
     /**
     *<p>Cette fonction ouvre le menu de l'auberge. Le joueur peut s'y soigner.

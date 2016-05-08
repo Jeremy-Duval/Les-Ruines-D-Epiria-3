@@ -13,7 +13,7 @@ import java.util.TreeMap;
 import utilitaire.Comparateur;
 
 /**
- *<p><strong>Cette classe abstraite définie les types de personnages</strong></p>
+ *<p><strong>Cette classe abstraite définie les types de personnages.</strong></p>
  * @author Jérémy Duval
  * @since 1.0
  */
@@ -41,6 +41,7 @@ public abstract class Personnage implements Serializable{
     //arme
     protected Arme arme_possible;
     protected ArmeUtilise arme_use;
+    private static Map <String, Integer> level_arme;
     
     //**************************************************************************
     //constructeurs
@@ -75,6 +76,10 @@ public abstract class Personnage implements Serializable{
         inventaire.put("PotionPM", 0);
         inventaire.put("Armure", 0);
         inventaire.put("ArmureMagique", 0);
+        level_arme = new TreeMap<>(new Comparateur());
+        level_arme.put("Epee", 1);
+        level_arme.put("Sceptre", 1);
+        level_arme.put("Talisman", 1);
     }
     
     //**************************************************************************
@@ -280,7 +285,7 @@ public abstract class Personnage implements Serializable{
         return inventaire.get("ArmureMagique");
     }
     /**
-    *<p>Cette méthode renvoie le type d'arme utilisé par le perso.
+    *<p>Cette méthode renvoie le type d'arme utilisable par le perso.
     * Ce type est implémenté par l'interface {@link Arme}</p>
     *@return String : arme
     *@author Jérémy Duval
@@ -288,6 +293,72 @@ public abstract class Personnage implements Serializable{
     */
     public String getArmePossible(){
         return this.arme_possible.getArmeUtil();
+    }
+    /**
+    *<p>Cette méthode renvoie le nom du type d'arme utilisé par le perso.
+    * Ce type est implémenté par l'interface {@link ArmeUtilise}</p>
+    *@return String 
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public String getArmeUseNom(){
+        return arme_use.getNomArme();
+    }
+    /**
+    *<p>Cette méthode renvoie le type d'arme utilisé par le perso.
+    * Ce type est implémenté par l'interface {@link ArmeUtilise}</p>
+    *@return Arme
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public Arme getArmeUseType(){
+        return arme_use.getTypeArme();
+    }
+    /**
+    *<p>Cette méthode renvoie la valeur de l'arme utilisé par le perso.
+    * Ce type est implémenté par l'interface {@link ArmeUtilise}</p>
+    *@return int
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getArmeUseValeur(){
+        return arme_use.getValeurArme();
+    }
+    /**
+    *<p>Cette méthode renvoie le niveau à l'épée du perso.</p>
+    *@return int 
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getLevelEpee(){
+        return level_arme.get("Epee");
+    }
+    /**
+    *<p>Cette méthode renvoie le niveau au sceptre du perso.</p>
+    *@return int 
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getLevelSceptre(){
+        return level_arme.get("Sceptre");
+    }
+    /**
+    *<p>Cette méthode renvoie le niveau au talisman du perso.</p>
+    *@return int 
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getLevelTalisman(){
+        return level_arme.get("Talisman");
+    }
+    /**
+    *<p>Cette méthode renvoie la classe du perso.</p>
+    *@return int 
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public String getClassePerso(){
+        return this.classe_pers;
     }
     
     //**************************************************************************
@@ -489,6 +560,47 @@ public abstract class Personnage implements Serializable{
     public void setArmureMagique(int n_armure_magique){
         inventaire.remove("ArmureMagique", inventaire.get("ArmureMagique"));
         inventaire.put("ArmureMagique", n_armure_magique);
+    }
+    /**
+    *<p>Cette méthode modif l'arme utilisé par le perso.
+    * Ce type est implémenté par l'interface {@link ArmeUtilise}</p>
+    * @param new_arme : Arme
+    * @param new_val : int
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setArmeUse(Arme new_arme, int new_val){
+        this.arme_use.setArme(new_arme, new_val);
+    }
+    /**
+    *<p>Cette méthode change le niveau à l'épée du perso.</p> 
+    * @param nlevel_epee
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setLevelEpee(int nlevel_epee){
+        level_arme.remove("Epee", level_arme.get("Epee"));
+        level_arme.put("Epee", nlevel_epee);
+    }
+    /**
+    *<p>Cette méthode change le niveau au sceptre du perso.</p> 
+    *@param nlevel_sceptre
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setLevelSceptre(int nlevel_sceptre){
+        level_arme.remove("Sceptre", level_arme.get("Sceptre"));
+        level_arme.put("Sceptre", nlevel_sceptre);
+    }
+    /**
+    *<p>Cette méthode change le niveau au talisman du perso.</p> 
+    * @param nlevel_talisman
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public void setLevelTalisman(int nlevel_talisman){
+        level_arme.remove("Talisman", level_arme.get("Talisman"));
+        level_arme.put("Talisman", nlevel_talisman);
     }
     
     //**************************************************************************

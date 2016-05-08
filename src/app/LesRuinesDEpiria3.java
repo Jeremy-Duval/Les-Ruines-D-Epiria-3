@@ -11,6 +11,7 @@ import Menus.MenuCite;
 import Menus.MenuForet;
 import Menus.MenuGeneral;
 import Menus.MenuLac;
+import Menus.MenuMaitreCompetences;
 import Menus.MenuPlaine;
 import armes.Arme;
 import armes.ArmeUtilise;
@@ -105,6 +106,11 @@ public class LesRuinesDEpiria3{
         
         System.out.println("\n\nTest objet menus :\n\n");
         Personnage prsng = new Paysan();
+        Map <String, Personnage> tree_perso = new TreeMap<>(new Comparateur());
+        //stockage des objets dans un treeMap
+        perso.put("Paysan", paysan);
+        perso.put("Guerriere", guerrier);
+       
         
         System.out.println(menu_general);
         menu_general = new MenuPlaine();
@@ -118,9 +124,16 @@ public class LesRuinesDEpiria3{
         menu_general = new MenuCite();
         System.out.println(menu_general);
         //prsng.setVie(2);
-        setLieuToMenu(menu_general.redirectionChoix(prsng));
+        setLieuToMenu(menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,prsng));
         //System.out.println(menu_general.choix);
         System.out.println(menu_general);
+        
+        Set <String> clés2 = tree_perso.keySet();
+        
+        for(String i : clés2){
+            System.out.println("Pour la clé "+i+" on a :");
+            System.out.println(tree_perso.get(i));
+        }
         
     }
     

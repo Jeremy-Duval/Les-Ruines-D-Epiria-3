@@ -19,7 +19,14 @@ import perso.Personnage;
 public class BoutiqueCite {
     protected int[] prix = new int[7];
     protected int[] puissance = new int[7];
-    
+    //**************************************************************************
+    //constructeurs
+    //**************************************************************************
+    /**
+    *<p><Strong>Ce constructeur ne fait rien.</Strong></p>
+    *@author Jérémy Duval
+    *@since 1.0
+    */
     public BoutiqueCite(){};
     
     /**

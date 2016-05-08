@@ -3,44 +3,55 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/AubergeOui.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresCaCD.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuPlaine.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuCampement.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/ArmeUtilise.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Personnage.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Epee.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/VenteArme.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MaitreDesCompetencesOui.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Mage.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuCite.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Poing.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuGeneral.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresCaCC.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuForet.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuForet.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/AubergeNon.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Boutiques/BoutiqueAuberge.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Guerrier.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/Auberge.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/All.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Talisman.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/Lieu.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MaitreDesCompetencesNon.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresMagieE.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/app/LesRuinesDEpiria3.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresMagieC.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresPolyD.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Boutiques/BoutiqueMarchand.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuLac.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Boutiques/BoutiqueCite.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/Monstres.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/VenteArmeCite.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuCite.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresPolyE.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/AubergeOui.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresMagieD.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuMaitreCompetences.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuCampement.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/ArmeUtilise.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Personnage.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Epee.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuGeneral.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/AubergeNon.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Guerrier.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/All.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Talisman.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuCampement.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/VenteArmeMarchand.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Sceptre.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/app/LesRuinesDEpiria3.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MaitreDesCompetences.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuLac.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Pretre.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/armes/Arme.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/perso/Paysan.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Boutiques/BoutiqueMarchand.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuLac.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/LieuNon.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Boutiques/BoutiqueCite.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuPlaine.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/VenteArmeCite.java</file>
-            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/MenuCite.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresCaCE.java</file>
+            <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/mobs/MonstresPolyC.java</file>
             <file>file:/C:/Users/jeremy/Documents/programmation/prgrm/Java/Les%20Ruines%20D'Epiria%203/src/Menus/VenteArmeNon.java</file>
         </group>
     </open-files>

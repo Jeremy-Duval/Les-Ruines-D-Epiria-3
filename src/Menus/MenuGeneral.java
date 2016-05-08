@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.TreeMap;
 import perso.Personnage;
 
 /**
@@ -64,7 +65,7 @@ public abstract class MenuGeneral implements Serializable{
     *@author Jérémy Duval
     *@since 1.0
     */
-    public Lieu redirectionChoix(Personnage perso) throws IOException{
+    public Lieu redirectionChoix(TreeMap<String,Personnage> treePerso, Personnage perso) throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
@@ -215,9 +216,10 @@ public abstract class MenuGeneral implements Serializable{
             //Maitre des compétences
             if(this.choix.equals("e")){
                 test_maitre_competences = new MaitreDesCompetencesOui();
-                if(!this.maitre_competences.getMaitreDesCompetences().equals(test_maitre_competences.getMaitreDesCompetences())){//si lieu du campement
+                if(this.maitre_competences.getMaitreDesCompetences().equals(test_maitre_competences.getMaitreDesCompetences())){//si lieu du campement
                     continuer = true;
-                    //renvoie au sous-programme competence
+                    MenuMaitreCompetences menu_maitre_competences = new MenuMaitreCompetences();
+                    menu_maitre_competences.menu(treePerso, perso);
                 }
                 lieu_return = type_menu;
             }
