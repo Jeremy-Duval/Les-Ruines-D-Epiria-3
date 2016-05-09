@@ -17,7 +17,7 @@ public class MonstresCaCC extends Monstres{
     * au corps à corps de rang C ainsi que ses probabilités d'attaque et d'attaque
     * magique.</Strong></p>
     *<p>Ce concstructeur est le constructeur par défault, complètant
-    * celui de {@link Monstre}</p>
+    * celui de {@link Monstres}</p>
     *@author Jérémy Duval
     *@since 1.0
     */

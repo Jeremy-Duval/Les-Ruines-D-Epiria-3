@@ -574,7 +574,7 @@ public abstract class Personnage implements Serializable{
     }
     /**
     *<p>Cette méthode change le niveau à l'épée du perso.</p> 
-    * @param nlevel_epee
+    * @param nlevel_epee : int
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -584,7 +584,7 @@ public abstract class Personnage implements Serializable{
     }
     /**
     *<p>Cette méthode change le niveau au sceptre du perso.</p> 
-    *@param nlevel_sceptre
+    *@param nlevel_sceptre : int
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -594,7 +594,7 @@ public abstract class Personnage implements Serializable{
     }
     /**
     *<p>Cette méthode change le niveau au talisman du perso.</p> 
-    * @param nlevel_talisman
+    * @param nlevel_talisman : int
     *@author Jérémy Duval
     *@since 1.0
     */

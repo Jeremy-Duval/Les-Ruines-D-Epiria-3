@@ -44,5 +44,22 @@ public class Guerrier extends Personnage {
         this.arme_possible = new Epee();
         this.arme_use = new ArmeUtilise(arme_u.getTypeArme(), arme_u.getValeurArme());
     }
-    
+    /*
+    public Guerrier(Personnage guerrier){
+        this.classe_pers = "Guerrier";
+        this.level = guerrier.getLevel();
+        this.vie = guerrier.getVie();
+        this.vie_actu = guerrier.getVieAcutelle();
+        this.pm = guerrier.getPm();
+        this.pm_actu = guerrier.getPmActuel();
+        this.atq = guerrier.getAttaque();
+        this.atq_mag = guerrier.getAttaqueMagique();
+        this.def = guerrier.getDefense();
+        this.def_mag = guerrier.getDefenseMagique();
+        this.agilite = guerrier.getAgilite();
+        this.intelligence = guerrier.getIntelligence();
+        this.sagesse = guerrier.getSagesse();
+        this.xp = guerrier.getXp();
+        this.xp_nec = this.xpLevelSuivant();
+    }*/
 }

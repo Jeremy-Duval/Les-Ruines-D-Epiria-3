@@ -12,7 +12,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
+import javafx.util.Pair;
 import perso.Personnage;
 
 /**
@@ -59,13 +62,14 @@ public abstract class MenuGeneral implements Serializable{
     //**************************************************************************
     /**
     *<p>Cette méthode renvoie un lieu correspondant au lieu du menu à afficher.</p>
-    *@param perso : Personnage
+    * @param treePerso : TreeMap: String,Personnage
+    * @param perso : String
     * @throws java.io.IOException
-    *@return Lieu
+    *@return liste : ArrayList : Lieu, String
     *@author Jérémy Duval
     *@since 1.0
     */
-    public Lieu redirectionChoix(TreeMap<String,Personnage> treePerso, Personnage perso) throws IOException{
+    public List redirectionChoix(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
@@ -86,7 +90,7 @@ public abstract class MenuGeneral implements Serializable{
             if(this.choix.equals("a")){
                 if(this.auberge.getAuberge().equals(test_auberge.getAuberge())){//on vérifie la possibilité d'accès
                     continuer = true;
-                    boutique_auberge.boutiqueAuberge(perso);
+                    boutique_auberge.boutiqueAuberge(treePerso,perso);
                 }
                 lieu_return = type_menu;
             }
@@ -95,7 +99,7 @@ public abstract class MenuGeneral implements Serializable{
                 test_vente_arme = new VenteArmeCite();
                 if(this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si magasin de la cité
                     continuer = true;
-                    boutique_cite.boutiqueCite(perso);
+                    boutique_cite.boutiqueCite(treePerso,perso);
                 }
                 lieu_return = type_menu;
             }
@@ -103,7 +107,7 @@ public abstract class MenuGeneral implements Serializable{
                 test_vente_arme = new VenteArmeMarchand();
                 if(!this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si marchand ambulant
                     continuer = true;
-                    boutique_marchand.boutiqueMarchand(perso);
+                    boutique_marchand.boutiqueMarchand(treePerso,perso);
                 }
                 lieu_return = type_menu;
             }
@@ -219,7 +223,7 @@ public abstract class MenuGeneral implements Serializable{
                 if(this.maitre_competences.getMaitreDesCompetences().equals(test_maitre_competences.getMaitreDesCompetences())){//si lieu du campement
                     continuer = true;
                     MenuMaitreCompetences menu_maitre_competences = new MenuMaitreCompetences();
-                    menu_maitre_competences.menu(treePerso, perso);
+                    perso = menu_maitre_competences.menu(treePerso, perso);
                 }
                 lieu_return = type_menu;
             }
@@ -230,7 +234,10 @@ public abstract class MenuGeneral implements Serializable{
                lieu_return = type_menu; 
             }
         }
-        return lieu_return;//+ maj de la variable pour quitter le programme si besoin !!!!!!!!!!!!!!!!!!!!!!!!!
+        List liste = new ArrayList();
+        liste.add(0, lieu_return);
+        liste.add(1, perso);
+        return liste;//+ maj de la variable pour quitter le programme si besoin !!!!!!!!!!!!!!!!!!!!!!!!!
     }
     //**************************************************************************
     //redéfinition

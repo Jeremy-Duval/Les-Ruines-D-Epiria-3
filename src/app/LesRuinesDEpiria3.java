@@ -18,6 +18,8 @@ import armes.ArmeUtilise;
 import armes.Epee;
 import armes.Sceptre;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -106,10 +108,11 @@ public class LesRuinesDEpiria3{
         
         System.out.println("\n\nTest objet menus :\n\n");
         Personnage prsng = new Paysan();
+        String perso_principal = "Paysan";
         Map <String, Personnage> tree_perso = new TreeMap<>(new Comparateur());
         //stockage des objets dans un treeMap
-        perso.put("Paysan", paysan);
-        perso.put("Guerriere", guerrier);
+        tree_perso.put("Paysan", paysan);
+        tree_perso.put("Guerrier", guerrier);
        
         
         System.out.println(menu_general);
@@ -124,7 +127,10 @@ public class LesRuinesDEpiria3{
         menu_general = new MenuCite();
         System.out.println(menu_general);
         //prsng.setVie(2);
-        setLieuToMenu(menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,prsng));
+        List liste_menu = new ArrayList();
+        liste_menu = menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,perso_principal);
+        perso_principal = (String) liste_menu.get(1);
+        setLieuToMenu((Lieu) liste_menu.get(0));
         //System.out.println(menu_general.choix);
         System.out.println(menu_general);
         
@@ -134,6 +140,9 @@ public class LesRuinesDEpiria3{
             System.out.println("Pour la clé "+i+" on a :");
             System.out.println(tree_perso.get(i));
         }
+        
+        System.out.println("Perso :\n"+perso_principal);
+        System.out.println(tree_perso.get(perso_principal));
         
     }
     
