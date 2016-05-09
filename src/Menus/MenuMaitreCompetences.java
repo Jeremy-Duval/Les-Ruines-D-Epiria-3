@@ -5,9 +5,12 @@
  */
 package Menus;
 
+import armes.ArmeUtilise;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 import perso.Guerrier;
 import perso.Mage;
@@ -16,8 +19,9 @@ import perso.Personnage;
 import perso.Pretre;
 
 /**
- *
- * @author jeremy
+ *<p><strong>Cette classe permet la création du menu du maître des compétences.</strong></p>
+ * @author Jérémy Duval
+ * @since 1.0
  */
 public class MenuMaitreCompetences {
     
@@ -34,21 +38,26 @@ public class MenuMaitreCompetences {
     
     /**
     *<p>Cette méthode ouvre le menu du maitre des compétences. 
-    * Le joueur peut acheter apprendre une nouvelle classe ou en changer.</p>
+    * Le joueur peut acheter apprendre une nouvelle classe (si le niveau d'arme
+    * correspondant à la classe est supérieur à 5) ou en changer.</p>
     * @param treePerso : TreeMap: String,Personnage
     * @param perso : String : l'étiquette de la classe dans le TreeMap
+    * @param arme :ArmeUtilise : arme utilisé par le perso
+    * @return List : <ul><li>perso : String : nouvelle classe du personnage</li>
+    *                    <li>arme : ArmeUtilise : arme correspondant au perso</li></ul>
     * @return perso : String : nouvelle classe du personnage
     * @throws java.io.IOException
     * @author jeremy
     * @since 1.0
     */
-    public String menu(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+    public List menu(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme) throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         String choix;
         String choix2;
         boolean continuer = false;
         boolean continuer2 = false;
+        List liste = new ArrayList();
         
         System.out.println("\nBienvenue aventurier !");
         while(!continuer){
@@ -72,19 +81,19 @@ public class MenuMaitreCompetences {
                         switch(choix2){
                             case "p" :
                                 continuer2 = true;
-                                perso = this.changementDeClasse("Paysan", treePerso, perso);
+                                liste = this.changementDeClasse("Paysan", treePerso, perso, arme);
                                 break;
                             case "g" :
                                 continuer2 = true;
-                                perso = this.changementDeClasse("Guerrier", treePerso, perso);
+                                liste = this.changementDeClasse("Guerrier", treePerso, perso, arme);
                                 break;
                             case "m" :
                                 continuer2 = true;
-                                perso = this.changementDeClasse("Mage", treePerso, perso);
+                                liste = this.changementDeClasse("Mage", treePerso, perso, arme);
                                 break;
                             case "c" :
                                 continuer2 = true;
-                                perso = this.changementDeClasse("Pretre", treePerso, perso);
+                                liste = this.changementDeClasse("Pretre", treePerso, perso, arme);
                                 break;
                             case "r" :
                                 continuer2 = true;
@@ -109,15 +118,15 @@ public class MenuMaitreCompetences {
                             
                             case "g" :
                                 continuer2 = true;
-                                perso = this.apprendreUneClasse("Guerrier", treePerso, perso);
+                                liste = this.apprendreUneClasse("Guerrier", treePerso, perso, arme);
                                 break;
                             case "m" :
                                 continuer2 = true;
-                                perso = this.apprendreUneClasse("Mage", treePerso, perso);
+                                liste = this.apprendreUneClasse("Mage", treePerso, perso, arme);
                                 break;
                             case "c" :
                                 continuer2 = true;
-                                perso = this.apprendreUneClasse("Pretre", treePerso, perso);
+                                liste = this.apprendreUneClasse("Pretre", treePerso, perso, arme);
                                 break;
                             case "r" :
                                 continuer2 = true;
@@ -136,66 +145,90 @@ public class MenuMaitreCompetences {
                     break;
             }
         }
-        return perso;
+        return liste;
     }
     
     /**
-    *<p>Cette méthode permet d'apprendre une nouvelle classe.</p>
+    *<p>Cette méthode permet d'apprendre une nouvelle classe si le niveau d'arme
+    * correspondant à la classe est supérieur à 5.</p>
     * @param treePerso : TreeMap<String,Personnage>
     * @param perso : String : l'étiquette de la classe dans le TreeMap
+    * @param arme :ArmeUtilise : arme utilisé par le perso
+    * @return List : <ul><li>perso : String : nouvelle classe du personnage</li>
+    *                    <li>arme : ArmeUtilise : arme correspondant au perso</li></ul>
     * @return perso : String : nouvelle classe du personnage
     * @throws java.io.IOException
     * @author jeremy
     * @since 1.0
     */
-    private String apprendreUneClasse(String classe, TreeMap<String,Personnage> treePerso, String perso){
+    private List apprendreUneClasse(String classe, TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme){
         Personnage pers;
+        List liste = new ArrayList();
         if(classe.equals("Guerrier")){
-            if(treePerso.containsKey("Guerrier")){
-                System.out.println("Désolé mais vous avez déjà apris cette classe !");
+            if(treePerso.get("Paysan").getLevelEpee()>5){
+                if(treePerso.containsKey("Guerrier")){
+                    System.out.println("Désolé mais vous avez déjà apris cette classe !");
+                } else {
+                    //this.enregistrePersoClasse(treePerso, perso);
+                    perso = "Guerrier";
+                    pers = new Guerrier();
+                    treePerso.put("Guerrier", pers);
+                    System.out.println("Classe apprise !");
+                    arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getEpee());
+                }
             } else {
-                //this.enregistrePersoClasse(treePerso, perso);
-                perso = "Guerrier";
-                pers = new Guerrier();
-                treePerso.put("Guerrier", pers);
-                System.out.println("Classe apprise !");
+                System.out.println("Désolé mais votre niveau à l'épée est trop faible !");
             }
         }
         if(classe.equals("Mage")){
-            if(treePerso.containsKey("Mage")){
-                System.out.println("Désolé mais vous avez déjà apris cette classe !");
+            if(treePerso.get("Paysan").getLevelSceptre()>5){
+                if(treePerso.containsKey("Mage")){
+                    System.out.println("Désolé mais vous avez déjà apris cette classe !");
+                } else {
+                    //this.enregistrePersoClasse(treePerso, perso);
+                    perso = "Mage";
+                    pers = new Mage();
+                    treePerso.put("Mage", pers);
+                    System.out.println("Classe apprise !");
+                    arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getSceptre());
+                }
             } else {
-                //this.enregistrePersoClasse(treePerso, perso);
-                perso = "Mage";
-                pers = new Mage();
-                treePerso.put("Mage", pers);
-                System.out.println("Classe apprise !");
+                System.out.println("Désolé mais votre niveau au sceptre est trop faible !");
             }
         }
         if(classe.equals("Pretre")){
-            if(treePerso.containsKey("Pretre")){
-                System.out.println("Désolé mais vous avez déjà apris cette classe !");
+            if(treePerso.get("Paysan").getLevelSceptre()>5){
+                if(treePerso.containsKey("Pretre")){
+                    System.out.println("Désolé mais vous avez déjà apris cette classe !");
+                } else {
+                    //this.enregistrePersoClasse(treePerso, perso);
+                    perso = "Pretre";
+                    pers = new Pretre();
+                    treePerso.put("Pretre", pers);
+                    System.out.println("Classe apprise !");
+                    arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getTalisman());
+                }
             } else {
-                //this.enregistrePersoClasse(treePerso, perso);
-                perso = "Pretre";
-                pers = new Pretre();
-                treePerso.put("Pretre", pers);
-                System.out.println("Classe apprise !");
+                System.out.println("Désolé mais votre niveau au talisman est trop faible !");
             }
         }
-        return perso;
+        liste.add(0, perso);
+        liste.add(1, arme);
+        return liste;
     }
     /**
     *<p>Cette méthode permet de changer de classe.</p>
     * @param treePerso : TreeMap<String,Personnage>
     * @param perso : String : l'étiquette de la classe dans le TreeMap
-    * @return perso : String : nouvelle classe du personnage
+    * @param arme :ArmeUtilise : arme utilisé par le perso
+    * @return List : <ul><li>perso : String : nouvelle classe du personnage</li>
+    *                    <li>arme : ArmeUtilise : arme correspondant au perso</li></ul>
     * @throws java.io.IOException
     * @author jeremy
     * @since 1.0
     */
-    private String changementDeClasse(String classe, TreeMap<String,Personnage> treePerso, String perso){
-        
+    private List changementDeClasse(String classe, TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme){
+        List liste = new ArrayList();
         if(classe.equals("Paysan")){
             if(!treePerso.containsKey("Paysan")){
                 System.out.println("Désolé mais vous n'avez pas encore apris cette classe !");
@@ -212,6 +245,7 @@ public class MenuMaitreCompetences {
                 //this.enregistrePersoClasse(treePerso, perso);
                 perso =  "Guerrier";
                 System.out.println("Classe changée !");
+                arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getEpee());
             }
         }
         if(classe.equals("Mage")){
@@ -221,6 +255,7 @@ public class MenuMaitreCompetences {
                 //this.enregistrePersoClasse(treePerso, perso);
                 perso = "Mage";
                 System.out.println("Classe changée !");
+                arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getSceptre());
             }
         }
         if(classe.equals("Pretre")){
@@ -230,9 +265,12 @@ public class MenuMaitreCompetences {
                 //this.enregistrePersoClasse(treePerso, perso);
                 perso = "Pretre";
                 System.out.println("Classe changée !");
+                arme.setArme(treePerso.get(perso).getArmeUseType(), treePerso.get(perso).getTalisman());
             }
         }
-        return perso;
+        liste.add(0, perso);
+        liste.add(1, arme);
+        return liste;
     }
     /*
     private void enregistrePersoClasse(TreeMap<String,Personnage> treePerso, Personnage perso){

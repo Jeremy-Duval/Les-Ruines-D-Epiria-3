@@ -8,6 +8,7 @@ package Menus;
 import Boutiques.BoutiqueAuberge;
 import Boutiques.BoutiqueCite;
 import Boutiques.BoutiqueMarchand;
+import armes.ArmeUtilise;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,11 +66,13 @@ public abstract class MenuGeneral implements Serializable{
     * @param treePerso : TreeMap: String,Personnage
     * @param perso : String
     * @throws java.io.IOException
-    *@return liste : ArrayList : Lieu, String
+    *@return liste : ArrayList <ul><li>lieu_return : Lieu : lieu dans lequel se placer</li>
+    *                              <li>perso : String : nom de la classe du perso</li>
+    *                              <li>arme: ArmeUtilise : arme actuelle du perso</li></ul>
     *@author Jérémy Duval
     *@since 1.0
     */
-    public List redirectionChoix(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+    public List redirectionChoix(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme) throws IOException{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
@@ -82,6 +85,7 @@ public abstract class MenuGeneral implements Serializable{
         BoutiqueAuberge boutique_auberge = new BoutiqueAuberge();
         BoutiqueCite boutique_cite = new BoutiqueCite();
         BoutiqueMarchand boutique_marchand = new BoutiqueMarchand();
+        List liste = new ArrayList();
     
         while(!continuer){
             choix = buff.readLine();
@@ -223,7 +227,9 @@ public abstract class MenuGeneral implements Serializable{
                 if(this.maitre_competences.getMaitreDesCompetences().equals(test_maitre_competences.getMaitreDesCompetences())){//si lieu du campement
                     continuer = true;
                     MenuMaitreCompetences menu_maitre_competences = new MenuMaitreCompetences();
-                    perso = menu_maitre_competences.menu(treePerso, perso);
+                    liste = menu_maitre_competences.menu(treePerso, perso, arme);
+                    perso = (String) liste.get(0);
+                    arme = (ArmeUtilise) liste.get(1);
                 }
                 lieu_return = type_menu;
             }
@@ -234,9 +240,10 @@ public abstract class MenuGeneral implements Serializable{
                lieu_return = type_menu; 
             }
         }
-        List liste = new ArrayList();
+        
         liste.add(0, lieu_return);
         liste.add(1, perso);
+        liste.add(2, arme);
         return liste;//+ maj de la variable pour quitter le programme si besoin !!!!!!!!!!!!!!!!!!!!!!!!!
     }
     //**************************************************************************

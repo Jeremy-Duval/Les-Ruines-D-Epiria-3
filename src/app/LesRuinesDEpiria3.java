@@ -113,7 +113,8 @@ public class LesRuinesDEpiria3{
         //stockage des objets dans un treeMap
         tree_perso.put("Paysan", paysan);
         tree_perso.put("Guerrier", guerrier);
-       
+        tree_perso.get("Paysan").setLevelSceptre(10);
+        ArmeUtilise arme_principale = new ArmeUtilise(new Epee(), 50);
         
         System.out.println(menu_general);
         menu_general = new MenuPlaine();
@@ -128,7 +129,9 @@ public class LesRuinesDEpiria3{
         System.out.println(menu_general);
         //prsng.setVie(2);
         List liste_menu = new ArrayList();
-        liste_menu = menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,perso_principal);
+        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
+        liste_menu = menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,perso_principal,arme_principale);
+        arme_principale = (ArmeUtilise) liste_menu.get(2);
         perso_principal = (String) liste_menu.get(1);
         setLieuToMenu((Lieu) liste_menu.get(0));
         //System.out.println(menu_general.choix);
@@ -143,7 +146,11 @@ public class LesRuinesDEpiria3{
         
         System.out.println("Perso :\n"+perso_principal);
         System.out.println(tree_perso.get(perso_principal));
-        
+        System.out.println("Level scpetre : "+tree_perso.get("Paysan").getLevelSceptre());
+        System.out.println("or : "+tree_perso.get("Guerrier").getArgent());
+        tree_perso.get("Guerrier").setArgent(10);
+        System.out.println("or : "+tree_perso.get("Paysan").getArgent());
+        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
     }
     
     

@@ -36,14 +36,14 @@ public abstract class Personnage implements Serializable{
     //Atributs spécifiques :
     protected int xp;
     protected int xp_nec;
-    private static int argent;
-    private static Map <String, Integer> inventaire;
+    protected static int argent;
+    protected static Map <String, Integer> inventaire;
     //arme
     protected Arme arme_possible;
     protected ArmeUtilise arme_use;
-    private static Map <String, Integer> level_arme;
-    private static Map <String, Integer> xp_arme;
-    private static Map <String, Integer> xp_nec_arme;
+    protected static Map <String, Integer> level_arme;
+    protected static Map <String, Integer> xp_arme;
+    protected static Map <String, Integer> xp_nec_arme;
     
     //**************************************************************************
     //constructeurs
@@ -69,27 +69,7 @@ public abstract class Personnage implements Serializable{
         this.sagesse = 0;
         this.xp = 0;
         this.xp_nec = this.xpLevelSuivant();
-        argent = 0;
-        inventaire = new TreeMap<>(new Comparateur());
-        inventaire.put("Epee", 0);
-        inventaire.put("Sceptre", 0);
-        inventaire.put("Talisman", 0);
-        inventaire.put("PotionVie", 0);
-        inventaire.put("PotionPM", 0);
-        inventaire.put("Armure", 0);
-        inventaire.put("ArmureMagique", 0);
-        level_arme = new TreeMap<>(new Comparateur());
-        level_arme.put("Epee", 1);
-        level_arme.put("Sceptre", 1);
-        level_arme.put("Talisman", 1);
-        xp_arme = new TreeMap<>(new Comparateur());
-        xp_arme.put("Epee", 0);
-        xp_arme.put("Sceptre", 0);
-        xp_arme.put("Talisman", 0);
-        xp_nec_arme = new TreeMap<>(new Comparateur());
-        xp_nec_arme.put("Epee", this.xpLevelSuivantEpee());
-        xp_nec_arme.put("Sceptre", this.xpLevelSuivantSceptre());
-        xp_nec_arme.put("Talisman", this.xpLevelSuivantTalisman());
+        
     }
     
     //**************************************************************************
@@ -645,6 +625,7 @@ public abstract class Personnage implements Serializable{
     public void setLevelEpee(int nlevel_epee){
         level_arme.remove("Epee", level_arme.get("Epee"));
         level_arme.put("Epee", nlevel_epee);
+        xpLevelSuivantEpee();
     }
     /**
     *<p>Cette méthode change le niveau au sceptre du perso.</p> 
@@ -655,6 +636,7 @@ public abstract class Personnage implements Serializable{
     public void setLevelSceptre(int nlevel_sceptre){
         level_arme.remove("Sceptre", level_arme.get("Sceptre"));
         level_arme.put("Sceptre", nlevel_sceptre);
+        xpLevelSuivantSceptre();
     }
     /**
     *<p>Cette méthode change le niveau au talisman du perso.</p> 
@@ -665,6 +647,7 @@ public abstract class Personnage implements Serializable{
     public void setLevelTalisman(int nlevel_talisman){
         level_arme.remove("Talisman", level_arme.get("Talisman"));
         level_arme.put("Talisman", nlevel_talisman);
+        xpLevelSuivantTalisman();
     }
     /**
     *<p>Cette méthode change l'xp de l'épée du perso.</p> 
@@ -711,14 +694,6 @@ public abstract class Personnage implements Serializable{
         return (int)(this.level*10*0.75);
     }
     /**
-    *<p>Cette méthode modifie les points d'xp necessaire du perso.</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public void changeXpNecessaire(){
-        this.xp_nec = this.xpLevelSuivant();
-    }
-    /**
     *<p>Cette méthode calcul le nombre d'XP necessaire au prochain level de l'arme.</p>
     *@return Int : nombre d'XP nécessaire au passage du prochain niveau.
     *@author Jérémy Duval
@@ -744,36 +719,6 @@ public abstract class Personnage implements Serializable{
     */
     protected final int xpLevelSuivantTalisman(){
         return (int)(level_arme.get("Talisman")*10*0.75);
-    }
-    /**
-    *<p>Cette méthode modifie les points d'xp necessaire au prochain niveau
-    * de l'épée du perso.</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public void changeXpNecessaireEpee(){
-        xp_nec_arme.remove("Epee", xp_nec_arme.get("Epee"));
-        xp_nec_arme.put("Epee", xpLevelSuivantEpee());
-    }
-    /**
-    *<p>Cette méthode modifie les points d'xp necessaire au prochain niveau
-    * du sceptre du perso.</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public void changeXpNecessaireSceptre(){
-        xp_nec_arme.remove("Sceptre", xp_nec_arme.get("Sceptre"));
-        xp_nec_arme.put("Sceptre", xpLevelSuivantEpee());
-    }
-    /**
-    *<p>Cette méthode modifie les points d'xp necessaire au prochain niveau
-    * de l'épée du perso.</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public void changeXpNecessaireTalisman(){
-        xp_nec_arme.remove("Talisman", xp_nec_arme.get("Talisman"));
-        xp_nec_arme.put("Talisman", xpLevelSuivantEpee());
     }
     
     
