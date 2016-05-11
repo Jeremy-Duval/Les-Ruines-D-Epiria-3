@@ -9,7 +9,14 @@ import Menus.Lieu;
 import Menus.LieuForet;
 import Menus.LieuLac;
 import Menus.LieuPlaine;
+import armes.Arme;
 import armes.ArmeUtilise;
+import armes.Epee;
+import armes.Sceptre;
+import armes.Talisman;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -46,32 +53,32 @@ public class combat {
     //**************************************************************************
     //fonctions
     //**************************************************************************
-    public void menuCombat(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Lieu lieu){
+    public void menuCombat(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Lieu lieu) throws IOException{
         Random aleat = new Random();
         Monstres mob;
         boolean debut_combat = true;
         List liste = new ArrayList();
+        boolean fuir = false;
         
         if(Math.abs(aleat.nextInt(9))<=8){
             mob = determineMonstre(lieu);
-            while((mob.getVie()>0)||(treePerso.get(perso).getVieAcutelle()>0)){//tant que le perso ou le monstre a de la vie
+            while((mob.getVie()>0)&&(treePerso.get(perso).getVieAcutelle()>0)&&(!fuir)){//tant que le perso ou le monstre a de la vie
                 if((debut_combat==false)||((debut_combat)&&(mob.getAgilite()<treePerso.get(perso).getAgilite()))){//si l'agilité du monstre est > à celle du perso et que l'on est au premier tour, on saute le tour du perso (monstre commence)
                     debut_combat = false;
                     liste = combatPerso(treePerso, perso, arme, mob);
-                    treePerso = (TreeMap<String, Personnage>) liste.get(0);
+                    fuir = (boolean) liste.get(0);
                     mob = (Monstres) liste.get(1);
                     
                 }else{
-                    if(mob.getVie()>0){//si le monstre est vaincu, on saute son tour afin de terminer le while
+                    if((mob.getVie()>0)&&(!fuir)){//si le monstre est vaincu, on saute son tour afin de terminer le while
                         debut_combat = false;
-                        liste = combatMob(treePerso, perso, arme, mob);
-                        treePerso = (TreeMap<String, Personnage>) liste.get(0);
-                        mob = (Monstres) liste.get(1);
+                        mob = combatMob(treePerso, perso, arme, mob);
                     } 
                 }
             }
             //Reste à gérer si perso vaincu
-            //si mob vaincu appeler levelUp (qui appel pointDeCaracteristique)
+            //si fuir == false
+                //si mob vaincu appeler levelUp (qui appel pointDeCaracteristique)
             //si mob vaincue appeler fouillerLieu
         } else { 
             //on a une chance sur 10 de ne pas tomber sur un monstre
@@ -208,15 +215,105 @@ public class combat {
      * @param perso : String : classe du personnage
      * @param arme : arme utilisée par le perso
      * @param mob : monstre contre lequel se bas le perso
-     * @return List : <ul><li>treePerso : TreeMap (String,Personnage)</li>
-    *                     <li>mob : Monstres </li></ul>
+     * @throws java.io.IOException 
+     * @return List : <ul><li>fuir : boolean</li>
+    *                     <li>mob : Monstres </li></ul> 
     * @since 1.0
     */
-    public List combatPerso(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Monstres mob){
+    public List combatPerso(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Monstres mob) throws IOException{
         List liste = new ArrayList();
-        //a faire
+        boolean continuer = false;
+        boolean continuer2 = false;
+        BufferedReader buff = new BufferedReader(
+                                    new InputStreamReader(System.in));
+        String choix;
+        int choix2;
+        Arme arme_test;
+        Random aleat = new Random();
+        int nb_aleat;
+        boolean fuir = false;
         
-        liste.add(0, treePerso);
+        System.out.println("\nQue faire ?");
+        System.out.println("a : attaque");
+        System.out.println("m : attaque magique");
+        System.out.println("s : sort");
+        System.out.println("v : potion de vie");
+        System.out.println("p : potion de pm");
+        System.out.println("f : fuite");
+        while(!continuer){
+            choix = buff.readLine();
+            switch(choix){
+                case "a" :
+                    System.out.println("Vous utilisez attaque physique !");
+                    arme_test = new Epee();
+                    if(arme_test.getArmeUtil().equals(arme.getNomArme())){
+                        mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
+                    }else{
+                        mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()));//vie monstre = defense monstre - (attaque perso)
+                    }
+                    continuer = true;
+                    break;
+                case "m" :
+                    System.out.println("Vous utilisez attaque magique !");
+                    arme_test = new Sceptre();
+                    if(arme_test.getArmeUtil().equals(arme.getNomArme())){
+                        mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
+                    }else{
+                        arme_test = new Talisman();
+                        if(arme_test.getArmeUtil().equals(arme.getNomArme())){
+                            mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
+                        }else{
+                            mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()));
+                        }
+                    }
+                    continuer = true;
+                    break;
+                case "s" :
+                    //à implémenter soin() ou puissance ()
+                    continuer = true;
+                    break;
+                case "v" :
+                    System.out.println("Vous utilisez une potion de vie !");
+                    treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getPotionVie());
+                    treePerso.get(perso).setPotionVie(0);
+                    if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
+                        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+                    }
+                    continuer = true;
+                    break;
+                case "p" :
+                    System.out.println("Vous utilisez une potion de PM !");
+                    treePerso.get(perso).setPmActuel(treePerso.get(perso).getPotionPm());
+                    treePerso.get(perso).setPotionPM(0);
+                    if(treePerso.get(perso).getPmActuel()>treePerso.get(perso).getPm()){
+                        treePerso.get(perso).setPmActuel(treePerso.get(perso).getPm());
+                    }
+                    continuer = true;
+                    break;
+                case "f" :
+                    System.out.println("Jetez des pièces pour augmenter vos chances de fuir !");
+                    System.out.println("Combien voulez-vous jeter ?");
+                    while(!continuer2){
+                        choix2 = Integer.parseInt(buff.readLine());
+                        if(choix2>treePerso.get(perso).getArgent()){
+                            treePerso.get(perso).setArgent(treePerso.get(perso).getArgent()-choix2);
+                            nb_aleat = Math.abs(aleat.nextInt(30))%choix2;
+                            if(nb_aleat == 30){
+                                System.out.println("Vous fuyez !");
+                                continuer = true;
+                                fuir = true;
+                            }else{
+                                System.out.println("Vous n'arrivez pas à fuir !");
+                            }
+                        }
+                        
+                    }
+                    break;
+                default :
+                    System.out.println("Vous ne connaissez pas cette action...");
+            }
+        }
+        liste.add(0, continuer);
         liste.add(1, mob);
         return liste;
     }
@@ -228,16 +325,26 @@ public class combat {
      * @param perso : String : classe du personnage
      * @param arme : arme utilisée par le perso
      * @param mob : monstre contre lequel se bas le perso
-     * @return List : <ul><li>treePerso : TreeMap (String,Personnage)</li>
-    *                     <li>mob : Monstres </li></ul>
+     * @return mob : Monstres
     * @since 1.0
     */
-    public List combatMob(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Monstres mob){
-        List liste = new ArrayList();
-        //a faire
+    public Monstres combatMob(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Monstres mob){
+        Random aleat = new Random();
+        int nb_aleat;
         
-        liste.add(0, treePerso);
-        liste.add(1, mob);
-        return liste;
+        nb_aleat = Math.abs(aleat.nextInt(11));
+        if(nb_aleat < 5){
+            System.out.println("Le monstre lance attaque physique !");
+            treePerso.get(perso).setVieAcutelle(mob.getAttaque()-(treePerso.get(perso).getDefense()+treePerso.get(perso).getArmure()));
+        }else{
+            if((nb_aleat > 4)&&(nb_aleat<11)){
+                System.out.println("Le monstre lance attaque magique !");
+                treePerso.get(perso).setVieAcutelle(mob.getAttaqueMagique()-(treePerso.get(perso).getDefenseMagique()+treePerso.get(perso).getArmureMagique()));
+            }else{
+                System.out.println("Le monstre rate son attaque !");
+            }
+        }
+        
+        return mob;
     }
 }

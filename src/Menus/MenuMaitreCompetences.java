@@ -45,7 +45,6 @@ public class MenuMaitreCompetences {
     * @param arme :ArmeUtilise : arme utilisé par le perso
     * @return List : <ul><li>perso : String : nouvelle classe du personnage</li>
     *                    <li>arme : ArmeUtilise : arme correspondant au perso</li></ul>
-    * @return perso : String : nouvelle classe du personnage
     * @throws java.io.IOException
     * @author jeremy
     * @since 1.0
