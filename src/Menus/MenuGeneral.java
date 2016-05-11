@@ -65,7 +65,8 @@ public abstract class MenuGeneral implements Serializable{
     *<p>Cette méthode renvoie un lieu correspondant au lieu du menu à afficher.</p>
     * @param treePerso : TreeMap: String,Personnage
     * @param perso : String
-    * @throws java.io.IOException
+     * @param arme : ArmeUtilise
+    * @throws java.io.IOException : lecture de buffer
     *@return liste : ArrayList <ul><li>lieu_return : Lieu : lieu dans lequel se placer</li>
     *                              <li>perso : String : nom de la classe du perso</li>
     *                              <li>arme: ArmeUtilise : arme actuelle du perso</li></ul>

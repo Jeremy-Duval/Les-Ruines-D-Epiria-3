@@ -5,6 +5,7 @@
  */
 package perso;
 
+import Combat.SortAttaque;
 import armes.ArmeUtilise;
 import armes.Epee;
 
@@ -17,7 +18,7 @@ import armes.Epee;
 public class Guerrier extends Personnage {
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Guerrier" ainsi que son inventaire.</Strong></p>
+    *de type "Guerrier".</Strong></p>
     *<p>Ce concstructeur est le constructeur par défault, complètant
     * celui de {@link Personnage}</p>
     *@author Jérémy Duval
@@ -28,6 +29,7 @@ public class Guerrier extends Personnage {
         this.classe_pers = "Guerrier";
         this.arme_possible = new Epee();
         this.arme_use = new ArmeUtilise(arme_possible, 0);
+        this.type_sort = new SortAttaque();
     }
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 

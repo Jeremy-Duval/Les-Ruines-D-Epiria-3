@@ -5,6 +5,7 @@
  */
 package app;
 
+import Combat.Combat;
 import Menus.Lieu;
 import Menus.MenuCampement;
 import Menus.MenuCite;
@@ -39,6 +40,7 @@ public class LesRuinesDEpiria3{
     private static MenuGeneral menu_general;
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException : à traiter !
      */
     public static void main(String[] args) throws IOException {
         Arme arme_use_epee_guerrier = new Epee();
@@ -151,6 +153,13 @@ public class LesRuinesDEpiria3{
         tree_perso.get("Guerrier").setArgent(10);
         System.out.println("or : "+tree_perso.get("Paysan").getArgent());
         System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
+        /*
+        System.out.println("\nUn test :\n");
+        
+        Combat cb = new Combat();
+        cb.levelUp((TreeMap<String, Personnage>)tree_perso, perso_principal, arme_principale);*/
+        
+        
     }
     
     

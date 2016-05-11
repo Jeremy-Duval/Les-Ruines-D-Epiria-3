@@ -38,7 +38,7 @@ import perso.Personnage;
  * @author Jérémy Duval
  * @since 1.0
  */
-public class combat {
+public class Combat {
     
     //**************************************************************************
     //constructeurs
@@ -48,7 +48,7 @@ public class combat {
     *@author Jérémy Duval
     *@since 1.0
     */
-    public combat(){};
+    public Combat(){};
     
     //**************************************************************************
     //fonctions
@@ -209,19 +209,20 @@ public class combat {
     }
     /**
     *<p>Cette fonction est le menu représentant les différentes possibilité du
-    * personnage durant le combat.</p>
+ personnage durant le Combat.</p>
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
      * @param arme : arme utilisée par le perso
      * @param mob : monstre contre lequel se bas le perso
-     * @throws java.io.IOException 
+     * @throws java.io.IOException : lecture de buffer
      * @return List : <ul><li>fuir : boolean</li>
     *                     <li>mob : Monstres </li></ul> 
     * @since 1.0
     */
     public List combatPerso(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Monstres mob) throws IOException{
         List liste = new ArrayList();
+        Sort test_sort;
         boolean continuer = false;
         boolean continuer2 = false;
         BufferedReader buff = new BufferedReader(
@@ -248,6 +249,10 @@ public class combat {
                     arme_test = new Epee();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                         mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
+                        treePerso.get(perso).setXpEpee((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
+                        if(treePerso.get(perso).getXpEpee()>treePerso.get(perso).getXpNecessaireEpee()){//on test si xp de l'arme > xp besoin pour passer de level
+                            levelUpArme(treePerso, perso, arme);
+                        }
                     }else{
                         mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()));//vie monstre = defense monstre - (attaque perso)
                     }
@@ -258,10 +263,18 @@ public class combat {
                     arme_test = new Sceptre();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                         mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
+                        treePerso.get(perso).setXpSceptre((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
+                        if(treePerso.get(perso).getXpSceptre()>treePerso.get(perso).getXpNecessaireSceptre()){//on test si xp de l'arme > xp besoin pour passer de level
+                            levelUpArme(treePerso, perso, arme);
+                        }
                     }else{
                         arme_test = new Talisman();
                         if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                             mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
+                            treePerso.get(perso).setXpTalisman((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
+                            if(treePerso.get(perso).getXpTalisman()>treePerso.get(perso).getXpNecessaireTalisman()){//on test si xp de l'arme > xp besoin pour passer de level
+                                levelUpArme(treePerso, perso, arme);
+                            }
                         }else{
                             mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()));
                         }
@@ -269,14 +282,25 @@ public class combat {
                     continuer = true;
                     break;
                 case "s" :
-                    //à implémenter soin() ou puissance ()
+                    test_sort = new SortAttaque();
+                    if(treePerso.get(perso).getSort().getSort().equals(test_sort.getSort())){
+                        mob.setVie(treePerso.get(perso).getIntelligence());//on attaque directement la vie à l'aide de la puissance magique(intellignece)
+                    }
+                    test_sort = new SortSoin();
+                    if(treePerso.get(perso).getSort().getSort().equals(test_sort.getSort())){
+                        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getSagesse());//on soigne le perso à l'aide de la puissance de soin (sagesse)
+                        if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){//si la vie actu a dépassée la vie max
+                        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+                    }
+                    }
+                    
                     continuer = true;
                     break;
                 case "v" :
                     System.out.println("Vous utilisez une potion de vie !");
                     treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getPotionVie());
                     treePerso.get(perso).setPotionVie(0);
-                    if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
+                    if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){//si la vie actu a dépassée la vie max
                         treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
                     }
                     continuer = true;
@@ -285,7 +309,7 @@ public class combat {
                     System.out.println("Vous utilisez une potion de PM !");
                     treePerso.get(perso).setPmActuel(treePerso.get(perso).getPotionPm());
                     treePerso.get(perso).setPotionPM(0);
-                    if(treePerso.get(perso).getPmActuel()>treePerso.get(perso).getPm()){
+                    if(treePerso.get(perso).getPmActuel()>treePerso.get(perso).getPm()){//si les pm actu ont dépassés les pm max
                         treePerso.get(perso).setPmActuel(treePerso.get(perso).getPm());
                     }
                     continuer = true;
@@ -304,6 +328,7 @@ public class combat {
                                 fuir = true;
                             }else{
                                 System.out.println("Vous n'arrivez pas à fuir !");
+                                continuer = true;
                             }
                         }
                         
@@ -313,13 +338,14 @@ public class combat {
                     System.out.println("Vous ne connaissez pas cette action...");
             }
         }
-        liste.add(0, continuer);
+        
+        liste.add(0, fuir);
         liste.add(1, mob);
         return liste;
     }
     
     /**
-    *<p>Cette fonction représente le tour du monstre pendant le combat.</p>
+    *<p>Cette fonction représente le tour du monstre pendant le Combat.</p>
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
@@ -344,7 +370,126 @@ public class combat {
                 System.out.println("Le monstre rate son attaque !");
             }
         }
-        
         return mob;
+    }
+    
+    /**
+    *<p>Cette fonction sert à faire passer de niveau de l'arme.</p>
+    * @author Jérémy Duval
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @param perso : String : classe du personnage
+     * @param arme : armeUtilise utilisé par le perso
+    * @since 1.0
+    */
+    public void levelUpArme(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme){
+        Arme n_arme;
+        //arme.setArme(arme.getTypeArme(), treePerso.get(perso).getEpee());//on met à jour l'arme utilise
+        n_arme = new Epee();
+        if(n_arme.getArmeUtil().equals(arme.getNomArme()))
+        {
+            treePerso.get(perso).setXpEpee(treePerso.get(perso).getXpEpee()-treePerso.get(perso).getXpNecessaireEpee());//on remplace l'xp par celui restant lors du passage de level
+            treePerso.get(perso).setLevelEpee(treePerso.get(perso).getLevelEpee()+1);//on augmente le niveau
+        }
+        n_arme = new Sceptre();
+        if(n_arme.getArmeUtil().equals(arme.getNomArme()))
+        {
+            treePerso.get(perso).setXpSceptre(treePerso.get(perso).getXpSceptre()-treePerso.get(perso).getXpNecessaireSceptre());//on remplace l'xp par celui restant lors du passage de level
+            treePerso.get(perso).setLevelSceptre(treePerso.get(perso).getLevelSceptre()+1);//on augmente le niveau
+        }
+        n_arme = new Talisman();
+        if(n_arme.getArmeUtil().equals(arme.getNomArme()))
+        {
+            treePerso.get(perso).setXpTalisman(treePerso.get(perso).getXpTalisman()-treePerso.get(perso).getXpNecessaireTalisman());//on remplace l'xp par celui restant lors du passage de level
+            treePerso.get(perso).setLevelTalisman(treePerso.get(perso).getLevelTalisman()+1);//on augmente le niveau
+        }
+    }
+    
+    /**
+    *<p>Cette fonction sert à faire passer de niveau le perso.</p>
+    * @author Jérémy Duval
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @param perso : String : classe du personnage
+     * @throws java.io.IOException : lecture de buffer
+    * @since 1.0
+    */
+    public void levelUp(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+        treePerso.get(perso).setXp(treePerso.get(perso).getXp()-treePerso.get(perso).getXpNecessaire());//on remplace l'xp par celui restant lors du passage de level
+        treePerso.get(perso).setLevel(treePerso.get(perso).getLevel()+1);//on augmente le niveau
+        //augmentation des stats suivant les classes
+        //
+        
+        
+        
+        pointsCaractéristiques(treePerso, perso);
+        
+        
+        //remet vie et pm au max
+        //
+    }
+    /**
+    *<p>Cette fonction sert à faire distribuer des points de caractéristique.</p>
+    * @author Jérémy Duval
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @param perso : String : classe du personnage
+     * @throws java.io.IOException : lecture de buffer
+    * @since 1.0
+    */
+    public void pointsCaractéristiques(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+        BufferedReader buff = new BufferedReader(
+                                    new InputStreamReader(System.in));
+        String choix;
+        int nb_points = 5;
+        
+        System.out.println("\nVous avez " + nb_points + " de caractéristique à répartir :");
+        System.out.println("v : vie");
+        System.out.println("p : pm");
+        System.out.println("a : attaque");
+        System.out.println("m : attaque magique");
+        System.out.println("i : intellignece");
+        System.out.println("s : sagesse");
+        System.out.println("d : agilité");
+        
+        while(nb_points > 0){
+            choix = buff.readLine();
+            switch(choix){
+                case "a" :
+                    System.out.println("Attaque augmentée !");
+                    treePerso.get(perso).setAttaque(treePerso.get(perso).getAttaque()+1);
+                    nb_points--;
+                    break;
+                case "m" :
+                    System.out.println("Attaque magique augmentée !");
+                    treePerso.get(perso).setAttaque(treePerso.get(perso).getAttaque()+1);
+                    nb_points--;
+                    break;
+                case "s" :
+                    System.out.println("Sagesse augmentée !");
+                    treePerso.get(perso).setSagesse(treePerso.get(perso).getSagesse()+1);
+                    nb_points--;
+                    break;
+                case "i" :
+                    System.out.println("Intelligence augmentée !");
+                    treePerso.get(perso).setIntelligence(treePerso.get(perso).getIntelligence()+1);
+                    nb_points--;
+                    break;
+                case "v" :
+                    System.out.println("Vie augmentée !");
+                    treePerso.get(perso).setVie(treePerso.get(perso).getVie()+1);
+                    nb_points--;
+                    break;
+                case "p" :
+                    System.out.println("Pm augmentée !");
+                    treePerso.get(perso).setPm(treePerso.get(perso).getPm()+1);
+                    nb_points--;
+                    break;
+                case "d" :
+                    System.out.println("Agilité augmentée !");
+                    treePerso.get(perso).setAgilite(treePerso.get(perso).getAgilite()+1);
+                    nb_points--;
+                    break;
+                default :
+                    System.out.println("Vous n'avez pas cette caractéristique...");
+            }
+        }
     }
 }

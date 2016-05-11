@@ -5,6 +5,7 @@
  */
 package perso;
 
+import Combat.SortAttaque;
 import armes.All;
 import armes.ArmeUtilise;
 import java.util.TreeMap;
@@ -19,7 +20,13 @@ import utilitaire.Comparateur;
 public class Paysan extends Personnage {
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Paysan" ainsi que son inventaire.</Strong></p>
+    *de type "Paysan" </Strong></p>
+    * Il initialise aussi les variables communes aux classes :
+    * <ul><li>{@link Personnage#argent}</li>
+    *     <li>{@link Personnage#inventaire}</li>
+    *     <li>{@link Personnage#level_arme}</li>
+    *     <li>{@link Personnage#xp_arme}</li>
+    *     <li>{@link Personnage#xp_nec_arme}</li></ul>
     *<p>Ce concstructeur complète celui de {@link Personnage}</p>
     *@author Jérémy Duval
     *@since 1.0
@@ -29,7 +36,8 @@ public class Paysan extends Personnage {
         this.classe_pers = "Paysan";
         this.arme_possible = new All();
         this.arme_use = new ArmeUtilise();
-        
+        this.type_sort = new SortAttaque();
+        //initialisation des variables communes
         argent = 0;
         inventaire = new TreeMap<>(new Comparateur());
         inventaire.put("Epee", 0);

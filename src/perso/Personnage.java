@@ -5,12 +5,11 @@
  */
 package perso;
 
+import Combat.Sort;
 import armes.Arme;
 import armes.ArmeUtilise;
 import java.io.Serializable;
 import java.util.Map;
-import java.util.TreeMap;
-import utilitaire.Comparateur;
 
 /**
  *<p><strong>Cette classe abstraite définie les types de personnages.</strong></p>
@@ -38,6 +37,7 @@ public abstract class Personnage implements Serializable{
     protected int xp_nec;
     protected static int argent;
     protected static Map <String, Integer> inventaire;
+    protected Sort type_sort;
     //arme
     protected Arme arme_possible;
     protected ArmeUtilise arme_use;
@@ -404,6 +404,27 @@ public abstract class Personnage implements Serializable{
     public String getClassePerso(){
         return this.classe_pers;
     }
+    /**
+    *<p>Cette méthode renvoie le type de sort du perso.
+    * Ce type est implémenté par l'interface {@link Sort}</p>
+    *@return Sort
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public Sort getSort(){
+        return this.type_sort;
+    }
+    /**
+    *<p>Cette méthode renvoie le type de sort du perso.
+    * Ce type est implémenté par l'interface {@link Sort}</p>
+    *@return String
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public String getStringSort(){
+        return this.type_sort.getSort();
+    }
+    
     
     //**************************************************************************
     //setters

@@ -37,7 +37,7 @@ public class BoutiqueCite {
     * entre 0 et 15</p>
     * @param tree_perso : TreeMap: String,Personnage
     * @param perso : String : l'étiquette de la classe dans le TreeMap
-    * @throws java.io.IOException
+    * @throws java.io.IOException : lecture de buffer
     * @author jeremy
     * @since 1.0
     */

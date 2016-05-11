@@ -5,6 +5,7 @@
  */
 package perso;
 
+import Combat.SortSoin;
 import armes.ArmeUtilise;
 import armes.Talisman;
 
@@ -17,7 +18,7 @@ import armes.Talisman;
 public class Pretre extends Personnage{
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Pretre" ainsi que son inventaire.</Strong></p>
+    *de type "Pretre".</Strong></p>
     *<p>Ce concstructeur est le constructeur par défault, complètant
     * celui de {@link Personnage}</p>
     *@author Jérémy Duval
@@ -28,6 +29,7 @@ public class Pretre extends Personnage{
         this.classe_pers = "Pretre";
         this.arme_possible = new Talisman();
         this.arme_use = new ArmeUtilise(arme_possible, 0);
+        this.type_sort = new SortSoin();
     }
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 

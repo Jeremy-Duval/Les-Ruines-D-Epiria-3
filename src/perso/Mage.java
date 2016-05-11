@@ -5,6 +5,7 @@
  */
 package perso;
 
+import Combat.SortAttaque;
 import armes.ArmeUtilise;
 import armes.Sceptre;
 
@@ -17,7 +18,7 @@ import armes.Sceptre;
 public class Mage extends Personnage {
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Mage" ainsi que son inventaire.</Strong></p>
+    *de type "Mage".</Strong></p>
     *<p>Ce concstructeur est le constructeur par défault, complètant
     * celui de {@link Personnage}</p>
     *@author Jérémy Duval
@@ -28,6 +29,7 @@ public class Mage extends Personnage {
         this.classe_pers = "Mage";
         this.arme_possible = new Sceptre();
         this.arme_use = new ArmeUtilise(arme_possible, 0);
+        this.type_sort = new SortAttaque();
     }
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
