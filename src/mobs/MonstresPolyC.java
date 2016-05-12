@@ -23,6 +23,7 @@ public class MonstresPolyC extends Monstres{
     */
     public MonstresPolyC(){
         super();
+        this.vie_max = 50;
         this.vie = 50;
         this.atq = 30;
         this.atq_mag = 30;

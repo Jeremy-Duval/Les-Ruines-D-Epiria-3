@@ -32,6 +32,7 @@ import mobs.MonstresPolyC;
 import mobs.MonstresPolyD;
 import mobs.MonstresPolyE;
 import perso.Personnage;
+import utilitaire.Comparateur;
 
 /**
  *<p><strong>Cette classe permet la création du menu de combats.</strong></p>
@@ -59,15 +60,22 @@ public class Combat {
         boolean debut_combat = true;
         List liste = new ArrayList();
         boolean fuir = false;
-        
+        System.out.println("Vous entrez dans un lieu sauvage...");
         if(Math.abs(aleat.nextInt(9))<=8){
+            System.out.println("Vous êtes attaqué par un monstre !");
             mob = determineMonstre(lieu);
             while((mob.getVie()>0)&&(treePerso.get(perso).getVieAcutelle()>0)&&(!fuir)){//tant que le perso ou le monstre a de la vie
+                System.out.println("*********************************");
+                System.out.println("Vie : "+ treePerso.get(perso).getVieAcutelle() + "/" + treePerso.get(perso).getVie() + "\nPm : " + treePerso.get(perso).getPmActuel() + "/" + treePerso.get(perso).getPm());
+                System.out.println("*********************************");
+                System.out.println("Vie du monstre restante : "+mob.getVie());
+                System.out.println("*********************************");
                 if((debut_combat==false)||((debut_combat)&&(mob.getAgilite()<treePerso.get(perso).getAgilite()))){//si l'agilité du monstre est > à celle du perso et que l'on est au premier tour, on saute le tour du perso (monstre commence)
                     debut_combat = false;
                     liste = combatPerso(treePerso, perso, arme, mob);
                     fuir = (boolean) liste.get(0);
                     mob = (Monstres) liste.get(1);
+                    
                     
                 }else{
                     if((mob.getVie()>0)&&(!fuir)){//si le monstre est vaincu, on saute son tour afin de terminer le while
@@ -76,12 +84,28 @@ public class Combat {
                     } 
                 }
             }
-            //Reste à gérer si perso vaincu
-            //si fuir == false
-                //si mob vaincu appeler levelUp (qui appel pointDeCaracteristique)
-            //si mob vaincue appeler fouillerLieu
+            if(treePerso.get(perso).getVieAcutelle()<0){
+                System.out.println("Vous avez perdu !");
+                //action si perso mort
+                //
+                //
+                //
+            } else{
+                if(!fuir){
+                    monstreVaincu(treePerso, perso, mob);
+                    if(treePerso.get(perso).getXp()>treePerso.get(perso).getXpNecessaire()){//si xp perso > xp nécessaire pour le prochain niveau, on passe niveau
+                        System.out.println("Vous montez de niveau !\n");
+                        levelUp(treePerso, perso);
+                    }
+                    fouilles( treePerso, perso);
+                } else {
+                    //si le perso fuit, on n'appel pas les méthodes de levelUp() et fouilles()
+                }
+            }
+            
         } else { 
             //on a une chance sur 10 de ne pas tomber sur un monstre
+            fouilles( treePerso, perso);
         }
     }
     /**
@@ -248,13 +272,16 @@ public class Combat {
                     System.out.println("Vous utilisez attaque physique !");
                     arme_test = new Epee();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
-                        mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
+                        mob.setVie(mob.getVie()+mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
                         treePerso.get(perso).setXpEpee((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
                         if(treePerso.get(perso).getXpEpee()>treePerso.get(perso).getXpNecessaireEpee()){//on test si xp de l'arme > xp besoin pour passer de level
                             levelUpArme(treePerso, perso, arme);
                         }
                     }else{
-                        mob.setVie(mob.getDefense()-(treePerso.get(perso).getAttaque()));//vie monstre = defense monstre - (attaque perso)
+                        mob.setVie(mob.getVie()+mob.getDefense()-(treePerso.get(perso).getAttaque()));//vie monstre = defense monstre - (attaque perso)
+                    }
+                    if(mob.getVie()>mob.getVieMax()){
+                        mob.setVie(mob.getVieMax());
                     }
                     continuer = true;
                     break;
@@ -262,7 +289,7 @@ public class Combat {
                     System.out.println("Vous utilisez attaque magique !");
                     arme_test = new Sceptre();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
-                        mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
+                        mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
                         treePerso.get(perso).setXpSceptre((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
                         if(treePerso.get(perso).getXpSceptre()>treePerso.get(perso).getXpNecessaireSceptre()){//on test si xp de l'arme > xp besoin pour passer de level
                             levelUpArme(treePerso, perso, arme);
@@ -270,27 +297,43 @@ public class Combat {
                     }else{
                         arme_test = new Talisman();
                         if(arme_test.getArmeUtil().equals(arme.getNomArme())){
-                            mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
+                            mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
                             treePerso.get(perso).setXpTalisman((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
                             if(treePerso.get(perso).getXpTalisman()>treePerso.get(perso).getXpNecessaireTalisman()){//on test si xp de l'arme > xp besoin pour passer de level
                                 levelUpArme(treePerso, perso, arme);
                             }
                         }else{
-                            mob.setVie(mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()));
+                            mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()));
                         }
+                    }
+                    if(mob.getVie()>mob.getVieMax()){
+                        mob.setVie(mob.getVieMax());
                     }
                     continuer = true;
                     break;
                 case "s" :
                     test_sort = new SortAttaque();
                     if(treePerso.get(perso).getSort().getSort().equals(test_sort.getSort())){
-                        mob.setVie(treePerso.get(perso).getIntelligence());//on attaque directement la vie à l'aide de la puissance magique(intellignece)
+                        if(treePerso.get(perso).getPmActuel()>=5){
+                            System.out.println("Vous lancez un sort d'attaque !");
+                            treePerso.get(perso).setPmActuel(treePerso.get(perso).getPmActuel()-5);
+                            mob.setVie(mob.getVie()-treePerso.get(perso).getIntelligence());//on attaque directement la vie à l'aide de la puissance magique(intellignece)
+                        }else{
+                            System.out.println("Pas assez de pm !");
+                        }
+                        
                     }
                     test_sort = new SortSoin();
                     if(treePerso.get(perso).getSort().getSort().equals(test_sort.getSort())){
-                        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getSagesse());//on soigne le perso à l'aide de la puissance de soin (sagesse)
-                        if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){//si la vie actu a dépassée la vie max
-                        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+                        if(treePerso.get(perso).getPmActuel()>=5){
+                            System.out.println("Vous lancez un sort de soin !");
+                            treePerso.get(perso).setPmActuel(treePerso.get(perso).getPmActuel()-5);
+                            treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getSagesse());//on soigne le perso à l'aide de la puissance de soin (sagesse)
+                            if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){//si la vie actu a dépassée la vie max
+                            treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+                        }else{
+                            System.out.println("Pas assez de pm !");
+                        }
                     }
                     }
                     
@@ -298,7 +341,7 @@ public class Combat {
                     break;
                 case "v" :
                     System.out.println("Vous utilisez une potion de vie !");
-                    treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getPotionVie());
+                    treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVieAcutelle()+treePerso.get(perso).getPotionVie());
                     treePerso.get(perso).setPotionVie(0);
                     if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){//si la vie actu a dépassée la vie max
                         treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
@@ -307,7 +350,7 @@ public class Combat {
                     break;
                 case "p" :
                     System.out.println("Vous utilisez une potion de PM !");
-                    treePerso.get(perso).setPmActuel(treePerso.get(perso).getPotionPm());
+                    treePerso.get(perso).setPmActuel(treePerso.get(perso).getPmActuel()+treePerso.get(perso).getPotionPm());
                     treePerso.get(perso).setPotionPM(0);
                     if(treePerso.get(perso).getPmActuel()>treePerso.get(perso).getPm()){//si les pm actu ont dépassés les pm max
                         treePerso.get(perso).setPmActuel(treePerso.get(perso).getPm());
@@ -324,15 +367,16 @@ public class Combat {
                             nb_aleat = Math.abs(aleat.nextInt(30))%choix2;
                             if(nb_aleat == 30){
                                 System.out.println("Vous fuyez !");
-                                continuer = true;
+                                continuer2 = true;
                                 fuir = true;
                             }else{
                                 System.out.println("Vous n'arrivez pas à fuir !");
-                                continuer = true;
+                                continuer2 = true;
                             }
                         }
                         
                     }
+                    continuer = true;
                     break;
                 default :
                     System.out.println("Vous ne connaissez pas cette action...");
@@ -360,14 +404,20 @@ public class Combat {
         
         nb_aleat = Math.abs(aleat.nextInt(11));
         if(nb_aleat < 5){
-            System.out.println("Le monstre lance attaque physique !");
-            treePerso.get(perso).setVieAcutelle(mob.getAttaque()-(treePerso.get(perso).getDefense()+treePerso.get(perso).getArmure()));
+            System.out.println("Le monstre lance attaque physique !\n");
+            treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVieAcutelle()-mob.getAttaque()+(treePerso.get(perso).getDefense()+treePerso.get(perso).getArmure()));
+            if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
+                treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+            }
         }else{
             if((nb_aleat > 4)&&(nb_aleat<11)){
-                System.out.println("Le monstre lance attaque magique !");
-                treePerso.get(perso).setVieAcutelle(mob.getAttaqueMagique()-(treePerso.get(perso).getDefenseMagique()+treePerso.get(perso).getArmureMagique()));
+                System.out.println("Le monstre lance attaque magique !\n");
+                treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVieAcutelle()-mob.getAttaqueMagique()+(treePerso.get(perso).getDefenseMagique()+treePerso.get(perso).getArmureMagique()));
+                if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
+                treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
+            }
             }else{
-                System.out.println("Le monstre rate son attaque !");
+                System.out.println("Le monstre rate son attaque !\n");
             }
         }
         return mob;
@@ -413,18 +463,34 @@ public class Combat {
     * @since 1.0
     */
     public void levelUp(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+        int points;
         treePerso.get(perso).setXp(treePerso.get(perso).getXp()-treePerso.get(perso).getXpNecessaire());//on remplace l'xp par celui restant lors du passage de level
         treePerso.get(perso).setLevel(treePerso.get(perso).getLevel()+1);//on augmente le niveau
         //augmentation des stats suivant les classes
-        //
-        
-        
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Vie");
+        treePerso.get(perso).setVie(treePerso.get(perso).getVie()+points);//on augmente la vie
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Pm");
+        treePerso.get(perso).setPm(treePerso.get(perso).getPm()+points);//on augmente les pm
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Attaque");
+        treePerso.get(perso).setAttaque(treePerso.get(perso).getAttaque()+points);//on augmente l'attaque
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("AttaqueMagique");
+        treePerso.get(perso).setAttaqueMagique(treePerso.get(perso).getAttaqueMagique()+points);//on augmente l'attaque magique
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Defense");
+        treePerso.get(perso).setDefense(treePerso.get(perso).getDefense()+points);//on augmente la defense
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("DefenseMagique");
+        treePerso.get(perso).setDefenseMagique(treePerso.get(perso).getDefenseMagique()+points);//on augmente la defense magique
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Agilite");
+        treePerso.get(perso).setAgilite(treePerso.get(perso).getAgilite()+points);//on augmente l'agilite
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Intelligence");
+        treePerso.get(perso).setIntelligence(treePerso.get(perso).getIntelligence()+points);//on augmente l'intelligence
+        points = (int) treePerso.get(perso).getPointPassageLevel().get("Sagesse");
+        treePerso.get(perso).setSagesse(treePerso.get(perso).getSagesse()+points);//on augmente la sagesse
         
         pointsCaractéristiques(treePerso, perso);
         
+        //remise de la vie au max
+        treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
         
-        //remet vie et pm au max
-        //
     }
     /**
     *<p>Cette fonction sert à faire distribuer des points de caractéristique.</p>
@@ -492,4 +558,204 @@ public class Combat {
             }
         }
     }
+    
+    /**
+    *<p>Cette fonction sert à augmenter l'xp et l'argent du perso lorsqu'il
+    * a vaincu le monstre.</p>
+    * @author Jérémy Duval
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @param perso : String : classe du personnage
+     * @param mob : Monstres : monstre vaincu
+    * @since 1.0
+    */
+    public void monstreVaincu(TreeMap<String,Personnage> treePerso, String perso, Monstres mob){
+        treePerso.get(perso).setXp(treePerso.get(perso).getXp()+mob.getXp());//on augmente l'xp du perso avec celui donné par le monstre
+        treePerso.get(perso).setArgent(treePerso.get(perso).getArgent()+mob.getOr());//on augmente l'or du perso avec celui donné par le monstre
+    }
+    
+    /**
+    *<p>Cette fonction détermine si le perso trouve un item (ainsi que sa valeur)
+    * en arrivant dans un endroit.</p>
+    * @author Jérémy Duval
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @param perso : String : classe du personnage
+     * @throws java.io.IOException
+    * @since 1.0
+    */
+    public void fouilles(TreeMap<String,Personnage> treePerso, String perso) throws IOException{
+        BufferedReader buff = new BufferedReader(
+                                    new InputStreamReader(System.in));
+        Random trouve = new Random();
+        Random item = new Random();
+        Random alea_val_item = new Random();
+        int type_item;
+        int val_item;
+        String choix;
+        boolean continuer = false;
+        
+        if(Math.abs(trouve.nextInt(1))==0){
+            //objet trouvé
+            type_item = Math.abs(trouve.nextInt(50));
+            if(type_item==0){
+                System.out.println("Vous trouvez une potion d'xp !");
+                System.out.println("Vous montez de niveau !");
+                levelUp(treePerso, perso);
+            } else {
+                type_item = Math.abs(trouve.nextInt(6));
+                val_item = Math.abs(alea_val_item.nextInt(treePerso.get(perso).getLevel()*10))%(treePerso.get(perso).getLevel()*5);
+                switch(type_item){
+                    case 0 :
+                        System.out.println("Vous trouvez une épee !");
+                        System.out.println("Voulez vous la garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez l'épée.");
+                                    treePerso.get(perso).setEpee(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous la laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                    case 1 :
+                        System.out.println("Vous trouvez un sceptre !");
+                        System.out.println("Voulez vous le garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez le sceptre.");
+                                    treePerso.get(perso).setSceptre(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous le laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                    case 2 :
+                        System.out.println("Vous trouvez un talisman !");
+                        System.out.println("Voulez vous le garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez le talisman.");
+                                    treePerso.get(perso).setTalisman(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous le laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;  
+                    case 3 :
+                        System.out.println("Vous trouvez une potion de vie !");
+                        System.out.println("Voulez vous la garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez la potion de vie.");
+                                    treePerso.get(perso).setPotionVie(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous la laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                    case 4 :
+                        System.out.println("Vous trouvez une potion de pm !");
+                        System.out.println("Voulez vous la garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez la potion de pm.");
+                                    treePerso.get(perso).setPotionPM(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous la laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                    case 5 :
+                        System.out.println("Vous trouvez une armure !");
+                        System.out.println("Voulez vous la garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez l'armure.");
+                                    treePerso.get(perso).setArmure(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous la laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                    default :
+                        System.out.println("Vous trouvez une armure magique !");
+                        System.out.println("Voulez vous la garder ?");
+                        System.out.println("o : oui");
+                        System.out.println("n : non");
+                        while(!continuer){
+                            choix = buff.readLine();
+                            switch(choix){
+                                case "o" :
+                                    System.out.println("Vous prenez l'armure magique.");
+                                    treePerso.get(perso).setArmureMagique(val_item);
+                                    break;
+                                case "n" :
+                                    System.out.println("Vous la laissez là...");
+                                    break;
+                                default :
+                                    System.out.println("Arrêtez d'hesiter et choisissez !");
+                            }
+                            continuer = true;
+                        }
+                    break;
+                }
+            }
+        }
+        System.out.println("Vous n'avez rien trouvé...");
+    }
+    
+    
 }

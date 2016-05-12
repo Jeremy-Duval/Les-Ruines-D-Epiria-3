@@ -8,6 +8,8 @@ package perso;
 import Combat.SortSoin;
 import armes.ArmeUtilise;
 import armes.Talisman;
+import java.util.TreeMap;
+import utilitaire.Comparateur;
 
 /**
  *<p><strong>Définie le type de personnage Pretre.</strong></p>
@@ -30,6 +32,16 @@ public class Pretre extends Personnage{
         this.arme_possible = new Talisman();
         this.arme_use = new ArmeUtilise(arme_possible, 0);
         this.type_sort = new SortSoin();
+        this.carac_level = new TreeMap<>(new Comparateur());
+        carac_level.put("Vie", 5);
+        carac_level.put("Pm", 4);
+        carac_level.put("Attaque", 2);
+        carac_level.put("AttaqueMagique", 2);
+        carac_level.put("Defense", 2);
+        carac_level.put("DefenseMagique", 2);
+        carac_level.put("Agilite", 1);
+        carac_level.put("Intelligence", 1);
+        carac_level.put("Sagesse", 3);
     }
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 

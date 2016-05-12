@@ -44,6 +44,8 @@ public abstract class Personnage implements Serializable{
     protected static Map <String, Integer> level_arme;
     protected static Map <String, Integer> xp_arme;
     protected static Map <String, Integer> xp_nec_arme;
+    //incrémentation des variables lors du passage de level
+    protected Map <String, Integer> carac_level;
     
     //**************************************************************************
     //constructeurs
@@ -423,6 +425,16 @@ public abstract class Personnage implements Serializable{
     */
     public String getStringSort(){
         return this.type_sort.getSort();
+    }
+    /**
+    *<p>Cette méthode renvoie un Map contenant les valeurs, pour chaque
+    * caracéristique, à aditionner avec l'ancienne lors du passage de level.</p>
+    *@return Map
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public Map getPointPassageLevel(){
+        return this.carac_level;
     }
     
     

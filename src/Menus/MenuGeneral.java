@@ -8,6 +8,7 @@ package Menus;
 import Boutiques.BoutiqueAuberge;
 import Boutiques.BoutiqueCite;
 import Boutiques.BoutiqueMarchand;
+import Combat.Combat;
 import armes.ArmeUtilise;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -87,6 +88,7 @@ public abstract class MenuGeneral implements Serializable{
         BoutiqueCite boutique_cite = new BoutiqueCite();
         BoutiqueMarchand boutique_marchand = new BoutiqueMarchand();
         List liste = new ArrayList();
+        Combat combat = new Combat();
     
         while(!continuer){
             choix = buff.readLine();
@@ -157,7 +159,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                
+                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès forêt
             if(this.choix.equals("f")){
@@ -184,7 +186,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                
+                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès lac
             if(this.choix.equals("l")){
@@ -205,7 +207,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                
+                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès campement
             if(this.choix.equals("k")){

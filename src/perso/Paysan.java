@@ -37,6 +37,16 @@ public class Paysan extends Personnage {
         this.arme_possible = new All();
         this.arme_use = new ArmeUtilise();
         this.type_sort = new SortAttaque();
+        this.carac_level = new TreeMap<>(new Comparateur());
+        carac_level.put("Vie", 3);
+        carac_level.put("Pm", 2);
+        carac_level.put("Attaque", 2);
+        carac_level.put("AttaqueMagique", 2);
+        carac_level.put("Defense", 1);
+        carac_level.put("DefenseMagique", 1);
+        carac_level.put("Agilite", 2);
+        carac_level.put("Intelligence", 2);
+        carac_level.put("Sagesse", 2);
         //initialisation des variables communes
         argent = 0;
         inventaire = new TreeMap<>(new Comparateur());

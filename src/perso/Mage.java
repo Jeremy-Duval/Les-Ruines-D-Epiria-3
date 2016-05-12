@@ -8,6 +8,8 @@ package perso;
 import Combat.SortAttaque;
 import armes.ArmeUtilise;
 import armes.Sceptre;
+import java.util.TreeMap;
+import utilitaire.Comparateur;
 
 /**
  *<p><strong>Définie le type de personnage Mage.</strong></p>
@@ -30,6 +32,16 @@ public class Mage extends Personnage {
         this.arme_possible = new Sceptre();
         this.arme_use = new ArmeUtilise(arme_possible, 0);
         this.type_sort = new SortAttaque();
+        this.carac_level = new TreeMap<>(new Comparateur());
+        carac_level.put("Vie", 3);
+        carac_level.put("Pm", 4);
+        carac_level.put("Attaque", 1);
+        carac_level.put("AttaqueMagique", 3);
+        carac_level.put("Defense", 1);
+        carac_level.put("DefenseMagique", 2);
+        carac_level.put("Agilite", 1);
+        carac_level.put("Intelligence", 4);
+        carac_level.put("Sagesse", 1);
     }
     /**
     *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 

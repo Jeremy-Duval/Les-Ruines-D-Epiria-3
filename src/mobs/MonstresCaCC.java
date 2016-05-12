@@ -23,6 +23,7 @@ public class MonstresCaCC extends Monstres{
     */
     public MonstresCaCC(){
         super();
+        this.vie_max = 70;
         this.vie = 70;
         this.atq = 40;
         this.atq_mag = 20;

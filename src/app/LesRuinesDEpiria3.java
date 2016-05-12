@@ -157,7 +157,7 @@ public class LesRuinesDEpiria3{
         System.out.println("\nUn test :\n");
         
         Combat cb = new Combat();
-        cb.levelUp((TreeMap<String, Personnage>)tree_perso, perso_principal, arme_principale);*/
+        cb.levelUp((TreeMap<String, Personnage>)tree_perso, perso_principal);*/
         
         
     }

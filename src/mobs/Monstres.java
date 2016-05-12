@@ -12,6 +12,7 @@ package mobs;
  */
 public abstract class Monstres {
     protected int vie;
+    protected int vie_max;
     protected int atq;
     protected int atq_mag;
     protected int def;
@@ -45,6 +46,15 @@ public abstract class Monstres {
     */
     public int getVie(){
         return this.vie;
+    }
+    /**
+    *<p>Cette méthode renvoie la vie max du monstre.</p>
+    *@return int : vie
+    *@author Jérémy Duval
+    *@since 1.0
+    */
+    public int getVieMax(){
+        return this.vie_max;
     }
     /**
     *<p>Cette méthode renvoie l'attaque du monstre.</p>

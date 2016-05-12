@@ -23,6 +23,7 @@ public class MonstresCaCE extends Monstres{
     */
     public MonstresCaCE(){
         super();
+        this.vie_max = 20;
         this.vie = 20;
         this.atq = 6;
         this.atq_mag = 3;

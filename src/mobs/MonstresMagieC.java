@@ -23,6 +23,7 @@ public class MonstresMagieC extends Monstres{
     */
     public MonstresMagieC(){
         super();
+        this.vie_max = 70;
         this.vie = 70;
         this.atq = 20;
         this.atq_mag = 40;
