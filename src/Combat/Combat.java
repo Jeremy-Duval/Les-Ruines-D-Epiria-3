@@ -242,8 +242,8 @@ public class Combat {
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
-     * @param arme : arme utilisée par le perso
-     * @param mob : monstre contre lequel se bas le perso
+     * @param arme : ArmeUtilise : arme utilisée par le perso
+     * @param mob : Monstres : monstre contre lequel se bas le perso
      * @throws java.io.IOException : lecture de buffer
      * @return List : <ul><li>fuir : boolean</li>
     *                     <li>mob : Monstres </li></ul> 
@@ -398,8 +398,8 @@ public class Combat {
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
-     * @param arme : arme utilisée par le perso
-     * @param mob : monstre contre lequel se bas le perso
+     * @param arme : ArmeUtilise : arme utilisée par le perso
+     * @param mob : Monstres : monstre contre lequel se bas le perso
      * @return mob : Monstres
     * @since 1.0
     */
@@ -584,7 +584,7 @@ public class Combat {
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
-     * @throws java.io.IOException
+     * @throws java.io.IOException : lecture de buffer
     * @since 1.0
     */
     public void fouilles(TreeMap<String,Personnage> treePerso, String perso) throws IOException{

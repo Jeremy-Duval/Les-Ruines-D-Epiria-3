@@ -95,6 +95,8 @@ public class MenuMaitreCompetences {
                                 liste = this.changementDeClasse("Pretre", treePerso, perso, arme);
                                 break;
                             case "r" :
+                                liste.add(0, perso);
+                                liste.add(1, arme);
                                 continuer2 = true;
                                 break;
                             default :
@@ -128,6 +130,8 @@ public class MenuMaitreCompetences {
                                 liste = this.apprendreUneClasse("Pretre", treePerso, perso, arme);
                                 break;
                             case "r" :
+                                liste.add(0, perso);
+                                liste.add(1, arme);
                                 continuer2 = true;
                                 break;
                             default :
@@ -137,6 +141,8 @@ public class MenuMaitreCompetences {
                     }
                     break;
                 case "p" :
+                    liste.add(0, perso);
+                    liste.add(1, arme);
                     continuer = true;
                     break;
                 default :

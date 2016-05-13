@@ -9,6 +9,7 @@ import Boutiques.BoutiqueAuberge;
 import Boutiques.BoutiqueCite;
 import Boutiques.BoutiqueMarchand;
 import Combat.Combat;
+import armes.AccesInventaire;
 import armes.ArmeUtilise;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -89,6 +90,7 @@ public abstract class MenuGeneral implements Serializable{
         BoutiqueMarchand boutique_marchand = new BoutiqueMarchand();
         List liste = new ArrayList();
         Combat combat = new Combat();
+        AccesInventaire acces_Inventaire = new AccesInventaire();
     
         while(!continuer){
             choix = buff.readLine();
@@ -236,6 +238,12 @@ public abstract class MenuGeneral implements Serializable{
                 }
                 lieu_return = type_menu;
             }
+            //Inventaire
+            if(this.choix.equals("i")){
+                continuer = true;
+                arme = acces_Inventaire.changementArme( treePerso, perso, arme);
+                lieu_return = type_menu;
+            }
             //Quitter
             if(this.choix.equals("q")){
                 continuer = true;
@@ -268,6 +276,7 @@ public abstract class MenuGeneral implements Serializable{
                 + this.lieu[0].getLieu()
                 + this.lieu[1].getLieu() + this.lieu[2].getLieu() 
                 + this.lieu[3].getLieu() + this.lieu[4].getLieu() 
+                + "i : inventaire\n"
                 + "q : Sauvegarder et quitter\n";
     }
 }

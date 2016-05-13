@@ -14,6 +14,7 @@ import Menus.MenuGeneral;
 import Menus.MenuLac;
 import Menus.MenuMaitreCompetences;
 import Menus.MenuPlaine;
+import armes.AccesInventaire;
 import armes.Arme;
 import armes.ArmeUtilise;
 import armes.Epee;
@@ -153,11 +154,15 @@ public class LesRuinesDEpiria3{
         tree_perso.get("Guerrier").setArgent(10);
         System.out.println("or : "+tree_perso.get("Paysan").getArgent());
         System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
-        /*
-        System.out.println("\nUn test :\n");
         
+        System.out.println("\nUn test :\n");
+        /*
         Combat cb = new Combat();
         cb.levelUp((TreeMap<String, Personnage>)tree_perso, perso_principal);*/
+        /*System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
+        AccesInventaire aI = new AccesInventaire();
+        arme_principale = aI.changementArme((TreeMap<String, Personnage>) tree_perso,perso_principal,arme_principale);
+        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());*/
         
         
     }
