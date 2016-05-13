@@ -6,6 +6,7 @@
 package Combat;
 
 import Menus.Lieu;
+import Menus.LieuCite;
 import Menus.LieuForet;
 import Menus.LieuLac;
 import Menus.LieuPlaine;
@@ -54,12 +55,13 @@ public class Combat {
     //**************************************************************************
     //fonctions
     //**************************************************************************
-    public void menuCombat(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Lieu lieu) throws IOException{
+    public Lieu menuCombat(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme, Lieu lieu) throws IOException{
         Random aleat = new Random();
         Monstres mob;
         boolean debut_combat = true;
         List liste = new ArrayList();
         boolean fuir = false;
+        int argent;
         System.out.println("Vous entrez dans un lieu sauvage...");
         if(Math.abs(aleat.nextInt(9))<=8){
             System.out.println("Vous êtes attaqué par un monstre !");
@@ -77,7 +79,8 @@ public class Combat {
                     mob = (Monstres) liste.get(1);
                     
                     
-                }else{
+                }
+                if((debut_combat==false)||((debut_combat)&&(mob.getAgilite()>treePerso.get(perso).getAgilite()))){
                     if((mob.getVie()>0)&&(!fuir)){//si le monstre est vaincu, on saute son tour afin de terminer le while
                         debut_combat = false;
                         mob = combatMob(treePerso, perso, arme, mob);
@@ -86,10 +89,11 @@ public class Combat {
             }
             if(treePerso.get(perso).getVieAcutelle()<0){
                 System.out.println("Vous avez perdu !");
-                //action si perso mort
-                //
-                //
-                //
+                argent = (int)treePerso.get(perso).getArgent()/4;
+                treePerso.get(perso).setArgent(argent);//pert les 3/4 de l'or
+                treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());//soin
+                treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());//remet pm
+                lieu = new LieuCite();//repart dans la ville
             } else{
                 if(!fuir){
                     monstreVaincu(treePerso, perso, mob);
@@ -107,6 +111,7 @@ public class Combat {
             //on a une chance sur 10 de ne pas tomber sur un monstre
             fouilles( treePerso, perso);
         }
+        return lieu;
     }
     /**
     *<p>Cette fonction détermine un rang de monstre en fonction du lieu ainsi

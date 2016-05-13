@@ -159,7 +159,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
+                lieu_return = combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès forêt
             if(this.choix.equals("f")){
@@ -186,7 +186,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
+                lieu_return = combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès lac
             if(this.choix.equals("l")){
@@ -207,7 +207,7 @@ public abstract class MenuGeneral implements Serializable{
                     }
                     i++;
                 }
-                combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
+                lieu_return = combat.menuCombat(treePerso,perso,arme,lieu_return);//on lance le menuCombat
             }
             //accès campement
             if(this.choix.equals("k")){

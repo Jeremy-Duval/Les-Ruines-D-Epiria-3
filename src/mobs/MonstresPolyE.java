@@ -25,8 +25,8 @@ public class MonstresPolyE extends Monstres{
         super();
         this.vie_max = 15;
         this.vie = 15;
-        this.atq = 5;
-        this.atq_mag = 5;
+        this.atq = 6;
+        this.atq_mag = 6;
         this.def = 3;
         this.def_mag = 3;
         this.agilite = 3;
