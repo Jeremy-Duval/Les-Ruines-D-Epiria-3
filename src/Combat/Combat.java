@@ -238,7 +238,7 @@ public class Combat {
     }
     /**
     *<p>Cette fonction est le menu représentant les différentes possibilité du
- personnage durant le Combat.</p>
+    * personnage durant le Combat.</p>
     * @author Jérémy Duval
      * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
      * @param perso : String : classe du personnage
@@ -408,14 +408,14 @@ public class Combat {
         int nb_aleat;
         
         nb_aleat = Math.abs(aleat.nextInt(11));
-        if(nb_aleat < 5){
+        if(nb_aleat <= mob.getProbaAtq()){
             System.out.println("Le monstre lance attaque physique !\n");
             treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVieAcutelle()-mob.getAttaque()+(treePerso.get(perso).getDefense()+treePerso.get(perso).getArmure()));
             if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
                 treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVie());
             }
         }else{
-            if((nb_aleat > 4)&&(nb_aleat<11)){
+            if((nb_aleat > mob.getProbaAtq())&&(nb_aleat<11)){
                 System.out.println("Le monstre lance attaque magique !\n");
                 treePerso.get(perso).setVieAcutelle(treePerso.get(perso).getVieAcutelle()-mob.getAttaqueMagique()+(treePerso.get(perso).getDefenseMagique()+treePerso.get(perso).getArmureMagique()));
                 if(treePerso.get(perso).getVieAcutelle()>treePerso.get(perso).getVie()){
