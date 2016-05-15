@@ -8,6 +8,7 @@ package Boutiques;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import static java.lang.Math.ceil;
 import java.util.Random;
 import java.util.TreeMap;
 import perso.Personnage;
@@ -59,7 +60,8 @@ public class BoutiqueMarchand {
         System.out.println("Prenez votre temps et admirez ces articles rares.");
         
         for(int i = 0; i<puissance.length; i++){
-            coef = (Math.abs(aleat_coef.nextInt(13)%11))/10;
+            coef = (Math.abs(aleat_coef.nextInt(3)))+11/10;
+            System.out.println("coef : "+coef);
             puissance[i] =(int)(Math.abs(aleat.nextInt(tree_perso.get(perso).getLevel()*10))%(tree_perso.get(perso).getLevel()*5)*coef);
         }
         for(int i = 0; i<prix.length; i++){
@@ -69,7 +71,7 @@ public class BoutiqueMarchand {
         for(int i = 0; i<item.length; i++){
             item[i] = Math.abs(aleat.nextInt(5));//on vérifie qu'il n'y ai pas deux fois le même item
             for(int j = 0; j<=i; j++){
-                if(item[i]==item[j]){
+                if((item[i]==item[j])&&(j!=i)){
                     item[i] = Math.abs(aleat.nextInt(5));
                     j = 0;
                 }

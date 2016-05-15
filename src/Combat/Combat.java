@@ -650,14 +650,16 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez l'épée.");
                                     treePerso.get(perso).setEpee(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous la laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
+                            
                         }
                     break;
                     case 1 :
@@ -671,14 +673,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez le sceptre.");
                                     treePerso.get(perso).setSceptre(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous le laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;
                     case 2 :
@@ -692,14 +695,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez le talisman.");
                                     treePerso.get(perso).setTalisman(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous le laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;  
                     case 3 :
@@ -713,14 +717,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez la potion de vie.");
                                     treePerso.get(perso).setPotionVie(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous la laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;
                     case 4 :
@@ -734,14 +739,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez la potion de pm.");
                                     treePerso.get(perso).setPotionPM(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous la laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;
                     case 5 :
@@ -755,14 +761,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez l'armure.");
                                     treePerso.get(perso).setArmure(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous la laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;
                     default :
@@ -776,14 +783,15 @@ public class Combat {
                                 case "o" :
                                     System.out.println("Vous prenez l'armure magique.");
                                     treePerso.get(perso).setArmureMagique(val_item);
+                                    continuer = true;
                                     break;
                                 case "n" :
                                     System.out.println("Vous la laissez là...");
+                                    continuer = true;
                                     break;
                                 default :
                                     System.out.println("Arrêtez d'hesiter et choisissez !");
                             }
-                            continuer = true;
                         }
                     break;
                 }
