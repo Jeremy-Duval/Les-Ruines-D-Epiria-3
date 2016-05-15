@@ -30,8 +30,8 @@ public class MonstresMagieC extends Monstres{
         this.def = 10;
         this.def_mag = 18;
         this.agilite = 15;
-        this.xp = 80;
-        this.or = 40;
+        this.xp = 50;
+        this.or = 25;
         this.proba_atq = 3;
         this.proba_atq_mag = 7;
     }

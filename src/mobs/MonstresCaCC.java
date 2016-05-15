@@ -30,8 +30,8 @@ public class MonstresCaCC extends Monstres{
         this.def = 18;
         this.def_mag = 10;
         this.agilite = 15;
-        this.xp = 80;
-        this.or = 40;
+        this.xp = 50;
+        this.or = 25;
         this.proba_atq = 7;
         this.proba_atq_mag = 3;
     }

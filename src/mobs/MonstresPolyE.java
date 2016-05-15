@@ -30,7 +30,7 @@ public class MonstresPolyE extends Monstres{
         this.def = 3;
         this.def_mag = 3;
         this.agilite = 3;
-        this.xp = 20;
+        this.xp = 10;
         this.or = 5;
         this.proba_atq = 5;
         this.proba_atq_mag = 5;

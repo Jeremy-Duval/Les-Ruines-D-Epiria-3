@@ -30,7 +30,7 @@ public class MonstresCaCE extends Monstres{
         this.def = 4;
         this.def_mag = 1;
         this.agilite = 2;
-        this.xp = 20;
+        this.xp = 10;
         this.or = 5;
         this.proba_atq = 7;
         this.proba_atq_mag = 3;

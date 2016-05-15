@@ -117,7 +117,7 @@ public abstract class MenuGeneral implements Serializable{
             }
             if(this.choix.equals("n")){
                 test_vente_arme = new VenteArmeMarchand();
-                if(!this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si marchand ambulant
+                if(this.vente_arme.getVenteArme().equals(test_vente_arme.getVenteArme())){//si marchand ambulant
                     continuer = true;
                     boutique_marchand.boutiqueMarchand(treePerso,perso);
                 }

@@ -30,8 +30,8 @@ public class MonstresPolyC extends Monstres{
         this.def = 14;
         this.def_mag = 14;
         this.agilite = 30;
-        this.xp = 80;
-        this.or = 40;
+        this.xp = 50;
+        this.or = 25;
         this.proba_atq = 5;
         this.proba_atq_mag = 5;
     }
