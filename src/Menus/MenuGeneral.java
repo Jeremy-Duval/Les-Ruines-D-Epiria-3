@@ -18,8 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import javafx.util.Pair;
 import perso.Personnage;
+import serialization.SauveCharge;
 
 /**
  *<p><strong>Cette interface définie la méthode retournant un type de menu.</strong></p>
@@ -71,7 +71,8 @@ public abstract class MenuGeneral implements Serializable{
     * @throws java.io.IOException : lecture de buffer
     *@return liste : ArrayList <ul><li>lieu_return : Lieu : lieu dans lequel se placer</li>
     *                              <li>perso : String : nom de la classe du perso</li>
-    *                              <li>arme: ArmeUtilise : arme actuelle du perso</li></ul>
+    *                              <li>arme: ArmeUtilise : arme actuelle du perso</li>
+    *                              <li>quitter : boolean : true si on quitte le jeu</li></ul>
     *@author Jérémy Duval
     *@since 1.0
     */
@@ -79,6 +80,7 @@ public abstract class MenuGeneral implements Serializable{
         BufferedReader buff = new BufferedReader(
                                     new InputStreamReader(System.in));
         boolean continuer = false;
+        boolean quitter = false;
         int i;
         Auberge test_auberge;
         VenteArme test_vente_arme;
@@ -91,6 +93,7 @@ public abstract class MenuGeneral implements Serializable{
         List liste = new ArrayList();
         Combat combat = new Combat();
         AccesInventaire acces_Inventaire = new AccesInventaire();
+        SauveCharge sauvegarder = new SauveCharge();
     
         while(!continuer){
             choix = buff.readLine();
@@ -246,8 +249,9 @@ public abstract class MenuGeneral implements Serializable{
             }
             //Quitter
             if(this.choix.equals("q")){
-                continuer = true;
-                //sous programme de sauvegarde
+               continuer = true;
+               sauvegarder.sauvegarde(treePerso, perso, arme);
+               quitter = true;
                lieu_return = type_menu; 
             }
         }
@@ -255,6 +259,7 @@ public abstract class MenuGeneral implements Serializable{
         liste.add(0, lieu_return);
         liste.add(1, perso);
         liste.add(2, arme);
+        liste.add(3, quitter);
         return liste;//+ maj de la variable pour quitter le programme si besoin !!!!!!!!!!!!!!!!!!!!!!!!!
     }
     //**************************************************************************
