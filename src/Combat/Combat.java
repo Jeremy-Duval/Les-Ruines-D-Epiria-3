@@ -18,6 +18,7 @@ import armes.Talisman;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import static java.lang.Math.ceil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -265,6 +266,7 @@ public class Combat {
         Random aleat = new Random();
         int nb_aleat;
         boolean fuir = false;
+        int xp_arme;
         
         System.out.println("\nQue faire ?");
         System.out.println("a : attaque");
@@ -281,9 +283,12 @@ public class Combat {
                     arme_test = new Epee();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                         mob.setVie(mob.getVie()+mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
-                        treePerso.get(perso).setXpEpee((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
-                        if(treePerso.get(perso).getXpEpee()>treePerso.get(perso).getXpNecessaireEpee()){//on test si xp de l'arme > xp besoin pour passer de level
-                            levelUpArme(treePerso, perso, arme);
+                        xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))-mob.getDefense())/2);//xp arme = dégat/2
+                        if(xp_arme>0){
+                            treePerso.get(perso).setXpEpee(xp_arme);
+                            if(treePerso.get(perso).getXpEpee()>treePerso.get(perso).getXpNecessaireEpee()){//on test si xp de l'arme > xp besoin pour passer de level
+                                levelUpArme(treePerso, perso, arme);
+                            }
                         }
                     }else{
                         mob.setVie(mob.getVie()+mob.getDefense()-(treePerso.get(perso).getAttaque()));//vie monstre = defense monstre - (attaque perso)
@@ -298,17 +303,23 @@ public class Combat {
                     arme_test = new Sceptre();
                     if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                         mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
-                        treePerso.get(perso).setXpSceptre((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
-                        if(treePerso.get(perso).getXpSceptre()>treePerso.get(perso).getXpNecessaireSceptre()){//on test si xp de l'arme > xp besoin pour passer de level
-                            levelUpArme(treePerso, perso, arme);
+                        xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getSceptre()))-mob.getDefense())/2);//xp arme = dégat/2
+                        if(xp_arme>0){
+                            treePerso.get(perso).setXpSceptre(xp_arme);
+                            if(treePerso.get(perso).getXpSceptre()>treePerso.get(perso).getXpNecessaireSceptre()){//on test si xp de l'arme > xp besoin pour passer de level
+                                levelUpArme(treePerso, perso, arme);
+                            }
                         }
                     }else{
                         arme_test = new Talisman();
                         if(arme_test.getArmeUtil().equals(arme.getNomArme())){
                             mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
-                            treePerso.get(perso).setXpTalisman((mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))/2);//xp arme = dégat/2
-                            if(treePerso.get(perso).getXpTalisman()>treePerso.get(perso).getXpNecessaireTalisman()){//on test si xp de l'arme > xp besoin pour passer de level
-                                levelUpArme(treePerso, perso, arme);
+                            xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getTalisman()))-mob.getDefense())/2);//xp arme = dégat/2
+                            if(xp_arme>0){
+                                treePerso.get(perso).setXpTalisman(xp_arme);
+                                if(treePerso.get(perso).getXpTalisman()>treePerso.get(perso).getXpNecessaireTalisman()){//on test si xp de l'arme > xp besoin pour passer de level
+                                    levelUpArme(treePerso, perso, arme);
+                                }
                             }
                         }else{
                             mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()));
@@ -622,6 +633,7 @@ public class Combat {
             if(type_item==0){
                 System.out.println("Vous trouvez une potion d'xp !");
                 System.out.println("Vous montez de niveau !");
+                treePerso.get(perso).setXp(treePerso.get(perso).getXpNecessaire());
                 levelUp(treePerso, perso);
             } else {
                 type_item = Math.abs(trouve.nextInt(6));
