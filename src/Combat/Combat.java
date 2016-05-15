@@ -285,7 +285,7 @@ public class Combat {
                         mob.setVie(mob.getVie()+mob.getDefense()-(treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()));//vie monstre = defense monstre - (attaque perso + epee perso)
                         xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getEpee()))-mob.getDefense())/2);//xp arme = dégat/2
                         if(xp_arme>0){
-                            treePerso.get(perso).setXpEpee(xp_arme);
+                            treePerso.get(perso).setXpEpee(xp_arme+treePerso.get(perso).getXpEpee());
                             if(treePerso.get(perso).getXpEpee()>treePerso.get(perso).getXpNecessaireEpee()){//on test si xp de l'arme > xp besoin pour passer de level
                                 levelUpArme(treePerso, perso, arme);
                             }
@@ -305,7 +305,7 @@ public class Combat {
                         mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getSceptre()));
                         xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getSceptre()))-mob.getDefense())/2);//xp arme = dégat/2
                         if(xp_arme>0){
-                            treePerso.get(perso).setXpSceptre(xp_arme);
+                            treePerso.get(perso).setXpSceptre(xp_arme+treePerso.get(perso).getXpSceptre());
                             if(treePerso.get(perso).getXpSceptre()>treePerso.get(perso).getXpNecessaireSceptre()){//on test si xp de l'arme > xp besoin pour passer de level
                                 levelUpArme(treePerso, perso, arme);
                             }
@@ -316,7 +316,7 @@ public class Combat {
                             mob.setVie(mob.getVie()+mob.getDefenseMagique()-(treePerso.get(perso).getAttaqueMagique()+treePerso.get(perso).getTalisman()));
                             xp_arme = (int) ceil((((treePerso.get(perso).getAttaque()+treePerso.get(perso).getTalisman()))-mob.getDefense())/2);//xp arme = dégat/2
                             if(xp_arme>0){
-                                treePerso.get(perso).setXpTalisman(xp_arme);
+                                treePerso.get(perso).setXpTalisman(xp_arme+treePerso.get(perso).getXpTalisman());
                                 if(treePerso.get(perso).getXpTalisman()>treePerso.get(perso).getXpNecessaireTalisman()){//on test si xp de l'arme > xp besoin pour passer de level
                                     levelUpArme(treePerso, perso, arme);
                                 }

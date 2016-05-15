@@ -202,7 +202,7 @@ public class MenuMaitreCompetences {
             }
         }
         if(classe.equals("Pretre")){
-            if(treePerso.get("Paysan").getLevelSceptre()>5){
+            if(treePerso.get("Paysan").getLevelTalisman()>5){
                 if(treePerso.containsKey("Pretre")){
                     System.out.println("Désolé mais vous avez déjà apris cette classe !");
                 } else {
