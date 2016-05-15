@@ -7,6 +7,7 @@ package app;
 
 import Combat.Combat;
 import Menus.Lieu;
+import Menus.LieuCite;
 import Menus.MenuCampement;
 import Menus.MenuCite;
 import Menus.MenuForet;
@@ -18,8 +19,11 @@ import armes.AccesInventaire;
 import armes.Arme;
 import armes.ArmeUtilise;
 import armes.Epee;
+import armes.Poing;
 import armes.Sceptre;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +34,7 @@ import perso.Mage;
 import perso.Paysan;
 import perso.Personnage;
 import perso.Pretre;
+import serialization.SauveCharge;
 import utilitaire.Comparateur;
 
 /**
@@ -38,133 +43,76 @@ import utilitaire.Comparateur;
  * @version 1.0
  */
 public class LesRuinesDEpiria3{
+    //variable du menu
     private static MenuGeneral menu_general;
     /**
      * @param args the command line arguments
      * @throws java.io.IOException : à traiter !
      */
     public static void main(String[] args) throws IOException {
-        Arme arme_use_epee_guerrier = new Epee();
-        ArmeUtilise arme_use_gerrier = new ArmeUtilise(arme_use_epee_guerrier, 80);
-        Personnage paysan = new Paysan();
-        Personnage guerrier = new Guerrier(arme_use_gerrier);
-        Personnage mage = new Mage();
-        Personnage pretre = new Pretre();
+        //objets principaux du programme
+        Map treePerso = new TreeMap<>();
+        String perso = ""; 
+        ArmeUtilise arme = new ArmeUtilise();
+        //variable servant au menu
+        boolean continuer = false;
+        BufferedReader buff = new BufferedReader(
+                                    new InputStreamReader(System.in));
+        String choix;
+        //variables pour le chargement
+        SauveCharge charger = new SauveCharge();
+        List listeC = new ArrayList();
+        //variable pour le jeu
+        boolean quitter = false;
+        Lieu lieu = new LieuCite();
+        List listeM = new ArrayList();
         
-        Map <String, Personnage> perso = new TreeMap<>(new Comparateur());
-        //stockage des objets dans un treeMap
-        perso.put("Paysan", paysan);
-        perso.put("Guerrier", guerrier);
-        perso.put("Mage", mage);
-        perso.put("Pretre", pretre);
-        
-        Set <String> clés = perso.keySet();
-        System.out.println("Clefs : "+clés);
-        
-        //to string à redèf
-        for(String i : clés){
-            System.out.println("Pour la clé "+i+" on a :");
-            System.out.println(perso.get(i));
+        //**********************************************************************
+        //début du programme
+        //**********************************************************************
+        System.out.println("Bienvenue dans Les Ruines d'Epiria 3 !");
+        System.out.println("Que voulez vous faire ?");
+        System.out.println("c : continuer");
+        System.out.println("n : nouvelle partie");
+        System.out.println("z : crédits");
+        while(!continuer){
+            choix = buff.readLine();
+            switch(choix){
+                case "c" :
+                    listeC = charger.charge((TreeMap<String, Personnage>) treePerso);
+                    //affectation des valeurs retournées par la fonction de chargement
+                    perso = (String) listeC.get(0);
+                    arme = (ArmeUtilise) listeC.get(1);
+                    continuer = true;
+                    break;
+                case "n" :
+                    listeC = newGame((TreeMap<String, Personnage>) treePerso);
+                    //affectation des valeurs retournées par la fonction de création de partie
+                    perso = (String) listeC.get(0);
+                    arme = (ArmeUtilise) listeC.get(1);
+                    continuer = true;
+                    break;
+                case "z" :
+                    System.out.println("Jeu créé et développé par Jérémy Duval");
+                    break;
+            }
         }
-        /*
-        Set <String> clés2 = null;
-        clés2 = inventaire.keySet();
-        for(String i : clés2){
-            System.out.println("Pour la clé "+i+" on a :");
-            System.out.println(inventaire.get(i));
-        }*/
-        
-        System.out.println("\n\nTest getter :\n\n");
-        int xp = perso.get("Paysan").getXp();
-        System.out.println("Xp : "+xp);
-        int epee = perso.get("Paysan").getEpee();
-        System.out.println("Epee : "+epee);
-        
-        System.out.println("\n\nTest setter :\n\n");
-        perso.get("Paysan").setXp(5);
-        xp = perso.get("Paysan").getXp();
-        System.out.println("Xp : "+xp);
-        perso.get("Paysan").setEpee(20);
-        epee = perso.get("Paysan").getEpee();
-        System.out.println("Epee : "+epee);
-        
-        System.out.println("\n\nTest interface arme :\n\n");
-        System.out.println(perso.get("Paysan").getArmePossible());
-        
-        System.out.println("\n\nTest objet arme :\n\n");
-        ArmeUtilise arme_use1 = new ArmeUtilise();
-        ArmeUtilise arme_use2 = new ArmeUtilise(new Epee(), 50);
-        System.out.println("Arme 1 : ");
-        System.out.println("Type : "+arme_use1.getTypeArme());
-        System.out.println("Nom : "+arme_use1.getNomArme());
-        System.out.println("Valeur : "+arme_use1.getValeurArme());
-        System.out.println("Arme 2 : ");
-        System.out.println("Type : "+arme_use2.getTypeArme());
-        System.out.println("Nom : "+arme_use2.getNomArme());
-        System.out.println("Valeur : "+arme_use2.getValeurArme());
-        System.out.println("Arme 1 modif : ");
-        arme_use1.setArme(new Sceptre(), 75);
-        System.out.println("Type : "+arme_use1.getTypeArme());
-        System.out.println("Nom : "+arme_use1.getNomArme());
-        System.out.println("Valeur : "+arme_use1.getValeurArme());
-        
-        
-        System.out.println("\n\nTest objet menus :\n\n");
-        Personnage prsng = new Paysan();
-        String perso_principal = "Paysan";
-        Map <String, Personnage> tree_perso = new TreeMap<>(new Comparateur());
-        //stockage des objets dans un treeMap
-        tree_perso.put("Paysan", paysan);
-        tree_perso.put("Guerrier", guerrier);
-        tree_perso.get("Paysan").setLevelSceptre(10);
-        ArmeUtilise arme_principale = new ArmeUtilise(new Epee(), 50);
-        
-        System.out.println(menu_general);
-        menu_general = new MenuPlaine();
-        System.out.println(menu_general);
-        menu_general = new MenuForet();
-        System.out.println(menu_general);
-        menu_general = new MenuLac();
-        System.out.println(menu_general);
-        menu_general = new MenuCampement();
-        System.out.println(menu_general);
-        menu_general = new MenuCite();
-        System.out.println(menu_general);
-        //prsng.setVie(2);
-        List liste_menu = new ArrayList();
-        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
-        liste_menu = menu_general.redirectionChoix((TreeMap<String, Personnage>) tree_perso,perso_principal,arme_principale);
-        arme_principale = (ArmeUtilise) liste_menu.get(2);
-        perso_principal = (String) liste_menu.get(1);
-        setLieuToMenu((Lieu) liste_menu.get(0));
-        //System.out.println(menu_general.choix);
-        System.out.println(menu_general);
-        
-        Set <String> clés2 = tree_perso.keySet();
-        
-        for(String i : clés2){
-            System.out.println("Pour la clé "+i+" on a :");
-            System.out.println(tree_perso.get(i));
+        //**********************************************************************
+        //Boucle du jeu
+        //**********************************************************************
+        while(!quitter){
+            setLieuToMenu(lieu);
+            System.out.println(menu_general);
+            listeM = menu_general.redirectionChoix((TreeMap<String, Personnage>) treePerso, perso, arme);
+            lieu = (Lieu) listeM.get(0);
+            perso = (String) listeM.get(1);
+            arme = (ArmeUtilise) listeM.get(2);
+            quitter = (boolean) listeM.get(3);
         }
-        
-        System.out.println("Perso :\n"+perso_principal);
-        System.out.println(tree_perso.get(perso_principal));
-        System.out.println("Level scpetre : "+tree_perso.get("Paysan").getLevelSceptre());
-        System.out.println("or : "+tree_perso.get("Guerrier").getArgent());
-        tree_perso.get("Guerrier").setArgent(10);
-        System.out.println("or : "+tree_perso.get("Paysan").getArgent());
-        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
-        
-        System.out.println("\nUn test :\n");
-        /*
-        Combat cb = new Combat();
-        cb.levelUp((TreeMap<String, Personnage>)tree_perso, perso_principal);*/
-        /*System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());
-        AccesInventaire aI = new AccesInventaire();
-        arme_principale = aI.changementArme((TreeMap<String, Personnage>) tree_perso,perso_principal,arme_principale);
-        System.out.println("Arme principale :\n"+ arme_principale.getNomArme() + "\n" + arme_principale.getValeurArme());*/
-        
-        
+       //**********************************************************************
+        //Fin du jeu
+        //********************************************************************** 
+        System.out.println("Au revoir et à bientôt !");
     }
     
     
@@ -197,5 +145,30 @@ public class LesRuinesDEpiria3{
                 break;
         }
     }
-    
+    /**
+     * <p>Cette méthode sert à initialiser le TreeMap contenant les objets
+     * personnages, sa classe (String) et son arme utilisée (ArmeUtilise).</p>
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     * @return List : <ul><li>perso : String : nom de la classe utilisée</li>
+    *                    <li>arme : ArmeUtilise : arme utilisée par le personnage</li></ul> 
+     * @author Jérémy Duval
+     * @version 1.0
+     */
+    public static List newGame(TreeMap<String,Personnage> treePerso){
+        List liste = new ArrayList();
+        //premier perso est un paysan
+        Personnage paysan = new Paysan();
+        treePerso.put("Paysan", paysan);
+        //cible le String dessus
+        String perso = "Paysan";
+        //arme de départ : poing
+        Arme poing = new Poing();
+        ArmeUtilise arme = new ArmeUtilise();
+        arme.setArme(poing, 0);
+        //on ajoute à la liste
+        liste.add(0, perso);
+        liste.add(1, arme);
+        //on retourne la liste
+        return liste;
+    }
 }

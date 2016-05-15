@@ -15,7 +15,7 @@ package armes;
  * @author Jérémy Duval
  * @since 1.0
  */
-public interface Arme{
+public interface Arme {
     /**
     *<p>Cette méthode (à redéfinir) sert à retourner un string 
     * correspondant au type d'arme.</p>

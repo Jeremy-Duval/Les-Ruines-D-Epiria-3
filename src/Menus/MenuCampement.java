@@ -23,7 +23,7 @@ public class MenuCampement extends MenuGeneral{
     */
     public MenuCampement(){
         super();
-        nomMenu = "Campement :";
+        nomMenu = "Vous marchez entrez dans le campement :";
         auberge = new AubergeOui();
         vente_arme = new VenteArmeNon();
         maitre_competences = new MaitreDesCompetencesNon();

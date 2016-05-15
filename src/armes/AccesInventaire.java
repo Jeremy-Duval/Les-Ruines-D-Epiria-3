@@ -47,7 +47,7 @@ public class AccesInventaire {
         
         
         System.out.println(treePerso.get(perso).toString()+"\n");
-        
+        System.out.println("Vous voulez utiliser quelle arme ?");
         System.out.println("p : Poing");
         System.out.println("e : Epee");
         System.out.println("s : Scpetre");

@@ -5,12 +5,14 @@
  */
 package Combat;
 
+import java.io.Serializable;
+
 /**
  *<p><strong>Cette classe implémente {@link Sort} et définie le type "Attaque".</strong></p>
  * @author Jérémy Duval
  * @since 1.0
  */
-public class SortAttaque implements Sort{
+public class SortAttaque implements Sort, Serializable{
     /**
     *<p>Cette méthode redéfinie {@link Sort#getSort()} afin de retourner 
     * un string "Attaque" correspondant au type de sort.</p>

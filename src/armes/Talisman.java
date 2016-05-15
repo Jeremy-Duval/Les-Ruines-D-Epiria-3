@@ -5,12 +5,14 @@
  */
 package armes;
 
+import java.io.Serializable;
+
 /**
  *<p><strong>Cette classe implémente {@link Arme} et définie le type "Talisman".</strong></p>
  * @author Jérémy Duval
  * @since 1.0
  */
-public class Talisman implements Arme{
+public class Talisman implements Arme, Serializable{
     /**
     *<p>Cette méthode redéfinie {@link Arme#getArmeUtil()} afin de retourner 
     * un string "Talisman" correspondant au type d'arme.</p>

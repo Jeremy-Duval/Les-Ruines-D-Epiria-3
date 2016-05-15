@@ -28,7 +28,7 @@ public class MenuForet extends MenuGeneral{
     */
     public MenuForet(){
         super();
-        nomMenu = "Forêt :";
+        nomMenu = "Vous marchez dans la forêt :";
         auberge = new AubergeNon();
         if(Math.abs(aleat.nextInt(2))>=1){
             vente_arme = new VenteArmeNon();
@@ -43,7 +43,7 @@ public class MenuForet extends MenuGeneral{
         }else {
             lieu[2] = new LieuNon();
         }
-        lieu[3] = new LieuNon();
+        lieu[3] = new LieuForet();
         lieu[4] = new LieuNon();
         type_menu = new LieuForet();
     }

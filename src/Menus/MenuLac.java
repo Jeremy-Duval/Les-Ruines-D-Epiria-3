@@ -27,7 +27,7 @@ public class MenuLac extends MenuGeneral{
     */
     public MenuLac(){
         super();
-        nomMenu = "Lac :";
+        nomMenu = "Vous marchez sur les rives du lac :";
         auberge = new AubergeNon();
         if(Math.abs(aleat.nextInt(2))>=1){
             vente_arme = new VenteArmeNon();
@@ -37,7 +37,7 @@ public class MenuLac extends MenuGeneral{
         maitre_competences = new MaitreDesCompetencesNon();
         lieu[0] = new LieuPlaine();
         lieu[1] = new LieuForet();
-        lieu[2] = new LieuNon();
+        lieu[2] = new LieuLac();
         lieu[3] = new LieuNon();
         lieu[4] = new LieuNon();
         type_menu = new LieuLac();

@@ -188,15 +188,14 @@ public class SauveCharge {
     
     /**
     *<p>Cette fonction permet de charger la partie (3 sauvegardes possibles).</p>
-    * @return List : <ul><li>treePerso : TreeMap (String,Personnage) : le TreeMap contenant les classes de personnages</li>
-    *                    <li>perso : String : nom de la classe utilisée</li>
+    * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+    * @return List : <ul><li>perso : String : nom de la classe utilisée</li>
     *                    <li>arme : ArmeUtilise : arme utilisée par le personnage</li></ul> 
     * @author Jérémy Duval
      * @throws java.io.IOException : lecture de buffer
     * @since 1.0
     */
-    public List charge() throws IOException{ 
-        TreeMap<String,Personnage> treePerso = new TreeMap();
+    public List charge(TreeMap<String,Personnage> treePerso) throws IOException{
         String perso = new String();
         ArmeUtilise arme = new ArmeUtilise();
         
@@ -227,6 +226,7 @@ public class SauveCharge {
                        
                         treePerso = (TreeMap<String, Personnage>) fChargeTree.readObject();
                         fChargeTree.close();
+                        System.out.println(treePerso);
                         //charge du String perso
                         fChargePerso = new ObjectInputStream(
                                             new BufferedInputStream (
@@ -245,7 +245,6 @@ public class SauveCharge {
                        
                         arme = (ArmeUtilise) fChargeArme.readObject();
                         fChargeArme.close();
-
                     }catch(ClassNotFoundException e){
                         e.printStackTrace();
                     }catch(Exception e){
@@ -334,9 +333,8 @@ public class SauveCharge {
                     break;
             }
         }
-        liste.add(0, treePerso);
-        liste.add(1, perso);
-        liste.add(2, arme);
+        liste.add(0, perso);
+        liste.add(1, arme);
         return liste;
     } 
     

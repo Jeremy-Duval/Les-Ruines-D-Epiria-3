@@ -9,6 +9,7 @@ import Combat.Sort;
 import armes.Arme;
 import armes.ArmeUtilise;
 import java.io.Serializable;
+import static java.lang.Math.ceil;
 import java.util.Map;
 
 /**
@@ -724,7 +725,7 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     protected final int xpLevelSuivant(){
-        return (int)(this.level*10*0.75);
+        return (int) ceil(this.level*10*0.75);
     }
     /**
     *<p>Cette méthode calcul le nombre d'XP necessaire au prochain level de l'arme.</p>
@@ -733,7 +734,7 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     protected final int xpLevelSuivantEpee(){
-        return (int)(level_arme.get("Epee")*10*0.75);
+        return (int) ceil(level_arme.get("Epee")*10*0.75);
     }
     /**
     *<p>Cette méthode calcul le nombre d'XP necessaire au prochain level de l'arme.</p>
@@ -742,7 +743,7 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     protected final int xpLevelSuivantSceptre(){
-        return (int)(level_arme.get("Sceptre")*10*0.75);
+        return (int) ceil(level_arme.get("Sceptre")*10*0.75);
     }
     /**
     *<p>Cette méthode calcul le nombre d'XP necessaire au prochain level de l'arme.</p>
@@ -751,7 +752,7 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     protected final int xpLevelSuivantTalisman(){
-        return (int)(level_arme.get("Talisman")*10*0.75);
+        return (int) ceil(level_arme.get("Talisman")*10*0.75);
     }
     
     

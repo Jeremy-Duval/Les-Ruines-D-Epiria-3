@@ -27,7 +27,7 @@ public class MenuPlaine extends MenuGeneral{
     */
     public MenuPlaine(){
         super();
-        nomMenu = "Plaine :";
+        nomMenu = "Vous marchez dans la plaine :";
         auberge = new AubergeNon();
         if(Math.abs(aleat.nextInt(2))>=1){
             vente_arme = new VenteArmeNon();
@@ -38,7 +38,7 @@ public class MenuPlaine extends MenuGeneral{
         lieu[0] = new LieuCite();
         lieu[1] = new LieuForet();
         lieu[2] = new LieuLac();
-        lieu[3] = new LieuNon();
+        lieu[3] = new LieuPlaine();
         lieu[4] = new LieuNon();
         type_menu = new LieuPlaine();
     }

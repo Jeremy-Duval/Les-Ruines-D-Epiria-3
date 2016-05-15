@@ -5,12 +5,14 @@
  */
 package armes;
 
+import java.io.Serializable;
+
 /**
  *<p><strong>Cette classe implémente {@link Arme} et définie le type "Sceptre".</strong></p>
  * @author Jérémy Duval
  * @since 1.0
  */
-public class Sceptre implements Arme{
+public class Sceptre implements Arme, Serializable{
     /**
     *<p>Cette méthode redéfinie {@link Arme#getArmeUtil()} afin de retourner 
     * un string "Sceptre" correspondant au type d'arme.</p>

@@ -23,7 +23,7 @@ public class MenuCite extends MenuGeneral{
     */
     public MenuCite(){
         super();
-        nomMenu = "Cité :";
+        nomMenu = "Vous marchez dans la cité :";
         auberge = new AubergeOui();
         vente_arme = new VenteArmeCite();
         maitre_competences = new MaitreDesCompetencesOui();

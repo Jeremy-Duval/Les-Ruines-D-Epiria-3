@@ -126,11 +126,13 @@ public class Combat {
         Random aleat_rang = new Random();
         Random aleat_type = new Random();
         int type;
+        int rang;
         Monstres mob = null;
         
         test_lieu = new LieuPlaine();
         if(test_lieu.getLieu().equals(lieu.getLieu())){
-            if(Math.abs(aleat_rang.nextInt(1))==0){//rang E
+            rang = Math.abs(aleat_rang.nextInt(1));
+            if(rang==0){//rang E
                 type = Math.abs(aleat_type.nextInt(2));
                 switch(type){
                     case 0:
@@ -160,8 +162,8 @@ public class Combat {
         }
         test_lieu = new LieuLac();
         if(test_lieu.getLieu().equals(lieu.getLieu())){
-            type = Math.abs(aleat_rang.nextInt(1));
-            if(type == 0){//rang C
+            rang = Math.abs(aleat_rang.nextInt(1));
+            if(rang == 0){//rang C
                 type = Math.abs(aleat_type.nextInt(2));
                 switch(type){
                     case 0:
@@ -175,7 +177,7 @@ public class Combat {
                         break;
                 }
             }else{
-                if(type == 1){//rang D
+                if(rang == 1){//rang D
                     type = Math.abs(aleat_type.nextInt(2));
                     switch(type){
                         case 0:
@@ -206,7 +208,8 @@ public class Combat {
         }
         test_lieu = new LieuForet();
         if(test_lieu.getLieu().equals(lieu.getLieu())){
-            if(Math.abs(aleat_rang.nextInt(1))==0){//rang C
+            rang = Math.abs(aleat_rang.nextInt(1));
+            if(rang==0){//rang C
                 type = Math.abs(aleat_type.nextInt(2));
                 switch(type){
                     case 0:
@@ -442,18 +445,21 @@ public class Combat {
         n_arme = new Epee();
         if(n_arme.getArmeUtil().equals(arme.getNomArme()))
         {
+            System.out.println("Votre épée monte de niveau !");
             treePerso.get(perso).setXpEpee(treePerso.get(perso).getXpEpee()-treePerso.get(perso).getXpNecessaireEpee());//on remplace l'xp par celui restant lors du passage de level
             treePerso.get(perso).setLevelEpee(treePerso.get(perso).getLevelEpee()+1);//on augmente le niveau
         }
         n_arme = new Sceptre();
         if(n_arme.getArmeUtil().equals(arme.getNomArme()))
         {
+            System.out.println("Votre sceptre monte de niveau !");
             treePerso.get(perso).setXpSceptre(treePerso.get(perso).getXpSceptre()-treePerso.get(perso).getXpNecessaireSceptre());//on remplace l'xp par celui restant lors du passage de level
             treePerso.get(perso).setLevelSceptre(treePerso.get(perso).getLevelSceptre()+1);//on augmente le niveau
         }
         n_arme = new Talisman();
         if(n_arme.getArmeUtil().equals(arme.getNomArme()))
         {
+            System.out.println("Votre talisman monte de niveau !");
             treePerso.get(perso).setXpTalisman(treePerso.get(perso).getXpTalisman()-treePerso.get(perso).getXpNecessaireTalisman());//on remplace l'xp par celui restant lors du passage de level
             treePerso.get(perso).setLevelTalisman(treePerso.get(perso).getLevelTalisman()+1);//on augmente le niveau
         }
@@ -516,6 +522,8 @@ public class Combat {
         System.out.println("p : pm");
         System.out.println("a : attaque");
         System.out.println("m : attaque magique");
+        System.out.println("e : defense");
+        System.out.println("f : defense magique");
         System.out.println("i : intellignece");
         System.out.println("s : sagesse");
         System.out.println("d : agilité");
@@ -556,6 +564,16 @@ public class Combat {
                 case "d" :
                     System.out.println("Agilité augmentée !");
                     treePerso.get(perso).setAgilite(treePerso.get(perso).getAgilite()+1);
+                    nb_points--;
+                    break;
+                case "e" :
+                    System.out.println("Defense augmentée !");
+                    treePerso.get(perso).setDefense(treePerso.get(perso).getDefense()+1);
+                    nb_points--;
+                    break;
+                case "f" :
+                    System.out.println("Defense magique augmentée !");
+                    treePerso.get(perso).setDefenseMagique(treePerso.get(perso).getDefenseMagique()+1);
                     nb_points--;
                     break;
                 default :
@@ -758,8 +776,9 @@ public class Combat {
                     break;
                 }
             }
+        }else{
+            System.out.println("Vous n'avez rien trouvé...");
         }
-        System.out.println("Vous n'avez rien trouvé...");
     }
     
     
