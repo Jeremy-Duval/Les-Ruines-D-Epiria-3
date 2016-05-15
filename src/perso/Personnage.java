@@ -450,7 +450,7 @@ public abstract class Personnage implements Serializable{
     */
     public void setLevel(int n_lev){
         this.level = n_lev;
-        xpLevelSuivant();
+        this.xp_nec = xpLevelSuivant();
     }
     /**
     *<p>Cette méthode change la vie du perso.</p>
@@ -657,9 +657,14 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     public void setLevelEpee(int nlevel_epee){
+        int xp;
         level_arme.remove("Epee", level_arme.get("Epee"));
         level_arme.put("Epee", nlevel_epee);
-        xpLevelSuivantEpee();
+        
+        xp = xpLevelSuivantEpee();
+        xp_nec_arme.remove("Epee");
+        xp_nec_arme.put("Epee", xp);
+        
     }
     /**
     *<p>Cette méthode change le niveau au sceptre du perso.</p> 
@@ -668,9 +673,12 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     public void setLevelSceptre(int nlevel_sceptre){
+        int xp;
         level_arme.remove("Sceptre", level_arme.get("Sceptre"));
         level_arme.put("Sceptre", nlevel_sceptre);
-        xpLevelSuivantSceptre();
+        xp = xpLevelSuivantSceptre();
+        xp_nec_arme.remove("Sceptre");
+        xp_nec_arme.put("Sceptre", xp);
     }
     /**
     *<p>Cette méthode change le niveau au talisman du perso.</p> 
@@ -679,9 +687,12 @@ public abstract class Personnage implements Serializable{
     *@since 1.0
     */
     public void setLevelTalisman(int nlevel_talisman){
+        int xp;
         level_arme.remove("Talisman", level_arme.get("Talisman"));
         level_arme.put("Talisman", nlevel_talisman);
-        xpLevelSuivantTalisman();
+        xp = xpLevelSuivantTalisman();
+        xp_nec_arme.remove("Talisman");
+        xp_nec_arme.put("Talisman", xp);
     }
     /**
     *<p>Cette méthode change l'xp de l'épée du perso.</p> 

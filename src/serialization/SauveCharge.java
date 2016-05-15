@@ -169,6 +169,7 @@ public class SauveCharge {
                        
                         fSaveArme.writeObject(arme);
                         fSaveArme.close();
+                        
 
                     }catch(FileNotFoundException e){
                         e.printStackTrace();
@@ -177,6 +178,34 @@ public class SauveCharge {
                     }catch(Exception e){
                         e.printStackTrace();
                     }
+                    
+                    
+                    
+                    
+                    
+                    ObjectInputStream fChargeTree; 
+                    try{
+                    //charge du TreeMap treePerso
+                        fChargeTree = new ObjectInputStream(
+                                        new BufferedInputStream (
+                                            new FileInputStream(
+                                                new File("sauvegardeTreeC"))));
+                        
+                        System.out.println(fChargeTree.readObject());
+                        treePerso = (TreeMap<String, Personnage>) fChargeTree.readObject();
+                        fChargeTree.close();
+                        System.out.println(treePerso);
+                    }catch(ClassNotFoundException e){
+                        e.printStackTrace();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    
+                   
+                    
+                    
+                    
+                    
                     continuer = true;
                     break;
                 default :
@@ -217,16 +246,6 @@ public class SauveCharge {
             switch(choix){
                 case "a" :
                     try{
-                        //charge du TreeMap treePerso
-                        fChargeTree = new ObjectInputStream(
-                                        new BufferedInputStream (
-                                            new FileInputStream(
-                                                new File("sauvegardeTreeA"))));
-
-                       
-                        treePerso = (TreeMap<String, Personnage>) fChargeTree.readObject();
-                        fChargeTree.close();
-                        System.out.println(treePerso);
                         //charge du String perso
                         fChargePerso = new ObjectInputStream(
                                             new BufferedInputStream (
@@ -245,6 +264,17 @@ public class SauveCharge {
                        
                         arme = (ArmeUtilise) fChargeArme.readObject();
                         fChargeArme.close();
+                        //charge du TreeMap treePerso
+                        fChargeTree = new ObjectInputStream(
+                                        new BufferedInputStream (
+                                            new FileInputStream(
+                                                new File("sauvegardeTreeA"))));
+
+                        System.out.println(fChargeTree.readObject());
+                        treePerso = (TreeMap<String, Personnage>) fChargeTree.readObject();
+                        fChargeTree.close();
+                        System.out.println(treePerso);
+                        
                     }catch(ClassNotFoundException e){
                         e.printStackTrace();
                     }catch(Exception e){

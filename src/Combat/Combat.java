@@ -628,7 +628,7 @@ public class Combat {
                 val_item = Math.abs(alea_val_item.nextInt(treePerso.get(perso).getLevel()*10))%(treePerso.get(perso).getLevel()*5);
                 switch(type_item){
                     case 0 :
-                        System.out.println("Vous trouvez une épee !");
+                        System.out.println("Vous trouvez une épee de puissance "+val_item+" !");
                         System.out.println("Voulez vous la garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -649,7 +649,7 @@ public class Combat {
                         }
                     break;
                     case 1 :
-                        System.out.println("Vous trouvez un sceptre !");
+                        System.out.println("Vous trouvez un sceptre de puissance "+val_item+" !");
                         System.out.println("Voulez vous le garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -670,7 +670,7 @@ public class Combat {
                         }
                     break;
                     case 2 :
-                        System.out.println("Vous trouvez un talisman !");
+                        System.out.println("Vous trouvez un talisman de puissance "+val_item+" !");
                         System.out.println("Voulez vous le garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -691,7 +691,7 @@ public class Combat {
                         }
                     break;  
                     case 3 :
-                        System.out.println("Vous trouvez une potion de vie !");
+                        System.out.println("Vous trouvez une potion de vie de puissance "+val_item+" !");
                         System.out.println("Voulez vous la garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -712,7 +712,7 @@ public class Combat {
                         }
                     break;
                     case 4 :
-                        System.out.println("Vous trouvez une potion de pm !");
+                        System.out.println("Vous trouvez une potion de pm de puissance "+val_item+" !");
                         System.out.println("Voulez vous la garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -733,7 +733,7 @@ public class Combat {
                         }
                     break;
                     case 5 :
-                        System.out.println("Vous trouvez une armure !");
+                        System.out.println("Vous trouvez une armure de puissance "+val_item+" !");
                         System.out.println("Voulez vous la garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
@@ -754,7 +754,7 @@ public class Combat {
                         }
                     break;
                     default :
-                        System.out.println("Vous trouvez une armure magique !");
+                        System.out.println("Vous trouvez une armure magique de puissance "+val_item+" !");
                         System.out.println("Voulez vous la garder ?");
                         System.out.println("o : oui");
                         System.out.println("n : non");
