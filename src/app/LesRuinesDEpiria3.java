@@ -93,7 +93,9 @@ public class LesRuinesDEpiria3{
                     continuer = true;
                     break;
                 case "z" :
-                    System.out.println("Jeu créé et développé par Jérémy Duval");
+                    System.out.println("\nJeu créé et développé par Jérémy Duval");
+                    System.out.println("\nRemerciements :");
+                    System.out.println("Merci à Dorian Wouters pour son aide sur la partie serialization !");
                     break;
             }
         }

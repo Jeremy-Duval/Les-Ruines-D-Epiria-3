@@ -61,7 +61,6 @@ public class BoutiqueMarchand {
         
         for(int i = 0; i<puissance.length; i++){
             coef = (Math.abs(aleat_coef.nextInt(3)))+11/10;
-            System.out.println("coef : "+coef);
             puissance[i] =(int)(Math.abs(aleat.nextInt(tree_perso.get(perso).getLevel()*10))%(tree_perso.get(perso).getLevel()*5)*coef);
         }
         for(int i = 0; i<prix.length; i++){
