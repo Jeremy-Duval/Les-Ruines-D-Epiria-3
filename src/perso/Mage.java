@@ -12,21 +12,28 @@ import java.util.TreeMap;
 import utilitaire.Comparateur;
 
 /**
- *<p><strong>Définie le type de personnage Mage.</strong></p>
- * <p>Hérite de {@link Personnage}</p>
+ * <p>
+ * <strong>Définie le type de personnage Mage.</strong></p>
+ * <p>
+ * Hérite de {@link Personnage}</p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
 public class Mage extends Personnage {
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Mage".</Strong></p>
-    *<p>Ce concstructeur est le constructeur par défault, complètant
-    * celui de {@link Personnage}</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public Mage(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un
+     * personnage de type "Mage".</Strong></p>
+     * <p>
+     * Ce concstructeur est le constructeur par défault, complètant celui de
+     * {@link Personnage}</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public Mage() {
         super();
         this.classe_pers = "Mage";
         this.arme_possible = new Sceptre();
@@ -43,16 +50,20 @@ public class Mage extends Personnage {
         carac_level.put("Intelligence", 4);
         carac_level.put("Sagesse", 1);
     }
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Mage" ainsi que son inventaire, tout en initialisant l'arme utilisée
-    * par une passée en paramètre.</Strong></p>
-    *<p>Ce concstructeur complète celui de {@link Personnage}</p>
-    *@author Jérémy Duval
-    *@param arme_u : ArmeUtilise : arme utilisé
-    *@since 1.0
-    */
-    public Mage(ArmeUtilise arme_u){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un
+     * personnage de type "Mage" ainsi que son inventaire, tout en initialisant
+     * l'arme utilisée par une passée en paramètre.</Strong></p>
+     * <p>
+     * Ce concstructeur complète celui de {@link Personnage}</p>
+     *
+     * @author Jérémy Duval
+     * @param arme_u : ArmeUtilise : arme utilisé
+     * @since 1.0
+     */
+    public Mage(ArmeUtilise arme_u) {
         super();
         this.classe_pers = "Mage";
         this.arme_possible = new Sceptre();

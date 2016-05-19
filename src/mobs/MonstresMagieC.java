@@ -6,22 +6,29 @@
 package mobs;
 
 /**
- *<p><strong>Définie le type de monstre magie de rang C.</strong></p>
- *<p>Hérite de {@link Monstres}</p>
+ * <p>
+ * <strong>Définie le type de monstre magie de rang C.</strong></p>
+ * <p>
+ * Hérite de {@link Monstres}</p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class MonstresMagieC extends Monstres{
+public class MonstresMagieC extends Monstres {
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
-    * magie de rang C ainsi que ses probabilités d'attaque et d'attaque
-    * magique.</Strong></p>
-    *<p>Ce concstructeur est le constructeur par défault, complètant
-    * celui de {@link Monstres}</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public MonstresMagieC(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
+     * magie de rang C ainsi que ses probabilités d'attaque et d'attaque
+     * magique.</Strong></p>
+     * <p>
+     * Ce concstructeur est le constructeur par défault, complètant celui de
+     * {@link Monstres}</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public MonstresMagieC() {
         super();
         this.vie_max = 70;
         this.vie = 70;

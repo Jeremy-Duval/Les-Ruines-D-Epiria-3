@@ -8,30 +8,38 @@ package Menus;
 import java.util.Random;
 
 /**
- *<p><strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du 
+ * <p>
+ * <strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du
  * menu correspondant à la plaine.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class MenuPlaine extends MenuGeneral{
+public class MenuPlaine extends MenuGeneral {
+
     private Random aleat = new Random();
+
     //**************************************************************************
     //constructeurs
     //**************************************************************************
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser le menu en tant que celui 
-    * de la plaine.</Strong></p>
-    * <p>L'apparition du marchand ambulant est aléatoire (une chance sur trois).</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public MenuPlaine(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser le menu en tant que celui de
+     * la plaine.</Strong></p>
+     * <p>
+     * L'apparition du marchand ambulant est aléatoire (une chance sur
+     * trois).</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public MenuPlaine() {
         super();
         nomMenu = "Vous marchez dans la plaine :";
         auberge = new AubergeNon();
-        if(Math.abs(aleat.nextInt(2))>=1){
+        if (Math.abs(aleat.nextInt(2)) >= 1) {
             vente_arme = new VenteArmeNon();
-        }else {
+        } else {
             vente_arme = new VenteArmeMarchand();
         }
         maitre_competences = new MaitreDesCompetencesNon();

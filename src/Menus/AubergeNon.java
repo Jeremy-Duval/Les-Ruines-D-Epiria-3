@@ -9,14 +9,17 @@ package Menus;
  *
  * @author jeremy
  */
-public class AubergeNon implements Auberge{
+public class AubergeNon implements Auberge {
+
     /**
-    *<p>Cette méthode redéfinie {@link Auberge#getAuberge()} afin de retourner 
-    * un string "". L'auberge n'apparaitra pas dans le menu.</p>
-    * @author Jérémy Duval
-    * @return String 
-    * @since 1.0
-    */
+     * <p>
+     * Cette méthode redéfinie {@link Auberge#getAuberge()} afin de retourner un
+     * string "". L'auberge n'apparaitra pas dans le menu.</p>
+     *
+     * @author Jérémy Duval
+     * @return String
+     * @since 1.0
+     */
     @Override
     public String getAuberge() {
         return "";

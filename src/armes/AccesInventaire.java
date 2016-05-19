@@ -12,19 +12,26 @@ import java.util.TreeMap;
 import perso.Personnage;
 
 /**
- *<p><strong>Cette interface définie la méthode permettant de changer d'arme.</strong></p>
+ * <p>
+ * <strong>Cette interface définie la méthode permettant de changer
+ * d'arme.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
 public class AccesInventaire {
-    
-    
+
     /**
-    *<p><Strong>Ce constructeur ne fait rien.</Strong></p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public AccesInventaire(){};
+     * <p>
+     * <Strong>Ce constructeur ne fait rien.</Strong></p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public AccesInventaire() {
+    }
+
+    ;
     
     /**
     *<p>Cette méthode permet de changer l'arme principale en utilisant une de 
@@ -38,65 +45,64 @@ public class AccesInventaire {
     *@author Jérémy Duval
     *@since 1.0
     */
-    public ArmeUtilise changementArme(TreeMap<String,Personnage> treePerso, String perso, ArmeUtilise arme) throws IOException{
+    public ArmeUtilise changementArme(TreeMap<String, Personnage> treePerso, String perso, ArmeUtilise arme) throws IOException {
         boolean continuer = false;
         BufferedReader buff = new BufferedReader(
-                                    new InputStreamReader(System.in));
+                new InputStreamReader(System.in));
         String choix;
         Arme arme_affecte;
-        
-        
-        System.out.println(treePerso.get(perso).toString()+"\n");
+
+        System.out.println(treePerso.get(perso).toString() + "\n");
         System.out.println("Vous voulez utiliser quelle arme ?");
         System.out.println("p : Poing");
         System.out.println("e : Epee");
         System.out.println("s : Scpetre");
         System.out.println("t : Talisman");
         System.out.println("r : retour");
-        
-        while(!continuer){
+
+        while (!continuer) {
             choix = buff.readLine();
-            switch(choix){
-                case "p" :
+            switch (choix) {
+                case "p":
                     continuer = true;
                     arme_affecte = new Poing();
                     arme.setArme(arme_affecte, 0);
                     break;
-                case "e" :
+                case "e":
                     continuer = true;
                     arme_affecte = new Epee();
-                    if((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil()))||(treePerso.get(perso).getArmePossible().equals("All"))){
+                    if ((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil())) || (treePerso.get(perso).getArmePossible().equals("All"))) {
                         arme.setArme(arme_affecte, treePerso.get(perso).getEpee());
-                    }else{
+                    } else {
                         System.out.println("Vous ne pouvez pas porter cette arme avec ce personnage !");
                     }
                     break;
-                case "s" :
+                case "s":
                     continuer = true;
                     arme_affecte = new Sceptre();
-                    if((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil()))||(treePerso.get(perso).getArmePossible().equals("All"))){
+                    if ((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil())) || (treePerso.get(perso).getArmePossible().equals("All"))) {
                         arme.setArme(arme_affecte, treePerso.get(perso).getSceptre());
-                    }else{
+                    } else {
                         System.out.println("Vous ne pouvez pas porter cette arme avec ce personnage !");
                     }
                     break;
-                case "t" :
+                case "t":
                     continuer = true;
                     arme_affecte = new Talisman();
-                    if((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil()))||(treePerso.get(perso).getArmePossible().equals("All"))){
+                    if ((treePerso.get(perso).getArmePossible().equals(arme_affecte.getArmeUtil())) || (treePerso.get(perso).getArmePossible().equals("All"))) {
                         arme.setArme(arme_affecte, treePerso.get(perso).getTalisman());
-                    }else{
+                    } else {
                         System.out.println("Vous ne pouvez pas porter cette arme avec ce personnage !");
                     }
                     break;
-                case "r" :
+                case "r":
                     continuer = true;
                     break;
-                default :
+                default:
                     System.out.println("Vous ne possedez pas cette arme !");
             }
         }
-        
-        return arme; 
+
+        return arme;
     }
 }

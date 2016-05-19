@@ -6,22 +6,29 @@
 package mobs;
 
 /**
- *<p><strong>Définie le type de monstre magie de rang E.</strong></p>
- *<p>Hérite de {@link Monstres}</p>
+ * <p>
+ * <strong>Définie le type de monstre magie de rang E.</strong></p>
+ * <p>
+ * Hérite de {@link Monstres}</p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class MonstresMagieE extends Monstres{
+public class MonstresMagieE extends Monstres {
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
-    * magie de rang E ainsi que ses probabilités d'attaque et d'attaque
-    * magique.</Strong></p>
-    *<p>Ce concstructeur est le constructeur par défault, complètant
-    * celui de {@link Monstres}</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public MonstresMagieE(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
+     * magie de rang E ainsi que ses probabilités d'attaque et d'attaque
+     * magique.</Strong></p>
+     * <p>
+     * Ce concstructeur est le constructeur par défault, complètant celui de
+     * {@link Monstres}</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public MonstresMagieE() {
         super();
         this.vie_max = 20;
         this.vie = 20;

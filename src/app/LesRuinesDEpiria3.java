@@ -38,13 +38,17 @@ import serialization.SauveCharge;
 import utilitaire.Comparateur;
 
 /**
- *<p><strong>Cette classe est la classe principale du jeu.</strong></p>
+ * <p>
+ * <strong>Cette classe est la classe principale du jeu.</strong></p>
+ *
  * @author Jérémy Duval
  * @version 1.0
  */
-public class LesRuinesDEpiria3{
+public class LesRuinesDEpiria3 {
+
     //variable du menu
     private static MenuGeneral menu_general;
+
     /**
      * @param args the command line arguments
      * @throws java.io.IOException : à traiter !
@@ -52,12 +56,12 @@ public class LesRuinesDEpiria3{
     public static void main(String[] args) throws IOException {
         //objets principaux du programme
         Map treePerso = new TreeMap<>();
-        String perso = ""; 
+        String perso = "";
         ArmeUtilise arme = new ArmeUtilise();
         //variable servant au menu
         boolean continuer = false;
         BufferedReader buff = new BufferedReader(
-                                    new InputStreamReader(System.in));
+                new InputStreamReader(System.in));
         String choix;
         //variables pour le chargement
         SauveCharge charger = new SauveCharge();
@@ -66,7 +70,7 @@ public class LesRuinesDEpiria3{
         boolean quitter = false;
         Lieu lieu = new LieuCite();
         List listeM = new ArrayList();
-        
+
         //**********************************************************************
         //début du programme
         //**********************************************************************
@@ -75,24 +79,24 @@ public class LesRuinesDEpiria3{
         System.out.println("c : continuer");
         System.out.println("n : nouvelle partie");
         System.out.println("z : crédits");
-        while(!continuer){
+        while (!continuer) {
             choix = buff.readLine();
-            switch(choix){
-                case "c" :
+            switch (choix) {
+                case "c":
                     listeC = charger.charge((TreeMap<String, Personnage>) treePerso);
                     //affectation des valeurs retournées par la fonction de chargement
                     perso = (String) listeC.get(0);
                     arme = (ArmeUtilise) listeC.get(1);
                     continuer = true;
                     break;
-                case "n" :
+                case "n":
                     listeC = newGame((TreeMap<String, Personnage>) treePerso);
                     //affectation des valeurs retournées par la fonction de création de partie
                     perso = (String) listeC.get(0);
                     arme = (ArmeUtilise) listeC.get(1);
                     continuer = true;
                     break;
-                case "z" :
+                case "z":
                     System.out.println("\nJeu créé et développé par Jérémy Duval");
                     System.out.println("\nRemerciements :");
                     System.out.println("Merci à Dorian Wouters pour son aide sur la partie serialization !");
@@ -102,7 +106,7 @@ public class LesRuinesDEpiria3{
         //**********************************************************************
         //Boucle du jeu
         //**********************************************************************
-        while(!quitter){
+        while (!quitter) {
             setLieuToMenu(lieu);
             System.out.println(menu_general);
             listeM = menu_general.redirectionChoix((TreeMap<String, Personnage>) treePerso, perso, arme);
@@ -111,52 +115,57 @@ public class LesRuinesDEpiria3{
             arme = (ArmeUtilise) listeM.get(2);
             quitter = (boolean) listeM.get(3);
         }
-       //**********************************************************************
+        //**********************************************************************
         //Fin du jeu
         //********************************************************************** 
         System.out.println("Au revoir et à bientôt !");
     }
-    
-    
+
     /**
-     * <p>Cette méthode sert à changer la variable de menu en celui du lieu
-     * passé en paramètre</p>
+     * <p>
+     * Cette méthode sert à changer la variable de menu en celui du lieu passé
+     * en paramètre</p>
+     *
      * @param lieu : Lieu : un lieu à passer en menu correspondant
      * @author Jérémy Duval
      * @version 1.0
      */
-    public static void setLieuToMenu(Lieu lieu){
-        switch(lieu.getLieu()){
-            case "c : Cité\n" :
+    public static void setLieuToMenu(Lieu lieu) {
+        switch (lieu.getLieu()) {
+            case "c : Cité\n":
                 menu_general = new MenuCite();
                 break;
-            case "p : Plaines\n" :
+            case "p : Plaines\n":
                 menu_general = new MenuPlaine();
                 break;
-            case "f : Forêt\n" :
+            case "f : Forêt\n":
                 menu_general = new MenuForet();
                 break;
-            case "l : Lac\n" :
+            case "l : Lac\n":
                 menu_general = new MenuLac();
                 break;
-            case "k : Campement\n" :
+            case "k : Campement\n":
                 menu_general = new MenuCampement();
                 break;
-            default :
+            default:
                 menu_general = new MenuCite();
                 break;
         }
     }
+
     /**
-     * <p>Cette méthode sert à initialiser le TreeMap contenant les objets
+     * <p>
+     * Cette méthode sert à initialiser le TreeMap contenant les objets
      * personnages, sa classe (String) et son arme utilisée (ArmeUtilise).</p>
-     * @param treePerso : TreeMap (String,Personnage) : tout les objets personnages
+     *
+     * @param treePerso : TreeMap (String,Personnage) : tout les objets
+     * personnages
      * @return List : <ul><li>perso : String : nom de la classe utilisée</li>
-    *                    <li>arme : ArmeUtilise : arme utilisée par le personnage</li></ul> 
+     * <li>arme : ArmeUtilise : arme utilisée par le personnage</li></ul>
      * @author Jérémy Duval
      * @version 1.0
      */
-    public static List newGame(TreeMap<String,Personnage> treePerso){
+    public static List newGame(TreeMap<String, Personnage> treePerso) {
         List liste = new ArrayList();
         //premier perso est un paysan
         Personnage paysan = new Paysan();
