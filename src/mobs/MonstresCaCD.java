@@ -6,22 +6,29 @@
 package mobs;
 
 /**
- *<p><strong>Définie le type de monstre corps à corps de rang D.</strong></p>
- *<p>Hérite de {@link Monstres}</p>
+ * <p>
+ * <strong>Définie le type de monstre corps à corps de rang D.</strong></p>
+ * <p>
+ * Hérite de {@link Monstres}</p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class MonstresCaCD extends Monstres{
+public class MonstresCaCD extends Monstres {
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
-    * au corps à corps de rang D ainsi que ses probabilités d'attaque et d'attaque
-    * magique.</Strong></p>
-    *<p>Ce concstructeur est le constructeur par défault, complètant
-    * celui de {@link Monstres}</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public MonstresCaCD(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un monstre
+     * au corps à corps de rang D ainsi que ses probabilités d'attaque et
+     * d'attaque magique.</Strong></p>
+     * <p>
+     * Ce concstructeur est le constructeur par défault, complètant celui de
+     * {@link Monstres}</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public MonstresCaCD() {
         super();
         this.vie_max = 30;
         this.vie = 30;

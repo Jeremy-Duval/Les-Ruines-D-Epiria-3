@@ -6,19 +6,24 @@
 package Menus;
 
 /**
- *<p><strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
+ * <p>
+ * <strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
  * correspondant au campement.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class LieuCampement implements Lieu{
+public class LieuCampement implements Lieu {
+
     /**
-    *<p>Cette méthode redéfinie {@link Lieu#getLieu()} afin de retourner 
-    * un string "k : Campement\n" à afficher dans les menus.</p>
-    * @author Jérémy Duval
-    * @return String 
-    * @since 1.0
-    */
+     * <p>
+     * Cette méthode redéfinie {@link Lieu#getLieu()} afin de retourner un
+     * string "k : Campement\n" à afficher dans les menus.</p>
+     *
+     * @author Jérémy Duval
+     * @return String
+     * @since 1.0
+     */
     @Override
     public String getLieu() {
         return "k : Campement\n";

@@ -6,22 +6,27 @@
 package Menus;
 
 /**
- *<p><strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
+ * <p>
+ * <strong>Cette classe implémente {@link Lieu} et renvoie la ligne du menu
  * correspondant à la cité.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class LieuCite implements Lieu{
+public class LieuCite implements Lieu {
+
     /**
-    *<p>Cette méthode redéfinie {@link Lieu#getLieu()} afin de retourner 
-    * un string "c : Cité\n" à afficher dans les menus.</p>
-    * @author Jérémy Duval
-    * @return String 
-    * @since 1.0
-    */
+     * <p>
+     * Cette méthode redéfinie {@link Lieu#getLieu()} afin de retourner un
+     * string "c : Cité\n" à afficher dans les menus.</p>
+     *
+     * @author Jérémy Duval
+     * @return String
+     * @since 1.0
+     */
     @Override
     public String getLieu() {
         return "c : Cité\n";
     }
-    
+
 }

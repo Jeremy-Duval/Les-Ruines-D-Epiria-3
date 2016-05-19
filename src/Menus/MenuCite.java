@@ -6,22 +6,27 @@
 package Menus;
 
 /**
- *<p><strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du 
+ * <p>
+ * <strong>Cette classe implémente {@link MenuGeneral} et renvoie la ligne du
  * menu correspondant à la cité.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
-public class MenuCite extends MenuGeneral{
+public class MenuCite extends MenuGeneral {
+
     //**************************************************************************
     //constructeurs
     //**************************************************************************
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser le menu en tant que celui 
-    * de la cité.</Strong></p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public MenuCite(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser le menu en tant que celui de
+     * la cité.</Strong></p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public MenuCite() {
         super();
         nomMenu = "Vous marchez dans la cité :";
         auberge = new AubergeOui();

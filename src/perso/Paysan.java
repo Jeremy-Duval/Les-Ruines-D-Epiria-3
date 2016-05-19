@@ -12,26 +12,33 @@ import java.util.TreeMap;
 import utilitaire.Comparateur;
 
 /**
- *<p><strong>Définie le type de personnage Paysan.</strong></p>
- *<p>Hérite de {@link Personnage}</p>
+ * <p>
+ * <strong>Définie le type de personnage Paysan.</strong></p>
+ * <p>
+ * Hérite de {@link Personnage}</p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
 public class Paysan extends Personnage {
+
     /**
-    *<p><Strong>Ce constructeur permet d'initialiser tout les stats d'un personnage 
-    *de type "Paysan" </Strong></p>
-    * Il initialise aussi les variables communes aux classes :
-    * <ul><li>{@link Personnage#argent}</li>
-    *     <li>{@link Personnage#inventaire}</li>
-    *     <li>{@link Personnage#level_arme}</li>
-    *     <li>{@link Personnage#xp_arme}</li>
-    *     <li>{@link Personnage#xp_nec_arme}</li></ul>
-    *<p>Ce concstructeur complète celui de {@link Personnage}</p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public Paysan(){
+     * <p>
+     * <Strong>Ce constructeur permet d'initialiser tout les stats d'un
+     * personnage de type "Paysan" </Strong></p>
+     * Il initialise aussi les variables communes aux classes :
+     * <ul><li>{@link Personnage#argent}</li>
+     * <li>{@link Personnage#inventaire}</li>
+     * <li>{@link Personnage#level_arme}</li>
+     * <li>{@link Personnage#xp_arme}</li>
+     * <li>{@link Personnage#xp_nec_arme}</li></ul>
+     * <p>
+     * Ce concstructeur complète celui de {@link Personnage}</p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public Paysan() {
         super();
         this.classe_pers = "Paysan";
         this.arme_possible = new All();
@@ -70,6 +77,5 @@ public class Paysan extends Personnage {
         xp_nec_arme.put("Sceptre", this.xpLevelSuivantSceptre());
         xp_nec_arme.put("Talisman", this.xpLevelSuivantTalisman());
     }
-    
 
 }

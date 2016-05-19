@@ -13,22 +13,32 @@ import java.util.TreeMap;
 import perso.Personnage;
 
 /**
- *<p><strong>Cette classe permet la création du menu de la boutique de la cité.</strong></p>
+ * <p>
+ * <strong>Cette classe permet la création du menu de la boutique de la
+ * cité.</strong></p>
+ *
  * @author Jérémy Duval
  * @since 1.0
  */
 public class BoutiqueCite {
+
     protected int[] prix = new int[7];
     protected int[] puissance = new int[7];
+
     //**************************************************************************
     //constructeurs
     //**************************************************************************
     /**
-    *<p><Strong>Ce constructeur ne fait rien.</Strong></p>
-    *@author Jérémy Duval
-    *@since 1.0
-    */
-    public BoutiqueCite(){};
+     * <p>
+     * <Strong>Ce constructeur ne fait rien.</Strong></p>
+     *
+     * @author Jérémy Duval
+     * @since 1.0
+     */
+    public BoutiqueCite() {
+    }
+
+    ;
     
     /**
     *<p>Cette fonction ouvre le menu de la boutique de la cité. Le joueur peut .
@@ -41,24 +51,24 @@ public class BoutiqueCite {
     * @author jeremy
     * @since 1.0
     */
-    public void boutiqueCite(TreeMap<String,Personnage> tree_perso,String perso) throws IOException{
+    public void boutiqueCite(TreeMap<String, Personnage> tree_perso, String perso) throws IOException {
         Random aleat = new Random();
         boolean continuer = false;
         int compteur_achat = 0;
         BufferedReader buff = new BufferedReader(
-                                    new InputStreamReader(System.in));
+                new InputStreamReader(System.in));
         String choix;
-        
+
         System.out.println(perso.toString());
-        
+
         System.out.println("\nBienvenue dans notre boutique !");
         System.out.println("Prenez votre temps et admirez nos articles.");
         System.out.println("*********************************\nArmes :\n*********************************");
-        for(int i = 0; i<puissance.length; i++){
-            puissance[i] = Math.abs(aleat.nextInt(tree_perso.get(perso).getLevel()*10))%(tree_perso.get(perso).getLevel()*5);
+        for (int i = 0; i < puissance.length; i++) {
+            puissance[i] = Math.abs(aleat.nextInt(tree_perso.get(perso).getLevel() * 10)) % (tree_perso.get(perso).getLevel() * 5);
         }
-        for(int i = 0; i<prix.length; i++){
-            prix[i] =(int)(25 + puissance[i]/10 + Math.abs(aleat.nextInt(15)));
+        for (int i = 0; i < prix.length; i++) {
+            prix[i] = (int) (25 + puissance[i] / 10 + Math.abs(aleat.nextInt(15)));
         }
         System.out.println("e : Epee, puissance " + puissance[0] + " : " + prix[0] + " or");
         System.out.println("s : Scpetre, puissance " + puissance[1] + " : " + prix[1] + " or");
@@ -70,96 +80,96 @@ public class BoutiqueCite {
         System.out.println("a : Armure, puissance " + puissance[5] + " : " + prix[5] + " or");
         System.out.println("r : Armure magique, puissance " + puissance[6] + " : " + prix[6] + " or");
         System.out.println("\np : partir");
-        
-        while(!continuer){
+
+        while (!continuer) {
             choix = buff.readLine();
-            switch(choix){
-                case "e" :
-                    if(tree_perso.get(perso).getArgent()-prix[0]<0){
+            switch (choix) {
+                case "e":
+                    if (tree_perso.get(perso).getArgent() - prix[0] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[0]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[0]);
                         tree_perso.get(perso).setEpee(puissance[0]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "s" :
-                    if(tree_perso.get(perso).getArgent()-prix[1]<0){
+                case "s":
+                    if (tree_perso.get(perso).getArgent() - prix[1] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[1]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[1]);
                         tree_perso.get(perso).setSceptre(puissance[1]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "t" :
-                    if(tree_perso.get(perso).getArgent()-prix[2]<0){
+                case "t":
+                    if (tree_perso.get(perso).getArgent() - prix[2] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[2]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[2]);
                         tree_perso.get(perso).setTalisman(puissance[2]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "v" :
-                    if(tree_perso.get(perso).getArgent()-prix[3]<0){
+                case "v":
+                    if (tree_perso.get(perso).getArgent() - prix[3] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[3]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[3]);
                         tree_perso.get(perso).setPotionVie(puissance[3]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "m" :
-                    if(tree_perso.get(perso).getArgent()-prix[4]<0){
+                case "m":
+                    if (tree_perso.get(perso).getArgent() - prix[4] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[4]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[4]);
                         tree_perso.get(perso).setPotionPM(puissance[4]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "a" :
-                    if(tree_perso.get(perso).getArgent()-prix[5]<0){
+                case "a":
+                    if (tree_perso.get(perso).getArgent() - prix[5] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[5]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[5]);
                         tree_perso.get(perso).setArmure(puissance[5]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "r" :
-                    if(tree_perso.get(perso).getArgent()-prix[6]<0){
+                case "r":
+                    if (tree_perso.get(perso).getArgent() - prix[6] < 0) {
                         System.out.println("Vous n'avez pas assez d'argent !");
                     } else {
-                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()-prix[6]);
+                        tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() - prix[6]);
                         tree_perso.get(perso).setArmureMagique(puissance[6]);
                         compteur_achat++;
                         System.out.println("Merci à vous !");
                     }
                     break;
-                case "p" :
+                case "p":
                     continuer = true;
                     break;
-                default :
+                default:
                     System.out.println("Je n'ai pas cet article en magasin...");
                     break;
             }
         }
-        if(compteur_achat==3){
+        if (compteur_achat == 3) {
             System.out.println("Vous êtes bien brave de faire vivre des humbles commerçants comme nous.");
             System.out.println("J'espère vous revoir vite !");
         }
-        if(compteur_achat >= 4){
+        if (compteur_achat >= 4) {
             System.out.println("Vous êtes notre meilleur client !");
             System.out.println("Permettez-nous de vous offrir ces 50 pièces d'or !");
-            tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent()+50);
+            tree_perso.get(perso).setArgent(tree_perso.get(perso).getArgent() + 50);
         }
         System.out.println("Merci et à bientôt !");
     }
